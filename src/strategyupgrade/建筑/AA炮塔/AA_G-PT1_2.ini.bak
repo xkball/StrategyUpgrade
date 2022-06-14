@@ -1,0 +1,154 @@
+
+[core]
+name: 弹炮防空T1状态2
+class: CustomUnitMetadata
+price: 2500
+maxHp: 1550
+mass: 114514
+
+#footprint used for collisions with units (left, up, right, down)
+footprint: 0,0,1,1
+
+#used for placement, and placement of other buildings
+constructionFootprint: 0,0,1,1
+
+techLevel: 2
+buildSpeed: 20s
+
+radius: 20
+#tags:塔-未满
+isBio: false
+isBuilding: true
+buildingToFootprintOffsetX:20
+buildingToFootprintOffsetY:20
+[graphics]
+total_frames: 1
+
+image:        AA_2T3.png
+image_wreak:NONE
+image_turret:AA_Rocket_Launcher.png
+
+teamColorsOnTurret:true
+[resource_ammo3]
+displayName:小AA导弹
+[action_convert1]
+text:升级-大型弹炮防空(T2)
+whenBuilding_temporarilyConvertTo:弹炮防空T2-改造中
+convertTo:弹炮防空T2
+price:credits=2300,jc=3000
+description:升级为弹炮防空Ⅱ，需要等待30s(无法开火)，需要空军科技4级。
+buildSpeed:30s
+isActive:if self.resource(type="tecA",greaterThan=3)
+[hiddenAction_c]
+autoTrigger:if not self.resource(type="ammo3",greaterThan=17)
+convertTo:弹炮防空T1
+[hiddenAction_装弹1a]
+autoTrigger:if self.resource(type="ammo3",lessThan=18) and numberOfUnitsInTeam(withTag="弹药库-未满",withInRange=75,greaterThan=0)
+addResources:ammo3=3
+[hiddenAction_装弹2a]
+autoTrigger:if self.resource(type="ammo3",lessThan=18) and numberOfUnitsInTeam(withTag="弹药库-未满",withInRange=75,greaterThan=1)
+addResources:ammo3=3
+[hiddenAction_装弹3a]
+autoTrigger:if self.resource(type="ammo3",lessThan=18) and numberOfUnitsInTeam(withTag="弹药库-未满",withInRange=75,greaterThan=2)
+addResources:ammo3=3
+[hiddenAction_装弹4a]
+autoTrigger:if self.resource(type="ammo3",lessThan=18) and numberOfUnitsInTeam(withTag="弹药库-未满",withInRange=75,greaterThan=3)
+addResources:ammo3=3
+[hiddenAction_装弹5a]
+autoTrigger:if self.resource(type="ammo3",lessThan=18) and numberOfUnitsInTeam(withTag="弹药库-满",withInRange=75,greaterThan=0)
+addResources:ammo3=3
+[hiddenAction_装弹6a]
+autoTrigger:if self.resource(type="ammo3",lessThan=18) and numberOfUnitsInTeam(withTag="弹药库-满",withInRange=75,greaterThan=1)
+addResources:ammo3=3
+[hiddenAction_装弹7a]
+autoTrigger:if self.resource(type="ammo3",lessThan=18) and numberOfUnitsInTeam(withTag="弹药库-满",withInRange=75,greaterThan=2)
+addResources:ammo3=3
+[hiddenAction_装弹8a]
+autoTrigger:if self.resource(type="ammo3",lessThan=18) and numberOfUnitsInTeam(withTag="弹药库-满",withInRange=75,greaterThan=3)
+addResources:ammo3=3
+[hiddenAction_装弹9a]
+autoTrigger:if self.resource(type="ammo3",lessThan=18) and numberOfUnitsInTeam(withTag="弹药库-满",withInRange=75,greaterThan=4)
+addResources:ammo3=3
+[hiddenAction_装弹10a]
+autoTrigger:if self.resource(type="ammo3",lessThan=18) and numberOfUnitsInTeam(withTag="弹药库-满",withInRange=75,greaterThan=5)
+addResources:ammo3=3
+[hiddenAction_装弹11a]
+autoTrigger:if self.resource(type="ammo3",lessThan=18) and numberOfUnitsInTeam(withTag="弹药库-满",withInRange=75,greaterThan=6)
+addResources:ammo3=3
+[hiddenAction_装弹12a]
+autoTrigger:if self.resource(type="ammo3",lessThan=18) and numberOfUnitsInTeam(withTag="弹药库-满",withInRange=75,greaterThan=7)
+addResources:ammo3=3
+[hiddenAction_装弹13a]
+autoTrigger:if self.resource(type="ammo3",lessThan=18) and numberOfUnitsInTeam(withTag="弹药库-未满",withInRange=75,greaterThan=4)
+addResources:ammo3=3
+[hiddenAction_装弹14a]
+autoTrigger:if self.resource(type="ammo3",lessThan=18) and numberOfUnitsInTeam(withTag="弹药库-未满",withInRange=75,greaterThan=5)
+addResources:ammo3=3
+[hiddenAction_装弹15a]
+autoTrigger:if self.resource(type="ammo3",lessThan=18) and numberOfUnitsInTeam(withTag="弹药库-未满",withInRange=75,greaterThan=6)
+addResources:ammo3=3
+[hiddenAction_装弹16a]
+autoTrigger:if self.resource(type="ammo3",lessThan=18) and numberOfUnitsInTeam(withTag="弹药库-未满",withInRange=75,greaterThan=7)
+addResources:ammo3=3
+[hiddenAction_装填补给AI1]
+autoTrigger:if self.isControlledByAI() and self.resource(type="ammo3",lessThan=18) 
+addResources:ammo3=10
+[action_showammo3]
+#infoOnly: true
+addResources: ammo3=2
+price:  ammo3=2
+text:近程导弹剩余
+description:目前炮塔还剩余多少近程AA导弹
+displayType: none
+buildSpeed: 0s
+pos: 0.1
+displayRemainingStockpile: true
+highPriorityQueue: true
+isActive:false
+[attack]
+canAttack: true
+canAttackFlyingUnits: true
+canAttackLandUnits:   false
+canAttackUnderwaterUnits: false
+maxAttackRange: 240
+
+[movement]
+movementType:BUILDING
+moveSpeed: 0
+moveAccelerationSpeed: 0.01
+moveDecelerationSpeed: 0.01
+
+maxTurnSpeed: 0
+turnAcceleration: 0.1
+
+
+[turret_AAA1]
+x:  0
+y: 0
+turnSpeed: 20
+#turnSpeed: 1.0
+turnSpeedAcceleration: 19
+turnSpeedDeceleration: 19
+canAttackUnderwaterUnits:false
+projectile:1
+shouldResetTurret:false
+size:5
+delay:30
+idleSpin:1
+canAttackCondition:if self.resource(type="ammo3",greaterThan=0)
+resourceUsage:ammo3=2
+[projectile_1]
+areaDamage:170
+life:1200
+speed:13.5
+areaRadius:20
+speedSpread:1.8
+deflectionPower:1
+image:AA-Rocket.png
+drawSize:1
+largeHitEffect: true
+trailEffect:true
+explodeOnEndOfLife: true
+
+[ai]
+upgradedFrom:大型防空炮群T0

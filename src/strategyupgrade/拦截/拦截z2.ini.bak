@@ -1,0 +1,87 @@
+[core]
+name:拦截z2
+showInEditor:false
+price: 100
+maxHp:1
+maxShield:20
+shieldDisplayOnlyDeflection:true
+shieldDeflectionDisplayRate:10
+mass: 0
+techLevel: 1
+buildSpeed: 0.0020
+radius: 0
+displayRadius: 0
+isBio: false
+softCollisionOnAll: 1
+fogOfWarSightRange:2
+canNotBeGivenOrdersByPlayer:true
+canNotBeDirectlyAttacked:true
+hideScorchMark:true
+showOnMinimap:false
+energyMax:1
+energyRegen:0
+[graphics]
+total_frames: 1
+image:        NONE.png
+image_wreak:  NONE
+image_turret: NONE
+[attack]
+canAttack:false
+canAttackFlyingUnits:false
+canAttackLandUnits:   false
+canAttackUnderwaterUnits:false
+turretSize: 20
+turretTurnSpeed: 4
+maxAttackRange: 1
+shootDelay: 0
+isMelee: true
+meleeEngangementDistance:50
+[turret_5]
+x: 0
+y: 0
+turnSpeed: 3
+invisible:true
+canAttackLandUnits:   false
+canAttackUnderwaterUnits: false
+canAttackFlyingUnits:true
+projectile:5
+resourceUsage:energy=1
+interceptProjectiles_withTags:弹Z2
+interceptProjectiles_andUnderDistance: 300
+interceptProjectiles_andOverHeight:49
+limitingRange:450
+[projectile_5]
+areaDamage:600
+areaRadius:50
+life:300
+image:S-A_M.png
+speed: 1
+targetSpeed: 12
+targetSpeedAcceleration:0.6
+trailEffect: true
+largeHitEffect: true
+ballistic: true
+ballistic_delaymove_height:10
+ballistic_height: 30
+deflectionPower:-1
+lightColor: #FFEEEE00
+lightSize: 1
+drawSize:0.6
+tags:现代aam
+[hiddenAction_自裁准备]
+autoTrigger:if self.ammo(lessThan=999)
+price:0
+addResources:ammo=1
+[hiddenAction_自裁]
+autoTrigger:if self.ammo(greaterThan=2)
+price:0
+deleteSelf:true
+[movement]
+movementType:AIR
+moveSpeed:0
+moveAccelerationSpeed: 999
+moveDecelerationSpeed: 999
+maxTurnSpeed: 999
+turnAcceleration: 999
+reverseSpeedPercentage:0
+moveIgnoringBody:true

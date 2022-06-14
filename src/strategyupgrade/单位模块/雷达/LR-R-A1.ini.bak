@@ -1,0 +1,382 @@
+#作者:射程之内的真理，仅用于战略升级mod，未经允许禁止盗用。
+[core]
+
+
+name:远程对空雷达模块A
+
+
+class: CustomUnitMetadata
+price:0
+maxHp: 250
+mass: 4500
+
+techLevel: 2
+buildSpeed: 0.02
+#availableInDemo: true
+
+radius: 15
+displayRadius: 15
+
+isBio: false
+softCollisionOnAll: 0
+selfRegenRate:0.1
+fogOfWarSightRange:6
+
+[graphics]
+total_frames: 1
+
+image:NONE.png
+image_wreak:  NONE
+image_turret: NONE.png
+
+
+imageScale:1.5
+turretImageScale:0.2
+image_shadow: AUTO
+shadowOffsetX:1
+shadowOffsetY:1
+splastEffect: false
+
+
+
+[attack]
+canAttack:true
+canAttackFlyingUnits: true
+canAttackLandUnits:false
+canAttackUnderwaterUnits:false
+turretSize: 20
+turretTurnSpeed: 15
+aimOffsetSpread:0
+turretMultiTargeting: true
+shootDelay:1s
+maxAttackRange:1600
+[turret_radar1]
+x: 0
+y: 0
+turnSpeed: 999
+#turnSpeed: 2
+turnSpeedAcceleration: 999
+turnSpeedDeceleration: 999
+idleSpin:0.5
+canShoot:false
+invisible:true
+limitingAngle:12
+[turret_radar2]
+x: 0
+y: 0
+turnSpeed: 999
+#turnSpeed: 2
+turnSpeedAcceleration: 999
+turnSpeedDeceleration: 999
+invisible:true
+limitingAngle:12
+idleDir:12
+[turret_radar3]
+x: 0
+y: 0
+turnSpeed: 999
+#turnSpeed: 2
+turnSpeedAcceleration: 999
+turnSpeedDeceleration: 999
+invisible:true
+limitingAngle:12
+idleDir:24
+[turret_radar4]
+x: 0
+y: 0
+turnSpeed: 999
+#turnSpeed: 2
+turnSpeedAcceleration: 999
+turnSpeedDeceleration: 999
+invisible:true
+limitingAngle:12
+idleDir:36
+[turret_radar5]
+x: 0
+y: 0
+turnSpeed: 999
+#turnSpeed: 2
+turnSpeedAcceleration: 999
+turnSpeedDeceleration: 999
+invisible:true
+limitingAngle:12
+idleDir:48
+[turret_radar6]
+x: 0
+y: 0
+turnSpeed: 999
+#turnSpeed: 2
+turnSpeedAcceleration: 999
+turnSpeedDeceleration: 999
+invisible:true
+limitingAngle:12
+idleDir:60
+[turret_radar7]
+x: 0
+y: 0
+turnSpeed: 999
+#turnSpeed: 2
+turnSpeedAcceleration: 999
+turnSpeedDeceleration: 999
+invisible:true
+limitingAngle:12
+idleDir:72
+[turret_radar8]
+x: 0
+y: 0
+turnSpeed: 999
+#turnSpeed: 2
+turnSpeedAcceleration: 999
+turnSpeedDeceleration: 999
+invisible:true
+limitingAngle:12
+idleDir:84
+[turret_radar9]
+x: 0
+y: 0
+turnSpeed: 999
+#turnSpeed: 2
+turnSpeedAcceleration: 999
+turnSpeedDeceleration: 999
+invisible:true
+limitingAngle:12
+idleDir:96
+[turret_radar10]
+x: 0
+y: 0
+turnSpeed: 999
+#turnSpeed: 2
+turnSpeedAcceleration: 999
+turnSpeedDeceleration: 999
+invisible:true
+limitingAngle:12
+idleDir:108
+[turret_radar11]
+x: 0
+y: 0
+turnSpeed: 999
+#turnSpeed: 2
+turnSpeedAcceleration: 999
+turnSpeedDeceleration: 999
+invisible:true
+limitingAngle:12
+idleDir:120
+[turret_radar12]
+x: 0
+y: 0
+turnSpeed: 999
+#turnSpeed: 2
+turnSpeedAcceleration: 999
+turnSpeedDeceleration: 999
+invisible:true
+limitingAngle:12
+idleDir:132
+[turret_radar13]
+x: 0
+y: 0
+turnSpeed: 999
+#turnSpeed: 2
+turnSpeedAcceleration: 999
+turnSpeedDeceleration: 999
+invisible:true
+limitingAngle:12
+idleDir:144
+[turret_radar14]
+x: 0
+y: 0
+turnSpeed: 999
+#turnSpeed: 2
+turnSpeedAcceleration: 999
+turnSpeedDeceleration: 999
+invisible:true
+limitingAngle:12
+idleDir:156
+[turret_radar15]
+x: 0
+y: 0
+turnSpeed: 999
+#turnSpeed: 2
+turnSpeedAcceleration: 999
+turnSpeedDeceleration: 999
+invisible:true
+limitingAngle:12
+idleDir:168
+[turret_radar16]
+x: 0
+y: 0
+turnSpeed: 999
+#turnSpeed: 2
+turnSpeedAcceleration: 999
+turnSpeedDeceleration: 999
+invisible:true
+limitingAngle:12
+idleDir:180
+[turret_radar17]
+x: 0
+y: 0
+turnSpeed: 999
+#turnSpeed: 2
+turnSpeedAcceleration: 999
+turnSpeedDeceleration: 999
+invisible:true
+limitingAngle:12
+idleDir:192
+[turret_radar18]
+x: 0
+y: 0
+turnSpeed: 999
+#turnSpeed: 2
+turnSpeedAcceleration: 999
+turnSpeedDeceleration: 999
+invisible:true
+limitingAngle:12
+idleDir:204
+[turret_radar19]
+x: 0
+y: 0
+turnSpeed: 999
+#turnSpeed: 2
+turnSpeedAcceleration: 999
+turnSpeedDeceleration: 999
+invisible:true
+limitingAngle:12
+idleDir:216
+[turret_radar20]
+x: 0
+y: 0
+turnSpeed: 999
+#turnSpeed: 2
+turnSpeedAcceleration: 999
+turnSpeedDeceleration: 999
+invisible:true
+limitingAngle:12
+idleDir:228
+[turret_radar21]
+x: 0
+y: 0
+turnSpeed: 999
+#turnSpeed: 2
+turnSpeedAcceleration: 999
+turnSpeedDeceleration: 999
+invisible:true
+limitingAngle:12
+idleDir:240
+[turret_radar22]
+x: 0
+y: 0
+turnSpeed: 999
+#turnSpeed: 2
+turnSpeedAcceleration: 999
+turnSpeedDeceleration: 999
+invisible:true
+limitingAngle:12
+idleDir:252
+[turret_radar23]
+x: 0
+y: 0
+turnSpeed: 999
+#turnSpeed: 2
+turnSpeedAcceleration: 999
+turnSpeedDeceleration: 999
+invisible:true
+limitingAngle:12
+idleDir:264
+[turret_radar24]
+x: 0
+y: 0
+turnSpeed: 999
+#turnSpeed: 2
+turnSpeedAcceleration: 999
+turnSpeedDeceleration: 999
+invisible:true
+limitingAngle:12
+idleDir:276
+[turret_radar25]
+x: 0
+y: 0
+turnSpeed: 999
+#turnSpeed: 2
+turnSpeedAcceleration: 999
+turnSpeedDeceleration: 999
+invisible:true
+limitingAngle:12
+idleDir:288
+[turret_radar26]
+x: 0
+y: 0
+turnSpeed: 999
+#turnSpeed: 2
+turnSpeedAcceleration: 999
+turnSpeedDeceleration: 999
+invisible:true
+limitingAngle:12
+idleDir:300
+[turret_radar27]
+x: 0
+y: 0
+turnSpeed: 999
+#turnSpeed: 2
+turnSpeedAcceleration: 999
+turnSpeedDeceleration: 999
+invisible:true
+limitingAngle:12
+idleDir:312
+[turret_radar28]
+x: 0
+y: 0
+turnSpeed: 999
+#turnSpeed: 2
+turnSpeedAcceleration: 999
+turnSpeedDeceleration: 999
+invisible:true
+limitingAngle:12
+idleDir:324
+[turret_radar29]
+x: 0
+y: 0
+turnSpeed: 999
+#turnSpeed: 2
+turnSpeedAcceleration: 999
+turnSpeedDeceleration: 999
+invisible:true
+limitingAngle:12
+idleDir:336
+[turret_radar30]
+x: 0
+y: 0
+turnSpeed: 999
+#turnSpeed: 2
+turnSpeedAcceleration: 999
+turnSpeedDeceleration: 999
+invisible:true
+limitingAngle:12
+idleDir:348
+[projectile_电磁波(误)]
+tags:电磁波-远
+image:NONE.png
+targetGround: true
+directDamage:0
+alwaysVisibleInFog: true
+speed:999
+deflectionPower:-1
+shouldRevealFog:true
+life:1200
+explodeEffect:CUSTOM:lightningShock
+[effect_lightningShock]
+life: 1
+hOffset: 0
+dirOffset: 0
+fadeInTime: 0
+fadeOut: false
+attachedToUnit: true
+image:NONE.png
+total_frames: 1
+[movement]
+movementType:BUILDING
+moveSpeed: 1.7
+moveAccelerationSpeed: 0.55
+moveDecelerationSpeed: 0.55
+maxTurnSpeed: 2
+turnAcceleration: 2
+reverseSpeedPercentage:0
+moveIgnoringBody:true

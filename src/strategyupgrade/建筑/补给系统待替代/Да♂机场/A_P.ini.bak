@@ -1,0 +1,277 @@
+[core]
+
+name:大型机场-后勤
+displayDescription:专门用于后勤的跑道，承担了补给运输等功能
+class: CustomUnitMetadata
+price:credits=3500,jc=4500
+maxHp:3000
+mass:114514
+techLevel: 1
+buildSpeed:40s
+radius:40
+isBio: false
+isBuilding:true
+
+selfRegenRate:0.01
+
+softCollisionOnAll: 30
+fogOfWarSightRange:10
+
+footprint: 0,0,0,0
+
+constructionFootprint:-4,0,5,1
+energyMax:160
+energyRegen:0
+startEnergyAtZero:true
+transportUnitsBlockOtherTransports:false
+maxTransportingUnits:8
+transportUnitsRequireMovementType:AIR,HOVER
+transportUnitsRequireTag:飞机
+transportUnitsCanUnloadUnits:true
+transportUnitsHealBy:0.06
+buildingToFootprintOffsetX:20
+buildingToFootprintOffsetY:20
+tags:机场-后勤,机场1,机场,h0
+[hiddenAction_c]
+autoTrigger:if self.transportingCount(equalTo=8) and self.energy(full=true)
+#满弹无空位
+temporarilyAddTags:补给站-满
+temporarilyRemoveTags:补给站-空,空军后勤机场
+[hiddenAction_emm]
+#未满弹有空位
+autoTrigger:if not self.energy(full=true) and not self.transportingCount(equalTo=8)
+temporarilyAddTags:补给站-未满,空军后勤机场
+temporarilyRemoveTags:补给站-满
+[hiddenAction_gugugu]
+#未满弹没空位
+autoTrigger:if self.transportingCount(equalTo=8) and not self.energy(full=true)
+temporarilyAddTags:补给站-未满
+temporarilyRemoveTags:补给站-满,空军后勤机场
+[hiddenAction_hhhaaaaaaaa]
+#满弹有空位
+autoTrigger:if not self.transportingCount(equalTo=8) and self.energy(full=true)
+temporarilyAddTags:补给站-满,空军后勤机场
+temporarilyRemoveTags:补给站-未满
+[hiddenAction_有弹与否-有]
+autoTrigger:if not self.energy(empty=true)
+temporarilyAddTags:有补给的机场
+[hiddenAction_有弹与否-被榨干力(悲)]
+autoTrigger:if self.energy(empty=true)
+temporarilyRemoveTags:有补给的机场
+[hiddenAction_装填补给1]
+autoTrigger:if numberOfUnitsInTeam(withTag="弹药车",withInRange=40,greaterThan=0)
+addResources:energy=1
+[hiddenAction_装填补给2]
+autoTrigger:if numberOfUnitsInTeam(withTag="弹药车",withInRange=40,greaterThan=1)
+addResources:energy=1
+[hiddenAction_装填补给3]
+autoTrigger:if numberOfUnitsInTeam(withTag="弹药车",withInRange=40,greaterThan=2)
+addResources:energy=1
+[hiddenAction_装填补给4]
+autoTrigger:if numberOfUnitsInTeam(withTag="弹药车",withInRange=40,greaterThan=3)
+addResources:energy=1
+[hiddenAction_装填补给5]
+autoTrigger:if numberOfUnitsInTeam(withTag="运输机-有弹-输出",withInRange=200,greaterThan=0)
+addResources:energy=5
+[hiddenAction_装填补给6]
+autoTrigger:if numberOfUnitsInTeam(withTag="运输机-有弹-输出",withInRange=200,greaterThan=1)
+addResources:energy=5
+[hiddenAction_装填补给9]
+autoTrigger:if numberOfUnitsInTeam(withTag="运输机-有弹-输出",withInRange=200,greaterThan=2)
+addResources:energy=5
+[hiddenAction_装填补给10]
+autoTrigger:if numberOfUnitsInTeam(withTag="运输机-有弹-输出",withInRange=200,greaterThan=3)
+addResources:energy=5
+[hiddenAction_装填补给7]
+autoTrigger:if numberOfUnitsInTeam(withTag="弹药车-满",withInRange=40,greaterThan=0)
+addResources:energy=1
+[hiddenAction_装填补给8]
+autoTrigger:if numberOfUnitsInTeam(withTag="弹药车-满",withInRange=40,greaterThan=1)
+addResources:energy=1
+[hiddenAction_装填补给ai开挂]
+autoTrigger:if self.isControlledByAI()
+addResources:energy=999
+[hiddenAction_空了]
+autoTrigger:if self.energy(empty=true)
+forceUnloadTransportNow:true
+[hiddenAction_消耗补给1]
+autoTrigger:if self.numberOfAttachedUnits(withTag="空军单位A组",greaterThan=0)
+addResources:energy=-1
+[hiddenAction_消耗补给2]
+autoTrigger:if self.numberOfAttachedUnits(withTag="空军单位A组",greaterThan=1)
+addResources:energy=-1
+[hiddenAction_消耗补给3]
+autoTrigger:if self.numberOfAttachedUnits(withTag="空军单位A组",greaterThan=2)
+addResources:energy=-1
+[hiddenAction_消耗补给4]
+autoTrigger:if self.numberOfAttachedUnits(withTag="空军单位A组",greaterThan=3)
+addResources:energy=-1
+[hiddenAction_消耗补给5]
+autoTrigger:if self.numberOfAttachedUnits(withTag="空军单位A组",greaterThan=4)
+addResources:energy=-1
+[hiddenAction_消耗补给6]
+autoTrigger:if self.numberOfAttachedUnits(withTag="空军单位A组",greaterThan=5)
+addResources:energy=-1
+[hiddenAction_消耗补给7]
+autoTrigger:if self.numberOfAttachedUnits(withTag="空军单位A组",greaterThan=6)
+addResources:energy=-1
+[hiddenAction_消耗补给8]
+autoTrigger:if self.numberOfAttachedUnits(withTag="空军单位A组",greaterThan=7)
+addResources:energy=-1
+[hiddenAction_消耗补给1y]
+autoTrigger:if self.numberOfAttachedUnits(withTag="运输机-无弹-输入",greaterThan=0)
+addResources:energy=-5
+[hiddenAction_消耗补给2y]
+autoTrigger:if self.numberOfAttachedUnits(withTag="运输机-无弹-输入",greaterThan=1)
+addResources:energy=-5
+[hiddenAction_消耗补给3y]
+autoTrigger:if self.numberOfAttachedUnits(withTag="运输机-无弹-输入",greaterThan=2)
+addResources:energy=-5
+[hiddenAction_消耗补给4y]
+autoTrigger:if self.numberOfAttachedUnits(withTag="运输机-无弹-输入",greaterThan=3)
+addResources:energy=-5
+[action_showAmmo]
+#infoOnly: true
+addResources: energy=1
+price:  energy=1
+text: 弹药补给剩余
+description:显示目前补给站内有多少弹药
+displayType: none
+buildSpeed: 0s
+pos: 0.1
+displayRemainingStockpile: true
+highPriorityQueue: true
+isActive:false
+[attachment_1]
+x:57
+y:12
+height:0
+isVisible:true
+isUnselectable:false
+canBeAttackedAndDamaged:false
+keepAliveWhenParentDies: true
+prioritizeParentsMainTarget:true
+addTransportedUnits:true
+resetRotationWhenNotAttacking:true
+
+[attachment_2]
+x:-38
+y:12
+height:0
+isVisible:true
+isUnselectable:false
+canBeAttackedAndDamaged:false
+keepAliveWhenParentDies: true
+prioritizeParentsMainTarget:true
+addTransportedUnits:true
+resetRotationWhenNotAttacking:true
+
+[attachment_3]
+x:9
+y:12
+height:0
+isVisible:true
+isUnselectable:false
+canBeAttackedAndDamaged:false
+keepAliveWhenParentDies: true
+prioritizeParentsMainTarget:true
+addTransportedUnits:true
+resetRotationWhenNotAttacking:true
+
+[attachment_4]
+x:33
+y:12
+height:0
+isVisible:true
+isUnselectable:false
+canBeAttackedAndDamaged:false
+keepAliveWhenParentDies: true
+prioritizeParentsMainTarget:true
+addTransportedUnits:true
+resetRotationWhenNotAttacking:true
+
+[attachment_5]
+x:-14
+y:12
+height:0
+isVisible:true
+isUnselectable:false
+canBeAttackedAndDamaged:false
+keepAliveWhenParentDies: true
+prioritizeParentsMainTarget:true
+addTransportedUnits:true
+resetRotationWhenNotAttacking:true
+
+[attachment_6]
+x:81
+y:12
+height:0
+isVisible:true
+isUnselectable:false
+canBeAttackedAndDamaged:false
+keepAliveWhenParentDies: true
+prioritizeParentsMainTarget:true
+addTransportedUnits:true
+resetRotationWhenNotAttacking:true
+
+[attachment_7]
+x:105
+y:12
+height:0
+isVisible:true
+isUnselectable:false
+canBeAttackedAndDamaged:false
+keepAliveWhenParentDies: true
+prioritizeParentsMainTarget:true
+addTransportedUnits:true
+resetRotationWhenNotAttacking:true
+[attachment_8]
+x:114
+y:12
+height:0
+isVisible:true
+isUnselectable:false
+canBeAttackedAndDamaged:false
+keepAliveWhenParentDies: true
+prioritizeParentsMainTarget:true
+addTransportedUnits:true
+resetRotationWhenNotAttacking:true
+[graphics]
+total_frames: 1
+image:Airport.png
+image_wreak:  Airport_Weak.png
+image_turret: NONE
+image_shadow: AUTO
+imageScale:2
+
+[turret_0]
+x:0
+y:0
+turnSpeed:10
+canShoot:false
+canAttackCondition:if self.isControlledByAI()
+[attack]
+canAttack:true
+canAttackFlyingUnits: true
+canAttackLandUnits:   true
+canAttackUnderwaterUnits: true
+maxAttackRange:1500
+aimOffsetSpread:0
+[projectile_1]
+deflectionPower:-1
+directDamage:0
+life:1
+speed:1
+drawSize:0
+[movement]
+movementType: BUILDING
+moveSpeed: 0
+moveAccelerationSpeed: 0.5
+moveDecelerationSpeed: 0.25
+[ai]
+buildPriority: 0
+
+noneInBaseExtraPriority: 0
+noneGlobalExtraPriority: 0
+
+maxEachBase: 1

@@ -1,0 +1,107 @@
+[core]
+name: lv1战斗机ai
+displayDescription:早期单翼战斗机，性能不算优秀，但是开创了新的时代\n维护费:1资金/s\n参考:苏联И-16战斗机\n\n贴图:@射程之内的真理
+class: CustomUnitMetadata
+price:2200
+maxHp:400
+mass:450
+techLevel: 1
+buildSpeed:15s
+radius:30
+displayRadius:30
+isBio: false
+fogOfWarSightRange:5
+tags:早期飞机,空军单位A组,飞机
+generation_credits:-60
+generation_delay:60
+[graphics]
+total_frames:1
+image:       fs.png
+image_wreak:  NONE
+image_turret: NONE
+image_shadow: NONE
+shadowOffsetX:1
+shadowOffsetY:1
+
+imageScale:1
+
+lock_body_rotation_with_main_turret: true
+
+[attack]
+canAttack: true
+canAttackFlyingUnits: true
+canAttackLandUnits:   false
+canAttackUnderwaterUnits:false
+turretSize: 1
+turretTurnSpeed: 6
+maxAttackRange: 100
+shootDelay: 10
+#isFixedFiring: true
+turretRotateWithBody: false
+isMelee: true
+meleeEngangementDistance:300
+[turret_1]
+x: 0
+y: 8
+projectile: 1
+size: 1
+canShoot: true
+canAttackCondition:if not self.hasParent(withTag="机场")
+[turret_2]
+x: 9
+y: -8
+projectile: 1
+size: 1
+canShoot: true
+canAttackCondition:if not self.hasParent(withTag="机场") and not numberOfUnitsInEnemyTeam(withTag="低空干扰1",withInRange=200,greaterThan=0)
+[turret_3]
+x: -9
+y: -8
+projectile: 1
+size: 1
+canShoot: true
+canAttackCondition:if not self.hasParent(withTag="机场") and not numberOfUnitsInEnemyTeam(withTag="低空干扰1",withInRange=200,greaterThan=1)
+[turret_4]
+x: 0
+y: 8
+projectile: 1
+size: 1
+canShoot: true
+canAttackCondition:if not self.hasParent(withTag="机场")
+[turret_5]
+x: 9
+y: -8
+projectile: 1
+size: 1
+canShoot: true
+canAttackCondition:if not self.hasParent(withTag="机场")and not numberOfUnitsInEnemyTeam(withTag="低空干扰1",withInRange=200,greaterThan=3)
+[turret_6]
+x: -9
+y: -8
+projectile: 1
+size: 1
+canShoot: true
+canAttackCondition:if not self.hasParent(withTag="机场")
+[projectile_1]
+directDamage:5
+life:180
+speed:5
+color:#C1C100
+drawSize:1
+[movement]
+movementType: AIR
+moveSpeed:2
+moveAccelerationSpeed: 2
+moveDecelerationSpeed: 0.005
+maxTurnSpeed:2
+turnAcceleration:0.8
+targetHeight:8
+targetHeightDrift:0
+moveSlidingMode:true
+moveIgnoringBody:false
+moveSlidingDir: 10
+
+slowDeathFall: true
+[ai]
+
+upgradedFrom:lv1战斗机-降落状态

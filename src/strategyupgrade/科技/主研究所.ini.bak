@@ -1,0 +1,362 @@
+
+[core]
+name: 主要研究所
+displayDescription: 用于研究整体科技
+class: CustomUnitMetadata
+price: 1500,jc=1000
+maxHp: 3000
+mass:114514
+selfRegenRate:0
+techLevel: 1
+buildSpeed:0s
+availableInDemo: true
+#maxTransportingUnits:4
+#transportUnitsCanUnloadUnits:false
+radius: 7
+isBio: false
+isBuilding:true
+footprint: -1,-1,1,1
+constructionFootprint:-1,-1,1,1
+tags:主研究所,h0
+[graphics]
+total_frames: 1
+imageScale:1
+image:        S-T.png
+image_wreak:  NONE
+image_turret: NONE
+
+image_shadow: AUTO
+shadowOffsetX:1
+shadowOffsetY:1
+
+[attack]
+canAttack: false
+canAttackFlyingUnits: false
+canAttackLandUnits:   false
+canAttackUnderwaterUnits: false
+canAttackNotTouchingWaterUnits: false
+[action_科技2级]
+text:科技2级
+description:你的总体科技等级将升至2级，解锁新的科技树部分。(注:需要研究至少24个一级科技，一级科技共36个)
+price:2000
+addResources:tec=1
+isActive:if self.resource(type="tec",equalTo=1) and self.resource(type="tecLV1",greaterThan=23)
+buildSpeed:114.514s
+convertTo:主要研究所
+ai_isHighPriority:true
+[action_科技3级]
+text:科技3级
+description:你的总体科技等级将升至3级，解锁新的科技树部分。(注:需要研究至少27个二级科技，二级科技共41个)
+price:4000
+addResources:tec=1
+isActive:if self.resource(type="tec",equalTo=2) and self.resource(type="tecLV2",greaterThan=26)
+buildSpeed:191.981s
+convertTo:主要研究所
+ai_isHighPriority:true
+[action_科技4级]
+text:科技4级
+description:你的总体科技等级将升至4级，解锁新的科技树部分。(注:需要研究至少35个三级科技，三级科技共49个)
+price:8000
+addResources:tec=1
+isActive:if self.resource(type="tec",equalTo=3) and self.resource(type="tecLV3",greaterThan=34)
+buildSpeed:350s
+convertTo:主要研究所
+ai_isHighPriority:true
+[action_科技5级]
+text:科技5级
+description:你的总体科技等级将升至5级(max)，解锁新的科技树部分。(注:需要研究至39个四级科技，四级科技共55个，五级科技共29个)
+price:12000
+addResources:tec=1
+isActive:if self.resource(type="tec",equalTo=4) and self.resource(type="tecLV4",greaterThan=38)
+buildSpeed:893s
+convertTo:主要研究所
+ai_isHighPriority:true
+#[hiddenAction_显示等级]
+#autoTriggerOnEvent:created
+#price:0
+#addUnitsIntoTransport:科技显示*1
+[movement]
+movementType: BUILDING
+moveSpeed: 0
+moveAccelerationSpeed: 0.02
+moveDecelerationSpeed: 0.03
+maxTurnSpeed: 0
+turnAcceleration: 0.05
+[action_1级科技显示]
+#infoOnly: true
+addResources: tecLV1=1
+price:  tecLV1=1
+text: 1级科技研发完成数
+description:你已研究了多少个1级科技（1级科技总共36个，研发24个后可进入2级）
+displayType: none
+buildSpeed: 0s
+
+displayRemainingStockpile: true
+highPriorityQueue: true
+ai_isHighPriority:true
+isActive:false
+[action_2级科技显示]
+#infoOnly: true
+addResources: tecLV2=1
+price:  tecLV2=1
+text: 2级科技研发完成数
+description:你已研究了多少个2级科技（2级科技总共41个，研发27个后可进入3级）
+displayType: none
+buildSpeed: 0s
+
+displayRemainingStockpile: true
+highPriorityQueue: true
+ai_isHighPriority:true
+isActive:false
+[action_3级科技显示]
+#infoOnly: true
+addResources: tecLV3=1
+price:  tecLV3=1
+text: 3级科技研发完成数
+description:你已研究了多少个3级科技（3级科技总共50个，研发35个后可进入4级）
+displayType: none
+buildSpeed: 0s
+
+displayRemainingStockpile: true
+highPriorityQueue: true
+ai_isHighPriority:true
+isActive:false
+[action_4级科技显示]
+#infoOnly: true
+addResources: tecLV4=1
+price:  tecLV4=1
+text: 4级科技研发完成数
+description:你已研究了多少个4级科技（4级科技总共54个，研发38个后可进入5级）
+displayType: none
+buildSpeed: 0s
+
+displayRemainingStockpile: true
+highPriorityQueue: true
+ai_isHighPriority:true
+isActive:false
+[action_5级科技显示]
+#infoOnly: true
+addResources: tecLV5=1
+price:  tecLV5=1
+text: 5级科技研发完成数
+description:你已研究了多少个5级科技（5级科技总共29个，5级为满级，无法继续升级）
+displayType: none
+buildSpeed: 0s
+
+displayRemainingStockpile: true
+highPriorityQueue: true
+ai_isHighPriority:true
+isActive:false
+[action_显示情报科技]
+addResources: unsetFlag=1-10, setFlag=1
+isGuiBlinking: if self.hasFlag(id=1)
+displayType: action
+
+text:显示情报科技
+alwaysSinglePress: true
+allowMultipleInQueue: false
+buildSpeed: 0s
+[action_1科技-情报1]
+text:lv1.情报科技Ⅰ
+description:拥有较低效率获取情报的能力
+price:1500
+addResources:tecLV1=1,1科技-情报1=1
+isActive:if self.resource(type="1科技-情报1",equalTo=0)
+buildSpeed:30s
+convertTo:主要研究所
+ai_isHighPriority:true
+isVisible:if self.hasFlag(id=1)
+[action_2科技-情报2]
+text:lv2.情报科技Ⅱ
+description:拥有中等效率获取情报的能力，需要情报科技Ⅰ为前置
+price:3000
+addResources:tecLV2=1,2科技-情报2=1
+isActive:if self.resource(type="2科技-情报2",equalTo=0) and self.resource(type="tec",greaterThan=1) and self.resource(type="1科技-情报1",greaterThan=0)
+buildSpeed:30s
+convertTo:主要研究所
+ai_isHighPriority:true
+isVisible:if self.hasFlag(id=1)
+[action_显示计算机科技]
+addResources: unsetFlag=1-10, setFlag=2
+isGuiBlinking: if self.hasFlag(id=2)
+displayType: action
+
+text:显示计算机科技
+alwaysSinglePress: true
+allowMultipleInQueue: false
+buildSpeed: 0s
+[action_2科技-计算机1]
+text:lv2.计算机Ⅰ
+description:开始对电子计算机进行理论层面的奠基，为其他科技的研发做准备
+price:5000
+addResources:tecLV2=1,2科技-电脑1=1
+isActive:if self.resource(type="2科技-电脑1",equalTo=0) and self.resource(type="tec",greaterThan=1)
+buildSpeed:100s
+convertTo:主要研究所
+ai_isHighPriority:true
+isVisible:if self.hasFlag(id=2)
+[action_3科技-计算机2]
+text:lv3.计算机Ⅱ
+description:有能力制造早期的电子管/晶体管计算机，需要计算机Ⅰ为前置
+price:4500
+addResources:tecLV3=1,3科技-电脑2=1
+isActive:if self.resource(type="3科技-电脑2",equalTo=0) and self.resource(type="tec",greaterThan=2) and self.resource(type="2科技-电脑1",greaterThan=0)
+buildSpeed:60s
+convertTo:主要研究所
+ai_isHighPriority:true
+isVisible:if self.hasFlag(id=2)
+[action_4科技-计算机3]
+text:lv4.计算机Ⅲ
+description:有能力制造中期的晶体管计算机，需要计算机Ⅱ科技
+price:4500
+addResources:tecLV4=1,4科技-电脑3=1
+isActive:if self.resource(type="4科技-电脑3",equalTo=0) and self.resource(type="tec",greaterThan=3) and self.resource(type="3科技-电脑2",greaterThan=0)
+buildSpeed:60s
+convertTo:主要研究所
+ai_isHighPriority:true
+isVisible:if self.hasFlag(id=2)
+[action_5科技-计算机4]
+text:lv5.计算机Ⅳ
+description:有能力制造现代的计算机，需要计算机Ⅲ
+price:4500
+addResources:tecLV5=1,5科技-电脑4=1
+isActive:if self.resource(type="5科技-电脑4",equalTo=0) and self.resource(type="tec",greaterThan=4) and self.resource(type="4科技-电脑3",greaterThan=0)
+buildSpeed:60s
+convertTo:主要研究所
+ai_isHighPriority:true
+isVisible:if self.hasFlag(id=2)
+[action_显示卫星科技]
+addResources: unsetFlag=1-10, setFlag=3
+isGuiBlinking: if self.hasFlag(id=3)
+displayType: action
+
+text:显示卫星科技
+alwaysSinglePress: true
+allowMultipleInQueue: false
+buildSpeed: 0s
+[action_3科技-侦察卫星1]
+text:lv3.侦察卫星Ⅰ
+description:高效率获取情报(需要手操，有CD)，需要计算机Ⅱ科技
+price:8000
+addResources:tecLV3=1,3科技-侦察卫星1=1
+isActive:if self.resource(type="3科技-侦察卫星1",equalTo=0) and self.resource(type="tec",greaterThan=2) and self.resource(type="3科技-电脑2",greaterThan=0)
+buildSpeed:60s
+convertTo:主要研究所
+ai_isHighPriority:true
+isVisible:if self.hasFlag(id=3)
+[action_4科技-侦察卫星2]
+text:lv4.侦察卫星Ⅱ
+description:高效率获取情报(需要手操，有CD)，需要计算机Ⅱ，侦察卫星Ⅰ科技
+price:8000
+addResources:tecLV4=1,4科技-侦察卫星2=1
+isActive:if self.resource(type="4科技-侦察卫星2",equalTo=0) and self.resource(type="tec",greaterThan=3) and self.resource(type="3科技-电脑2",greaterThan=0) and self.resource(type="3科技-侦察卫星1",greaterThan=0)
+buildSpeed:60s
+convertTo:主要研究所
+ai_isHighPriority:true
+isVisible:if self.hasFlag(id=3)
+[action_5科技-侦察卫星3]
+text:lv5.侦察卫星Ⅲ
+description:高效率获取情报(需要手操，有CD)，需要计算机Ⅳ，侦察卫星Ⅱ科技
+price:8000
+addResources:tecLV5=1,5科技-侦察卫星3=1
+isActive:if self.resource(type="5科技-侦察卫星3",equalTo=0) and self.resource(type="tec",greaterThan=4) and self.resource(type="5科技-电脑4",greaterThan=0) and self.resource(type="4科技-侦察卫星2",greaterThan=0)
+buildSpeed:60s
+convertTo:主要研究所
+ai_isHighPriority:true
+isVisible:if self.hasFlag(id=3)
+[action_3科技-导航卫星1]
+text:lv3.导航卫星Ⅰ
+description:某些单位和科技的必须前置科技，需要计算机Ⅱ科技
+price:5000
+addResources:tecLV3=1,3科技-导航卫星1=1
+isActive:if self.resource(type="3科技-导航卫星1",equalTo=0) and self.resource(type="tec",greaterThan=2) and self.resource(type="3科技-电脑2",greaterThan=0)
+buildSpeed:60s
+convertTo:主要研究所
+ai_isHighPriority:true
+isVisible:if self.hasFlag(id=3)
+[action_4科技-导航卫星2]
+text:lv4.导航卫星Ⅱ
+description:某些单位和科技的必须前置科技，需要计算机Ⅲ，导航卫星Ⅰ科技
+price:5000
+addResources:tecLV4=1,4科技-导航卫星2=1
+isActive:if self.resource(type="4科技-导航卫星2",equalTo=0) and self.resource(type="tec",greaterThan=3) and self.resource(type="4科技-电脑3",greaterThan=0) and self.resource(type="3科技-导航卫星1",greaterThan=0)
+buildSpeed:60s
+convertTo:主要研究所
+ai_isHighPriority:true
+isVisible:if self.hasFlag(id=3)
+[action_5科技-导航卫星3]
+text:lv5.导航卫星Ⅲ
+description:某些单位和科技的必须前置科技，需要计算机Ⅳ，导航卫星Ⅱ科技
+price:5000
+addResources:tecLV5=1,5科技-导航卫星3=1
+isActive:if self.resource(type="5科技-导航卫星3",equalTo=0) and self.resource(type="tec",greaterThan=4) and self.resource(type="5科技-电脑4",greaterThan=0) and self.resource(type="4科技-导航卫星2",greaterThan=0)
+buildSpeed:60s
+convertTo:主要研究所
+ai_isHighPriority:true
+isVisible:if self.hasFlag(id=3)
+[action_显示导弹科技]
+addResources: unsetFlag=1-10, setFlag=4
+isGuiBlinking: if self.hasFlag(id=4)
+displayType: action
+
+text:显示导弹科技
+alwaysSinglePress: true
+allowMultipleInQueue: false
+buildSpeed: 0s
+[action_3科技-大规模杀伤武器&ICBM1]
+text:lv3.大规模杀伤武器&洲际弹道导弹Ⅰ
+description:相当于拥有了在世界上任何一个地方投送大规模杀伤武器的能力，某些单位前置科技，需要计算机Ⅱ，导航卫星Ⅰ
+price:50000
+addResources:tecLV3=1,3科技-蛋1=1
+isActive:if self.resource(type="3科技-蛋1",equalTo=0) and self.resource(type="tec",greaterThan=2) and self.resource(type="3科技-电脑2",greaterThan=0)and self.resource(type="3科技-导航卫星1",greaterThan=0)
+buildSpeed:120s
+convertTo:主要研究所
+ai_isHighPriority:true
+isVisible:if self.hasFlag(id=4)
+[action_4科技-大规模杀伤武器&ICBM2]
+text:lv4.大规模杀伤武器&洲际弹道导弹Ⅱ
+description:相当于拥有了在世界上任何一个地方投送大规模杀伤武器的能力，某些单位前置科技，需要大规模杀伤武器&洲际弹道导弹Ⅰ和计算机Ⅲ以及导航卫星Ⅱ
+price:50000
+addResources:tecLV4=1,4科技-蛋2=1
+isActive:if self.resource(type="4科技-蛋2",equalTo=0) and self.resource(type="tec",greaterThan=3) and self.resource(type="3科技-蛋1",greaterThan=0) and self.resource(type="4科技-电脑3",greaterThan=0) and self.resource(type="4科技-导航卫星2",greaterThan=0)
+buildSpeed:120s
+convertTo:主要研究所
+ai_isHighPriority:true
+isVisible:if self.hasFlag(id=4)
+[action_显示探测科技]
+addResources: unsetFlag=1-10, setFlag=5
+isGuiBlinking: if self.hasFlag(id=5)
+displayType: action
+
+text:显示探测科技
+alwaysSinglePress: true
+allowMultipleInQueue: false
+buildSpeed: 0s
+[action_4科技-相控阵雷达]
+text:lv4.相控阵雷达
+description:某些单位前置科技，需要计算机Ⅲ科技
+price:10000
+addResources:tecLV4=1,4科技-相控阵=1
+isActive:if self.resource(type="4科技-相控阵",equalTo=0) and self.resource(type="tec",greaterThan=3) and self.resource(type="4科技-电脑3",greaterThan=0)
+buildSpeed:40s
+convertTo:主要研究所
+ai_isHighPriority:true
+isVisible:if self.hasFlag(id=5)
+[action_4科技-长波雷达]
+text:lv4.先进型长波雷达
+description:某些单位前置科技，需要计算机Ⅲ科技
+price:7000
+addResources:tecLV4=1,4科技-长波雷达=1
+isActive:if self.resource(type="4科技-长波雷达",equalTo=0) and self.resource(type="tec",greaterThan=3) and self.resource(type="4科技-电脑3",greaterThan=0)
+buildSpeed:40s
+convertTo:主要研究所
+ai_isHighPriority:true
+isVisible:if self.hasFlag(id=5)
+
+[ai]
+buildPriority: 80
+
+noneInBaseExtraPriority: 80
+noneGlobalExtraPriority: 96
+
+maxEachBase: 3

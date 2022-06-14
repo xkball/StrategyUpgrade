@@ -1,0 +1,68 @@
+
+[core]
+
+
+name: 早期侦察机
+
+
+class: CustomUnitMetadata
+price: 2500
+maxHp: 250
+mass: 4500
+
+techLevel: 2
+buildSpeed: 0.02
+#availableInDemo: true
+
+radius: 15
+displayRadius: 15
+
+isBio: false
+softCollisionOnAll: 0
+selfRegenRate:0.1
+builtFrom_1_name:空军工厂T1
+builtFrom_1_pos:  1
+builtFrom_2_name:空军工厂T2
+builtFrom_2_pos:  1
+builtFrom_3_name:空军工厂T3
+builtFrom_3_pos:  1
+builtFrom_4_name:空军工厂T4
+builtFrom_4_pos:  1
+builtFrom_5_name:空军工厂T5
+builtFrom_5_pos:  1
+fogOfWarSightRange:20
+
+[graphics]
+total_frames: 1
+
+image:        p.png
+image_wreak:  NONE
+image_turret: NONE
+
+
+imageScale:0.6
+turretImageScale:0.2
+image_shadow: AUTO
+shadowOffsetX:1
+shadowOffsetY:1
+splastEffect: false
+
+
+
+[attack]
+canAttack:false
+canAttackFlyingUnits: false
+canAttackLandUnits:false
+canAttackUnderwaterUnits:false
+turretSize: 20
+turretTurnSpeed: 15
+
+[movement]
+movementType: AIR
+moveSpeed: 1.4
+moveAccelerationSpeed: 0.55
+moveDecelerationSpeed: 0.55
+maxTurnSpeed: 2
+turnAcceleration: 2
+reverseSpeedPercentage:0
+moveIgnoringBody:true

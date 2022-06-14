@@ -1,0 +1,46 @@
+
+[core]
+name: 弹药工厂
+class: CustomUnitMetadata
+price: 1000
+maxHp: 500
+mass: 9000
+generation_resources: credits=-2
+footprint: 0,0,1,1
+constructionFootprint: 0,0,1,1
+techLevel: 1
+buildSpeed: 15s
+radius: 20
+isBio: false
+isBuilding: true
+buildingToFootprintOffsetX:20
+buildingToFootprintOffsetY:20
+tags:弹药厂
+[hiddenAction_1]
+autoTrigger:if numberOfUnitsInTeam(withTag="城市",withInRange=250,greaterThan=0)
+temporarilyAddTags:弹药厂
+[hiddenAction_2]
+autoTrigger:if not numberOfUnitsInTeam(withTag="城市",withInRange=250,greaterThan=0)
+temporarilyRemoveTags:弹药厂
+[graphics]
+total_frames: 1
+image:Factory.png
+image_wreak:  Factory_Weak.png
+imageScale:0.4
+[attack]
+canAttack: false
+canAttackFlyingUnits: false
+canAttackLandUnits:   false
+canAttackUnderwaterUnits: false
+[movement]
+movementType: BUILDING
+moveSpeed: 0
+moveAccelerationSpeed: 0.01
+moveDecelerationSpeed: 0.01
+maxTurnSpeed: 0
+turnAcceleration: 0.1
+[ai]
+buildPriority: 0
+noneInBaseExtraPriority:0
+noneGlobalExtraPriority:0
+maxEachBase: 1

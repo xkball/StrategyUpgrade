@@ -1,0 +1,245 @@
+[core]
+
+name: 弹药运输卡车状态3
+displayText:弹药运输卡车
+displayDescription:用于运输弹药的货车
+
+class: CustomUnitMetadata
+price: 100
+maxHp: 15
+mass: 150
+
+techLevel: 2
+buildSpeed: 10s
+#availableInDemo: true
+
+radius:15
+showInEditor:false
+isBio: false
+softCollisionOnAll: 0
+fogOfWarSightRange: 1
+energyMax:10
+energyRegen:0
+startEnergyAtZero:true
+
+tags:弹药车-满
+[hiddenAction_桥]
+autoTrigger:if numberOfUnitsInTeam(withTag="桥2",withInRange=80,greaterThan=0)
+convertTo:弹药运输卡车状态3-b
+[resource_x]
+displayName:x
+[resource_x2]
+displayName:x2
+[action_关闭自动模式]
+text:关闭自动模式
+description:关闭自动模式
+price:0
+addResources:x=1
+isActive:if self.resource(type="x",equalTo=0)
+isVisible:if self.resource(type="x",equalTo=0)
+buildSpeed:0s
+convertTo:弹药运输卡车状态3
+clearAllWaypoints:true
+[action_开启自动模式]
+text:开启自动模式
+description:开启自动模式
+price:0
+addResources:x=-1
+isActive:if self.resource(type="x",equalTo=1)
+isVisible:if self.resource(type="x",equalTo=1)
+buildSpeed:0s
+convertTo:弹药运输卡车状态3
+[action_开启海陆转运模式]
+text:开启海陆转运模式
+description:开启海陆转运模式，将会与驳船配合，完成海陆转运(注:此转运需手动)
+price:0
+addResources:x2=1
+isActive:if self.resource(type="x2",equalTo=0)
+isVisible:if self.resource(type="x2",equalTo=0)
+buildSpeed:0s
+convertTo:弹药运输卡车状态3a
+clearAllWaypoints:true
+[action_关闭海陆转运模式]
+text:关闭海陆转运模式
+description:关闭海陆转运模式
+price:0
+addResources:x2=-1
+isActive:if self.resource(type="x2",equalTo=1)
+isVisible:if self.resource(type="x2",equalTo=1)
+buildSpeed:0s
+convertTo:弹药运输卡车状态2
+clearAllWaypoints:true
+[hiddenAction_a]
+autoTrigger:if self.energy(empty=true)
+convertTo:弹药运输卡车
+[hiddenAction_c]
+autoTrigger:if self.energy(full=true)
+convertTo:弹药运输卡车状态3
+[hiddenAction_b]
+autoTrigger:if not self.energy(empty=true) and not self.energy(full=true)
+convertTo:弹药运输卡车状态2
+[hiddenAction_装填补给1]
+autoTrigger:if numberOfUnitsInTeam(withTag="弹药厂",withInRange=40,greaterThan=0)
+addResources:energy=1
+[hiddenAction_装填补给2]
+autoTrigger:if numberOfUnitsInTeam(withTag="弹药厂",withInRange=40,greaterThan=1)
+addResources:energy=1
+[hiddenAction_装填补给3]
+autoTrigger:if numberOfUnitsInTeam(withTag="弹药厂",withInRange=40,greaterThan=2)
+addResources:energy=1
+[hiddenAction_装填补给4]
+autoTrigger:if numberOfUnitsInTeam(withTag="弹药厂",withInRange=40,greaterThan=3)
+addResources:energy=1
+[hiddenAction_输送货物]
+autoTrigger:if numberOfUnitsInTeam(withTag="补给站-未满",withInRange=40,greaterThan=0)
+addResources:energy=-1
+[hiddenAction_输送货物2]
+autoTrigger:if numberOfUnitsInTeam(withTag="补给站-未满",withInRange=40,greaterThan=1)
+addResources:energy=-1
+[hiddenAction_输送货物3]
+autoTrigger:if numberOfUnitsInTeam(withTag="补给站-空",withInRange=40,greaterThan=0)
+addResources:energy=-1
+[hiddenAction_输送货物4]
+autoTrigger:if numberOfUnitsInTeam(withTag="补给站-空",withInRange=40,greaterThan=1)
+addResources:energy=-1
+[hiddenAction_输送货物a]
+autoTrigger:if numberOfUnitsInTeam(withTag="弹药库-未满",withInRange=40,greaterThan=0)
+addResources:energy=-1
+[hiddenAction_输送货物2a]
+autoTrigger:if numberOfUnitsInTeam(withTag="弹药库-未满",withInRange=40,greaterThan=1)
+addResources:energy=-1
+[hiddenAction_输送货物3a]
+autoTrigger:if numberOfUnitsInTeam(withTag="弹药库-空",withInRange=40,greaterThan=0)
+addResources:energy=-1
+[hiddenAction_输送货物4a]
+autoTrigger:if numberOfUnitsInTeam(withTag="弹药库-空",withInRange=40,greaterThan=1)
+addResources:energy=-1
+[hiddenAction_消耗1]
+autoTrigger:if numberOfUnitsInTeam(withTag="小塔-未满",withInRange=75,greaterThan=0)
+addResources:energy=-1
+[hiddenAction_消耗2]
+autoTrigger:if numberOfUnitsInTeam(withTag="小塔-未满",withInRange=75,greaterThan=1)
+addResources:energy=-1
+[hiddenAction_消耗3]
+autoTrigger:if numberOfUnitsInTeam(withTag="小塔-未满",withInRange=75,greaterThan=2)
+addResources:energy=-1
+[hiddenAction_消耗4]
+autoTrigger:if numberOfUnitsInTeam(withTag="小塔-未满",withInRange=75,greaterThan=3)
+addResources:energy=-1
+[hiddenAction_消耗5]
+autoTrigger:if numberOfUnitsInTeam(withTag="小塔-未满",withInRange=75,greaterThan=4)
+addResources:energy=-1
+[hiddenAction_消耗6]
+autoTrigger:if numberOfUnitsInTeam(withTag="小塔-未满",withInRange=75,greaterThan=5)
+addResources:energy=-1
+[hiddenAction_消耗7]
+autoTrigger:if numberOfUnitsInTeam(withTag="小塔-未满",withInRange=75,greaterThan=6)
+addResources:energy=-1
+[hiddenAction_消耗8]
+autoTrigger:if numberOfUnitsInTeam(withTag="小塔-未满",withInRange=75,greaterThan=7)
+addResources:energy=-1
+[hiddenAction_消耗9]
+autoTrigger:if numberOfUnitsInTeam(withTag="小塔-未满",withInRange=75,greaterThan=8)
+addResources:energy=-1
+[hiddenAction_消耗10]
+autoTrigger:if numberOfUnitsInTeam(withTag="小塔-未满",withInRange=75,greaterThan=9)
+addResources:energy=-1
+[hiddenAction_回工厂]
+autoTrigger:if self.energy(lessThan=1) and self.resource(type="x",equalTo=0)
+alsoTriggerAction:自动运货1
+[hiddenAction_运]
+autoTrigger:if self.energy(full=true) and self.resource(type="x",equalTo=0)
+alsoTriggerAction:自动运货2
+[hiddenAction_自动运货1]
+addWaypoint_type:move
+addWaypoint_prepend: true
+addWaypoint_target_nearestUnit_team:own
+addWaypoint_target_nearestUnit_tagged:弹药厂
+[hiddenAction_自动运货2]
+addWaypoint_type:move
+addWaypoint_prepend: true
+addWaypoint_target_nearestUnit_team:own
+addWaypoint_target_nearestUnit_tagged:补给站-空,补给站-未满,弹药库-空,弹药库-未满,小塔-未满
+[action_showAmmo]
+#infoOnly: true
+addResources: energy=1
+price:  energy=1
+text: 弹药补给剩余
+description:显示目前车上有多少弹药
+displayType: none
+buildSpeed: 0s
+pos: 0.1
+displayRemainingStockpile: true
+highPriorityQueue: true
+isActive:false
+[graphics]
+total_frames: 1
+
+image:       thuck.png
+image_wreak: NONE
+image_turret: NONE
+
+
+imageScale:1
+turretImageScale:1
+
+image_shadow: AUTO
+shadowOffsetX:1
+shadowOffsetY:1
+
+
+dustEffect: true
+[attack]
+canAttack: true
+canAttackFlyingUnits: false
+canAttackLandUnits:   true
+canAttackUnderwaterUnits: false
+
+
+
+maxAttackRange:40
+shootDelay: 15
+
+
+[turret_1]
+x: 0
+y: 0
+turnSpeed:1
+turnSpeedAcceleration:1
+projectile:1
+energyUsage:0
+canShoot:false
+[turret_3]
+x: 0
+y: 0
+turnSpeed:1
+turnSpeedAcceleration:1
+projectile:1
+energyUsage:1
+canShoot:false
+
+[turret_2]
+x: 0
+y: 0
+turnSpeed:1
+turnSpeedAcceleration:1
+projectile:1
+energyUsage:1
+canShoot:false
+[projectile_1]
+targetGround:true
+targetGroundSpread:0
+areaRadius:0
+areaDamage:0
+life:0
+speed:0
+speedSpread:0
+frame:0
+
+[movement]
+movementType: LAND
+moveSpeed: 0.5
+moveAccelerationSpeed: 0.7
+moveDecelerationSpeed: 0.7
+maxTurnSpeed: 1.1
+turnAcceleration: 1

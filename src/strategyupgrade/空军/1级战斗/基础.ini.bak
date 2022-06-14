@@ -1,0 +1,205 @@
+[core]
+name: 1f
+class: CustomUnitMetadata
+price:160000
+maxHp:400
+mass:450
+techLevel: 1
+buildSpeed:40s
+radius:8
+displayRadius:30
+isBio: false
+fogOfWarSightRange:5
+tags:早期飞机,低空,空军单位A组,1战斗,飞机,低空1
+generation_credits:-30
+generation_delay:60
+
+[resource_燃料]
+displayName:燃料
+[hiddenAction_补给燃油]
+autoTrigger:if self.hasParent(withTag="有补给的机场") and self.resource(type="燃料",lessThan=26)
+addResources:燃料=2
+[hiddenAction_消耗燃油]
+autoTrigger:if not self.hasParent(withTag="机场1") and not self.isAtGroundHeight() and not numberOfUnitsInTeam(withTag="机场1",withInRange=50,greaterThan=0)
+addResources:燃料=-1
+[action_showFuel]
+#infoOnly: true
+addResources: 燃料=1
+price:  燃料=1
+text: 燃料剩余
+description:显示剩余燃料还能支持战斗机滞空多少秒
+displayType: none
+buildSpeed: 0s
+pos: 0.1
+displayRemainingStockpile: true
+highPriorityQueue: true
+isActive:false
+[hiddenAction_卸]
+autoTrigger:if self.hasParent(withTag="unload")
+disconnectFromParent:true
+[graphics]
+total_frames:1
+image:       fs.png
+image_wreak:  NONE
+image_turret: NONE
+image_shadow: NONE
+shadowOffsetX:1
+shadowOffsetY:1
+
+imageScale:1
+
+lock_body_rotation_with_main_turret: true
+
+[attack]
+canAttack: true
+canAttackFlyingUnits: true
+canAttackLandUnits:   false
+canAttackUnderwaterUnits:false
+turretSize: 1
+turretTurnSpeed: 6
+maxAttackRange: 100
+shootDelay: 10
+#isFixedFiring: true
+turretRotateWithBody: false
+isMelee: true
+meleeEngangementDistance:300
+
+[turret_1]
+x: 0
+y: 8
+projectile: 1
+size: 1
+canShoot: true
+canAttackCondition:if not self.hasParent(withTag="机场")
+resourceUsage: setFlag=10
+[turret_2]
+x: 9
+y: -8
+projectile: 1
+size: 1
+canShoot: true
+canAttackCondition:if not self.hasParent(withTag="机场") and not numberOfUnitsInEnemyTeam(withTag="低空干扰1",withInRange=200,greaterThan=0)
+[turret_3]
+x: -9
+y: -8
+projectile: 1
+size: 1
+canShoot: true
+canAttackCondition:if not self.hasParent(withTag="机场") and not numberOfUnitsInEnemyTeam(withTag="低空干扰1",withInRange=200,greaterThan=1)
+[turret_4]
+x: 0
+y: 8
+projectile: 1
+size: 1
+canShoot: true
+canAttackCondition:if not self.hasParent(withTag="机场")
+[turret_5]
+x: 9
+y: -8
+projectile: 1
+size: 1
+canShoot: true
+canAttackCondition:if not self.hasParent(withTag="机场")and not numberOfUnitsInEnemyTeam(withTag="低空干扰1",withInRange=200,greaterThan=2)
+[turret_6]
+x: -9
+y: -8
+projectile: 1
+size: 1
+canShoot: true
+canAttackCondition:if not self.hasParent(withTag="机场")
+[projectile_1]
+directDamage:7
+life:180
+speed:5
+color:#C1C100
+drawSize:1
+[movement]
+movementType: AIR
+moveSpeed:2
+moveAccelerationSpeed: 2
+moveDecelerationSpeed: 0.01
+maxTurnSpeed:2
+turnAcceleration:0.8
+targetHeight:8
+targetHeightDrift:0
+moveSlidingMode:true
+moveIgnoringBody:false
+moveSlidingDir: 10
+
+slowDeathFall: true
+[hiddenAction_清除10]
+addResources:unsetFlag=10
+autoTrigger:if self.hasParent(withTag="机场")
+[action_保护机场]
+text:开启保护机场模式
+description:自动拦截敌机(拦截距离视机场雷达等级)\nlv0.500像素\nlv1.700像素\n范围可以调节:500或700
+#МиГ-29狂喜(确信)
+isActive:if self.hasParent(withTag="机场")
+convertTo:lv1战斗机-保护状态
+addResources:setFlag=1
+isVisible:if not self.hasFlag(id=1)
+[hiddenAction_保护机场2]
+convertTo:lv1战斗机-保护状态
+autoTrigger:if self.hasParent(withTag="机场-战斗") and self.hasFlag(id=1)
+[action_关闭保护机场]
+text:关闭保护机场模式
+convertTo:lv1战斗机-降落状态
+addResources:unsetFlag=1
+isVisible:if self.hasFlag(id=1) and self.hasParent(withTag="机场")
+[action_打开战术策略规划]
+addResources: setFlag=2
+isGuiBlinking: if self.hasFlag(id=2)
+displayType: action
+text:打开防御规划菜单
+alwaysSinglePress: true
+allowMultipleInQueue: false
+buildSpeed: 0s
+isVisible:if self.hasFlag(id=1)
+[action_500px]
+text:防御半径500
+description:拦截距离机场500像素以内的敌机
+addResources:unsetFlag=3-8,setFlag=3
+isVisible:if self.hasFlag(id=2)
+isGuiBlinking: if self.hasFlag(id=3)
+[action_700px]
+text:防御半径700
+description:拦截距离机场700像素以内的敌机(需雷达lv1，没有则自动切换为此机场可探测的最大距离)(出厂默认)
+addResources:setFlag=3-4,unsetFlag=3-8
+isVisible:if self.hasFlag(id=2)
+isGuiBlinking: if self.hasFlag(id=4)
+[action_关闭战术策略规划]
+addResources: unsetFlag=2
+displayType: action
+text:关闭防御规划菜单
+alwaysSinglePress: true
+allowMultipleInQueue: false
+buildSpeed: 0s
+isVisible:if self.hasFlag(id=2)
+[action_打开战术策略规划2]
+addResources: setFlag=11
+isGuiBlinking: if self.hasFlag(id=11)
+displayType: action
+text:打开攻击/截击规划菜单
+alwaysSinglePress: true
+allowMultipleInQueue: false
+buildSpeed: 0s
+[action_300x]
+text:附近无敌机返航
+description:开火后附近300像素内无敌机即返航(出厂默认)
+addResources:unsetFlag=9
+isVisible:if self.hasFlag(id=11)
+isGuiBlinking: if not self.hasFlag(id=9)
+[action_x]
+text:燃料过少返航
+description:开火后不返航直到燃料过少时自动返航
+addResources:setFlag=9
+isVisible:if self.hasFlag(id=11)
+isGuiBlinking: if self.hasFlag(id=9)
+[action_关闭战术策略规划2]
+addResources: unsetFlag=11
+displayType: action
+text:关闭防御规划菜单
+alwaysSinglePress: true
+allowMultipleInQueue: false
+buildSpeed: 0s
+isVisible:if self.hasFlag(id=11)

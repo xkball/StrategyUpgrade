@@ -1,0 +1,855 @@
+[core]
+name: 4fc
+class: CustomUnitMetadata
+price:640000
+maxHp:1100
+mass:450
+techLevel: 1
+buildSpeed:110s
+radius:8
+displayRadius:30
+isBio: false
+fogOfWarSightRange:5
+tags:冷战飞机,高空,空军单位A组,4战斗c,飞机,高空3,maC
+generation_credits:-80
+generation_delay:60
+[hiddenAction_卸]
+autoTrigger:if self.hasParent(withTag="unload")
+disconnectFromParent:true
+[resource_燃料]
+displayName:燃料
+[resource_aamlr]
+displayName:远程aam(拦射)
+[resource_aamsr]
+displayName:近程aam(格斗)
+[resource_asm]
+displayName:反舰导弹
+[resource_jdam]
+displayName:JDAM类型武器
+[resource_jassm]
+displayName:JASSM类型导弹
+[resource_agms]
+displayName:小型AGM
+[hiddenAction_补给燃油]
+autoTrigger:if self.hasParent(withTag="有补给的机场") and self.resource(type="燃料",lessThan=28)
+addResources:燃料=2
+[hiddenAction_补给弹药]
+autoTrigger:if self.hasParent(withTag="有补给的机场") and self.ammo(lessThan=336)
+addResources:ammo=24
+[hiddenAction_消耗燃油]
+autoTrigger:if not self.hasParent(withTag="机场1") and not self.isAtGroundHeight() and not numberOfUnitsInTeam(withTag="机场1",withInRange=50,greaterThan=0)
+addResources:燃料=-1
+[hiddenAction_补给aam1]
+autoTrigger:if self.hasParent(withTag="机场-战斗") and self.resource(type="aamsr",lessThan=6)
+addResources:aamsr=3,ammo=-42
+[hiddenAction_补给aam2]
+autoTrigger:if self.hasParent(withTag="机场-战斗") and self.resource(type="aamsr",lessThan=12) and self.hasFlag(id=13)
+addResources:aamsr=3,ammo=-42
+[hiddenAction_补给aam3]
+autoTrigger:if self.hasParent(withTag="机场-战斗") and self.resource(type="aamlr",lessThan=12) and self.hasFlag(id=13)
+addResources:aamlr=6,ammo=-84
+[hiddenAction_补给aam4]
+autoTrigger:if self.hasParent(withTag="机场-战斗") and self.resource(type="aamlr",lessThan=18) and self.hasFlag(id=14)
+addResources:aamlr=3,ammo=-42
+[hiddenAction_修正aam]
+autoTrigger:if self.resource(type="aamlr",greaterThan=18)
+addResources:aamlr=-1
+[hiddenAction_补给agm]
+autoTrigger:if self.hasParent(withTag="机场-战斗") and self.resource(type="agms",lessThan=24) and self.hasFlag(id=17)
+addResources:agms=12,ammo=-84
+[hiddenAction_修正agm]
+autoTrigger:if self.resource(type="agms",greaterThan=24)
+addResources:agms=-1
+[hiddenAction_补给asm]
+autoTrigger:if self.hasParent(withTag="机场-战斗") and self.resource(type="asm",lessThan=12) and self.hasFlag(id=16)
+addResources:asm=1,ammo=-63
+[hiddenAction_补给jdam]
+autoTrigger:if self.hasParent(withTag="机场-战斗") and self.resource(type="jdam",lessThan=18) and self.hasFlag(id=15)
+addResources:jdam=6,ammo=-84
+[hiddenAction_补给jdam2]
+autoTrigger:if self.hasParent(withTag="机场-战斗") and self.resource(type="jdam",lessThan=6) and self.hasFlag(id=17)
+addResources:jdam=6,ammo=-84
+[hiddenAction_修正jdam]
+autoTrigger:if self.resource(type="jdam",greaterThan=18)
+addResources:jdam=-1
+[hiddenAction_补给jassm]
+autoTrigger:if self.hasParent(withTag="机场-战斗") and self.resource(type="jassm",lessThan=18) and self.hasFlag(id=18)
+addResources:jassm=9,ammo=-126
+[hiddenAction_修正jassm]
+autoTrigger:if self.resource(type="jassm",greaterThan=18)
+addResources:agms=-1
+[hiddenAction_卸aam1]
+autoTrigger:if self.resource(type="aamsr",greaterThan=6) and not self.hasFlag(id=13) and self.hasParent(withTag="机场")
+addResources:aamsr=-1,ammo=14
+[hiddenAction_卸aam2]
+autoTrigger:if self.resource(type="aamlr",greaterThan=12) and not self.hasFlag(id=14) and self.hasParent(withTag="机场")
+addResources:aamlr=-1,ammo=14
+[hiddenAction_卸aam3]
+autoTrigger:if self.resource(type="aamlr",greaterThan=0) and not self.hasFlag(id=13) and not self.hasFlag(id=14) and self.hasParent(withTag="机场")
+addResources:aamlr=-1,ammo=14
+[hiddenAction_卸aam4]
+autoTrigger:if self.resource(type="aamlr",greaterThan=18) and not self.hasFlag(id=13) and self.hasParent(withTag="机场")
+addResources:aamlr=-1,ammo=14
+[hiddenAction_卸agm]
+autoTrigger:if self.resource(type="agms",greaterThan=0) and not self.hasFlag(id=17) and self.hasParent(withTag="机场")
+addResources:agms=-1,ammo=17
+[hiddenAction_卸asm]
+autoTrigger:if self.resource(type="asm",greaterThan=0) and not self.hasFlag(id=16) and self.hasParent(withTag="机场")
+addResources:asm=-1,ammo=21
+[hiddenAction_卸jdam1]
+autoTrigger:if self.resource(type="jdam",greaterThan=6) and not self.hasFlag(id=15) and self.hasParent(withTag="机场")
+addResources:jdam=-1,ammo=14
+[hiddenAction_卸jdam2]
+autoTrigger:if self.resource(type="jdam",greaterThan=0) and not self.hasFlag(id=15) and not self.hasFlag(id=17) and self.hasParent(withTag="机场")
+addResources:jdam=-1,ammo=14
+[hiddenAction_卸jdam3]
+autoTrigger:if self.resource(type="jdam",greaterThan=18) and self.hasFlag(id=15) and self.hasParent(withTag="机场")
+addResources:jdam=-1,ammo=14
+[hiddenAction_卸jassm]
+autoTrigger:if self.resource(type="jassm",greaterThan=0) and not self.hasFlag(id=18) and self.hasParent(withTag="机场")
+addResources:jassm=-1,ammo=14
+[hiddenAction_满弹1]
+autoTrigger:if self.resource(type="aamlr",greaterThan=9) and self.resource(type="aamsr",greaterThan=3) and self.hasFlag(id=13)
+temporarilyAddTags:满弹
+[hiddenAction_未满弹1]
+autoTrigger:if not self.resource(type="aamlr",greaterThan=9) and self.hasFlag(id=13) or not self.resource(type="aamsr",greaterThan=3)
+temporarilyRemoveTags:满弹
+[hiddenAction_满弹2]
+autoTrigger:if self.resource(type="aamlr",greaterThan=17) and self.resource(type="aamsr",greaterThan=5) and self.hasFlag(id=14)
+temporarilyAddTags:满弹
+[hiddenAction_未满弹2]
+autoTrigger:if not self.resource(type="aamlr",greaterThan=17) and self.hasFlag(id=14) or not self.resource(type="aamsr",greaterThan=5)
+temporarilyRemoveTags:满弹
+[hiddenAction_满弹3]
+autoTrigger:if self.resource(type="jdam",greaterThan=17) and self.resource(type="aamsr",greaterThan=5) and self.hasFlag(id=15)
+temporarilyAddTags:满弹
+[hiddenAction_未满弹3]
+autoTrigger:if not self.resource(type="jdam",greaterThan=17) and self.hasFlag(id=15) or not self.resource(type="aamsr",greaterThan=5)
+temporarilyRemoveTags:满弹
+[hiddenAction_满弹4]
+autoTrigger:if self.resource(type="asm",greaterThan=11) and self.resource(type="aamsr",greaterThan=5) and self.hasFlag(id=16)
+temporarilyAddTags:满弹
+[hiddenAction_未满弹4]
+autoTrigger:if not self.resource(type="asm",greaterThan=11) and self.hasFlag(id=16) or not self.resource(type="aamsr",greaterThan=5)
+temporarilyRemoveTags:满弹
+[hiddenAction_满弹5]
+autoTrigger:if self.resource(type="jdam",greaterThan=5) and self.resource(type="aamsr",greaterThan=5) and self.resource(type="agms",greaterThan=23) and self.hasFlag(id=17)
+temporarilyAddTags:满弹
+[hiddenAction_未满弹5]
+autoTrigger:if not self.resource(type="jdam",greaterThan=5) and self.hasFlag(id=17) or not self.resource(type="aamsr",greaterThan=5) and self.hasFlag(id=17) or not self.resource(type="agms",greaterThan=23) and self.hasFlag(id=17)
+temporarilyRemoveTags:满弹
+[hiddenAction_满弹6]
+autoTrigger:if self.resource(type="jassm",greaterThan=17) and self.resource(type="aamsr",greaterThan=5) and self.hasFlag(id=18)
+temporarilyAddTags:满弹
+[hiddenAction_未满弹6]
+autoTrigger:if not self.resource(type="jassm",greaterThan=17) and self.hasFlag(id=18) or not self.resource(type="aamsr",greaterThan=5)
+temporarilyRemoveTags:满弹
+[hiddenAction_对地tag]
+autoTrigger:if self.hasFlag(id=18) or self.hasFlag(id=17) or self.hasFlag(id=16) or self.hasFlag(id=15)
+temporarilyAddTags:4战斗c对地
+temporarilyRemoveTags:4战斗c对空
+[hiddenAction_对空tag]
+autoTrigger:if self.hasFlag(id=14) or self.hasFlag(id=13)
+temporarilyAddTags:4战斗c对空
+temporarilyRemoveTags:4战斗c对地
+[action_showFuel]
+#infoOnly: true
+addResources: 燃料=1
+price:  燃料=1
+text: 燃料剩余
+description:显示剩余燃料还能支持战斗机滞空多少秒
+displayType: none
+buildSpeed: 0s
+pos: 0.1
+displayRemainingStockpile: true
+highPriorityQueue: true
+isActive:false
+[action_显示aam1]
+#infoOnly: true
+addResources: aamlr=1
+price: aamlr=1
+text: 远程空空导弹剩余
+description:战机还剩余多少枚远程拦射型空空导弹
+displayType: none
+buildSpeed: 0s
+pos: 0.1
+displayRemainingStockpile: true
+highPriorityQueue: true
+isActive:false
+isVisible:if self.hasFlag(id=14) or self.hasFlag(id=13)
+[action_显示aam2]
+#infoOnly: true
+addResources: aamsr=1
+price: aamsr=1
+text: 近程空空导弹剩余
+description:战机还剩余多少枚近程格斗型空空导弹
+displayType: none
+buildSpeed: 0s
+pos: 0.1
+displayRemainingStockpile: true
+highPriorityQueue: true
+isActive:false
+[action_显示jdam]
+#infoOnly: true
+addResources: jdam=1
+price: jdam=1
+text: JDAM剩余
+description:战机还剩余多少枚JDAM类型炸弹
+displayType: none
+buildSpeed: 0s
+pos: 0.1
+displayRemainingStockpile: true
+highPriorityQueue: true
+isActive:false
+isVisible:if self.hasFlag(id=15) or self.hasFlag(id=17)
+[action_显示asm]
+#infoOnly: true
+addResources: asm=1
+price: asm=1
+text: 反舰导弹剩余
+description:战机还剩余多少枚空射反舰导弹
+displayType: none
+buildSpeed: 0s
+pos: 0.1
+displayRemainingStockpile: true
+highPriorityQueue: true
+isActive:false
+isVisible:if self.hasFlag(id=16)
+[action_显示agm]
+#infoOnly: true
+addResources: agms=1
+price: agms=1
+text: 小型AGM剩余
+description:战机还剩余多少枚小型对地导弹
+displayType: none
+buildSpeed: 0s
+pos: 0.1
+displayRemainingStockpile: true
+highPriorityQueue: true
+isActive:false
+isVisible:if self.hasFlag(id=17)
+[action_显示jassm]
+#infoOnly: true
+addResources: jassm=1
+price:jassm=1
+text: JASSM剩余
+description:战机还剩余多少枚JASSM类型导弹
+displayType: none
+buildSpeed: 0s
+pos: 0.1
+displayRemainingStockpile: true
+highPriorityQueue: true
+isActive:false
+isVisible:if self.hasFlag(id=18)
+[graphics]
+total_frames:1
+image:       fs.png
+image_wreak: fd.png
+image_turret: NONE
+image_shadow: NONE
+shadowOffsetX:1
+shadowOffsetY:1
+
+imageScale:1
+
+lock_body_rotation_with_main_turret: true
+
+[attack]
+canAttack: true
+canAttackFlyingUnits: true
+canAttackLandUnits:   if self.hasFlag(id=15) or self.hasFlag(id=16) or self.hasFlag(id=17) or self.hasFlag(id=18) 
+canAttackUnderwaterUnits:false
+turretSize: 1
+turretTurnSpeed: 6
+maxAttackRange: 500
+shootDelay: 120
+#isFixedFiring: true
+turretRotateWithBody: false
+isMelee: true
+#meleeEngangementDistance:300
+
+[turret_机炮1]
+x: 0
+y: 18
+projectile: 机炮
+size: 1
+canShoot: true
+canAttackCondition:if not self.hasParent(withTag="机场")
+resourceUsage: setFlag=10
+limitingRange:180
+canAttackLandUnits:false
+delay:5
+[turret_机炮2]
+x: 33
+y: -26
+projectile: 机炮
+size: 1
+canShoot: true
+canAttackCondition:if not self.hasParent(withTag="机场") and not numberOfUnitsInEnemyTeam(withTag="高空干扰3",withInRange=200,greaterThan=0)
+limitingRange:180
+canAttackLandUnits:false
+resourceUsage:setFlag=10
+delay:5
+[turret_机炮3]
+x: -33
+y: -26
+projectile: 机炮
+size: 1
+canShoot: true
+canAttackCondition:if not self.hasParent(withTag="机场") and not numberOfUnitsInEnemyTeam(withTag="高空干扰3",withInRange=200,greaterThan=1)
+limitingRange:180
+canAttackLandUnits:false
+resourceUsage:setFlag=10
+delay:5
+[turret_对空格斗1]
+x: 0
+y: 18
+projectile: 格斗
+size: 1
+canShoot: true
+canAttackCondition:if not self.hasParent(withTag="机场")
+limitingRange:300
+canAttackLandUnits:false
+resourceUsage: setFlag=10,aamsr=1
+turnSpeed:50
+turnSpeedAcceleration:50
+[turret_对空格斗2]
+x: 33
+y: -26
+projectile: 格斗
+size: 1
+canShoot: true
+limitingRange:300
+canAttackLandUnits:false
+resourceUsage: aamsr=1,setFlag=10
+canAttackCondition:if not self.hasParent(withTag="机场") and not numberOfUnitsInEnemyTeam(withTag="高空干扰3",withInRange=200,greaterThan=1)
+warmup:30
+turnSpeed:50
+turnSpeedAcceleration:50
+[turret_对空格斗3]
+x: -33
+y: -26
+projectile: 格斗
+size: 1
+canShoot: true
+limitingRange:300
+canAttackLandUnits:false
+resourceUsage: aamsr=1,setFlag=10
+canAttackCondition:if not self.hasParent(withTag="机场") and not numberOfUnitsInEnemyTeam(withTag="高空干扰3",withInRange=200,greaterThan=3)
+warmup:30
+turnSpeed:50
+turnSpeedAcceleration:50
+[turret_对空格斗4]
+x: 0
+y: 18
+projectile: 格斗
+size: 1
+canShoot: true
+limitingRange:300
+canAttackLandUnits:false
+resourceUsage: aamsr=1,setFlag=10
+canAttackCondition:if not self.hasParent(withTag="机场") and not numberOfUnitsInEnemyTeam(withTag="高空干扰3",withInRange=200,greaterThan=1)
+warmup:60
+turnSpeed:50
+turnSpeedAcceleration:50
+[turret_对空格斗5]
+x: 33
+y: -26
+projectile: 格斗
+size: 1
+canShoot: true
+limitingRange:300
+canAttackLandUnits:false
+resourceUsage: aamsr=1,setFlag=10
+canAttackCondition:if not self.hasParent(withTag="机场") and not numberOfUnitsInEnemyTeam(withTag="高空干扰3",withInRange=200,greaterThan=4)
+warmup:60
+turnSpeed:50
+turnSpeedAcceleration:50
+[turret_对空格斗6]
+x: -33
+y: -26
+projectile: 格斗
+size: 1
+canShoot: true
+canAttackCondition:if not self.hasParent(withTag="机场")
+limitingRange:300
+canAttackLandUnits:false
+resourceUsage: aamsr=1,setFlag=10
+turnSpeed:50
+turnSpeedAcceleration:50
+[turret_对空远1]
+x: 0
+y: 18
+projectile: 远空空
+size: 1
+canShoot: true
+canAttackCondition:if not self.hasParent(withTag="机场") and self.hasFlag(id=13) and self.hasFlag(id=14)
+limitingRange:480
+canAttackLandUnits:false
+resourceUsage: aamlr=1,setFlag=10
+turnSpeed:50
+turnSpeedAcceleration:50
+[turret_对空远2]
+x: 33
+y: -26
+projectile: 远空空
+size: 1
+canShoot: true
+canAttackCondition:if not self.hasParent(withTag="机场") and self.hasFlag(id=13) and self.hasFlag(id=14)
+limitingRange:480
+canAttackLandUnits:false
+resourceUsage: aamlr=1,setFlag=10
+warmup:30
+turnSpeed:50
+turnSpeedAcceleration:50
+[turret_对空远3]
+x: -33
+y: -26
+projectile: 远空空
+size: 1
+canShoot: true
+canAttackCondition:if not self.hasParent(withTag="机场") and not numberOfUnitsInEnemyTeam(withTag="高空干扰3",withInRange=200,greaterThan=0)  and self.hasFlag(id=13) and self.hasFlag(id=14)
+limitingRange:480
+canAttackLandUnits:false
+resourceUsage: aamlr=1,setFlag=10
+warmup:60
+turnSpeed:50
+turnSpeedAcceleration:50
+[turret_对海1]
+x: 0
+y: 18
+projectile: ASM
+size: 1
+canShoot: true
+canAttackCondition:if not self.hasParent(withTag="机场") and self.hasFlag(id=16)
+limitingRange:460
+canAttackFlyingUnits:false
+resourceUsage: asm=1,setFlag=10
+delay:120
+[turret_对海2]
+x: 33
+y: -26
+projectile: ASM
+size: 1
+canShoot: true
+canAttackCondition:if not self.hasParent(withTag="机场") and not numberOfUnitsInEnemyTeam(withTag="高空干扰3",withInRange=200,greaterThan=0) and self.hasFlag(id=16)
+limitingRange:460
+canAttackFlyingUnits:false
+resourceUsage: asm=1,setFlag=10
+warmup:40
+delay:120
+[turret_对海3]
+x: -33
+y: -26
+projectile: ASM
+size: 1
+canShoot: true
+canAttackCondition:if not self.hasParent(withTag="机场") and not numberOfUnitsInEnemyTeam(withTag="高空干扰3",withInRange=200,greaterThan=2) and self.hasFlag(id=16)
+limitingRange:460
+canAttackFlyingUnits:false
+resourceUsage: asm=1,setFlag=10
+warmup:80
+delay:120
+[turret_小agm1]
+x: 0
+y: 18
+projectile: ASM
+size: 1
+canShoot: true
+limitingRange:400
+canAttackFlyingUnits:false
+resourceUsage: agms=1,setFlag=10
+canAttackCondition:if not self.hasParent(withTag="机场") and not numberOfUnitsInEnemyTeam(withTag="高空干扰3",withInRange=400,greaterThan=0) and self.hasFlag(id=17)
+[turret_小agm2]
+x: 33
+y: -26
+projectile: ASM
+size: 1
+canShoot: true
+limitingRange:400
+canAttackFlyingUnits:false
+resourceUsage: agms=1,setFlag=10
+canAttackCondition:if not self.hasParent(withTag="机场") and not numberOfUnitsInEnemyTeam(withTag="高空干扰3",withInRange=400,greaterThan=2) and self.hasFlag(id=17)
+warmup:30
+[turret_小agm3]
+x: -33
+y: -26
+projectile: ASM
+size: 1
+canShoot: true
+canAttackCondition:if not self.hasParent(withTag="机场") and self.hasFlag(id=17)
+limitingRange:400
+resourceUsage: agms=1,setFlag=10
+canAttackFlyingUnits:false
+warmup:60
+[turret_jdam1]
+x: 0
+y: 18
+projectile: jdam
+size: 1
+canShoot: true
+canAttackCondition:if not self.hasParent(withTag="机场")  and self.hasFlag(id=15) and self.hasFlag(id=17)
+limitingRange:100
+resourceUsage: jdam=1,setFlag=10
+canAttackFlyingUnits:false
+[turret_jdam2]
+x: 33
+y: -26
+projectile: jdam
+size: 1
+canShoot: true
+canAttackCondition:if not self.hasParent(withTag="机场") and not numberOfUnitsInEnemyTeam(withTag="高空干扰3",withInRange=100,greaterThan=1)  and self.hasFlag(id=15) and self.hasFlag(id=17)
+limitingRange:100
+resourceUsage: jdam=1,setFlag=10
+canAttackFlyingUnits:false
+warmup:30
+[turret_jdam3]
+x: -33
+y: -26
+projectile: jdam
+size: 1
+canShoot: true
+canAttackCondition:if not self.hasParent(withTag="机场") and not numberOfUnitsInEnemyTeam(withTag="高空干扰3",withInRange=100,greaterThan=2)  and self.hasFlag(id=15) or self.hasFlag(id=17)
+limitingRange:100
+resourceUsage: jdam=1,setFlag=10
+canAttackFlyingUnits:false
+warmup:60
+[turret_jassm1]
+x: 0
+y: 18
+projectile: jassm
+size: 1
+canShoot: true
+canAttackCondition:if not self.hasParent(withTag="机场") and self.hasFlag(id=18)
+canAttackFlyingUnits:false
+resourceUsage: jassm=1,setFlag=10
+[turret_jassm2]
+x: 33
+y: -26
+projectile: jassm
+size: 1
+canShoot: true
+canAttackCondition:if not self.hasParent(withTag="机场") and self.hasFlag(id=18)
+canAttackFlyingUnits:false
+resourceUsage: jassm=1,setFlag=10
+warmup:30
+[turret_jassm3]
+x: -33
+y: -26
+projectile: jassm
+size: 1
+canShoot: true
+canAttackCondition:if not self.hasParent(withTag="机场") and not numberOfUnitsInEnemyTeam(withTag="高空干扰3",withInRange=200,greaterThan=0) and self.hasFlag(id=18)
+canAttackFlyingUnits:false
+resourceUsage: jassm=1,setFlag=10
+warmup:60
+[projectile_机炮]
+directDamage:8
+life:180
+speed:8
+color:#C1C100
+drawSize:1
+[projectile_远空空]
+areaRadiusFromEdge:true
+areaDamage:200
+areaRadius:48
+life:300
+speed: 12
+targetSpeed: 8
+targetSpeedAcceleration:-0.002
+image:m.png
+drawSize:1
+trailEffect: true
+largeHitEffect: true
+deflectionPower:-1
+lightColor: #FFEEEE00
+lightSize: 1
+tags:现代aam
+mutator1_ifUnitWithTags:maD
+mutator1_areaDamageMultiplier:1
+mutator2_ifUnitWithTags:maC
+mutator2_areaDamageMultiplier:0.9
+mutator7_ifUnitWithTags:maB
+mutator7_areaDamageMultiplier:0.8
+mutator4_ifUnitWithTags:maA
+mutator4_areaDamageMultiplier:0.8
+mutator5_ifUnitWithTags:maS
+mutator5_areaDamageMultiplier:0.7
+[projectile_格斗]
+areaRadiusFromEdge:true
+areaDamage:110
+areaRadius:55
+life:300
+speed: 12
+targetSpeed: 10
+targetSpeedAcceleration:-0.002
+image:m.png
+drawSize:0.5
+trailEffect: true
+largeHitEffect: true
+deflectionPower:-1
+tags:现代aam
+mutator1_ifUnitWithTags:maD
+mutator1_areaDamageMultiplier:1
+mutator2_ifUnitWithTags:maC
+mutator2_areaDamageMultiplier:0.95
+mutator7_ifUnitWithTags:maB
+mutator7_areaDamageMultiplier:0.95
+mutator4_ifUnitWithTags:maA
+mutator4_areaDamageMultiplier:0.85
+mutator5_ifUnitWithTags:maS
+mutator5_areaDamageMultiplier:0.8
+[projectile_ASM]
+areaDamage:120
+areaRadius:15
+life:300
+image:m2.png
+speed: 6
+targetSpeed: 12
+targetSpeedAcceleration:0.04
+trailEffect: true
+largeHitEffect: true
+deflectionPower:1
+lightColor: #FFEEEE00
+lightSize: 1
+autoTargetingOnDeadTarget: true
+drawSize:0.55
+tags:弹A
+areaDamageNoFalloff:true
+mutator1_ifUnitWithTags:重装甲
+mutator1_areaDamageMultiplier:3
+mutator2_ifUnitWithTags:中型舰艇
+mutator2_areaDamageMultiplier:0.5
+mutator7_ifUnitWithTags:大型舰艇
+mutator7_areaDamageMultiplier:0.4
+mutator4_ifUnitWithTags:无装甲
+mutator4_areaDamageMultiplier:10
+mutator5_ifUnitWithTags:轻装甲
+mutator5_areaDamageMultiplier:5
+mutator6_ifUnitWithTags:中装甲
+mutator6_areaDamageMultiplier:4
+mutator3_ifUnitWithTags:步兵
+mutator3_areaDamageMultiplier:0.48
+mutator8_ifUnitWithTags:小型舰艇
+mutator8_areaDamageMultiplier:0.6
+buildingDamageMultiplier: 0.6
+
+[projectile_小型AGM]
+areaDamage:80
+areaRadius:20
+life:300
+speed: 6
+targetSpeed: 5
+targetSpeedAcceleration:-0.002
+image:m2.png
+drawSize:0.8
+trailEffect: true
+largeHitEffect: true
+deflectionPower:-1
+lightColor: #FFEEEE00
+lightSize: 1
+tags:弹B
+mutator3_ifUnitWithTags:步兵
+mutator3_areaDamageMultiplier:0.4
+[projectile_JASSM]
+areaDamage:140
+areaRadius:40
+life:300
+speed: 6
+targetSpeed: 8
+targetSpeedAcceleration:0.002
+image:m2.png
+drawSize:0.6
+trailEffect: true
+largeHitEffect: true
+deflectionPower:-1
+lightColor: #FFEEEE00
+lightSize: 1
+tags:弹B
+mutator3_ifUnitWithTags:步兵
+mutator3_areaDamageMultiplier:0.4
+[projectile_JDAM]
+areaDamage:140
+areaRadius:40
+life:300
+speed: 5.5
+targetSpeed: 0.08
+targetSpeedAcceleration:-0.02
+image:m2.png
+drawSize:0.6
+trailEffect: true
+largeHitEffect: true
+deflectionPower:-1
+lightColor: #FFEEEE00
+lightSize: 1
+tags:弹B
+mutator3_ifUnitWithTags:步兵
+mutator3_areaDamageMultiplier:0.5
+buildingDamageMultiplier: 2
+[movement]
+movementType: AIR
+moveSpeed:6
+moveAccelerationSpeed: 2
+moveDecelerationSpeed: 0.1
+maxTurnSpeed:5
+turnAcceleration:5
+targetHeight:8
+targetHeightDrift:0
+moveIgnoringBody:false
+
+slowDeathFall: true
+[hiddenAction_清除10]
+addResources:unsetFlag=10
+autoTrigger:if self.hasParent(withTag="机场")
+[action_保护机场]
+text:开启保护机场模式
+description:自动拦截敌机(拦截距离视机场雷达等级)\nlv0.500像素\nlv1.700像素\nlv2.1000像素\nlv3.1300像素\nlv4.1600像素\nlv5.2000像素\n范围可以调节:500或700或1000或1300或1600或2000
+#МиГ-29狂喜(确信)
+isActive:if self.hasParent(withTag="机场")
+convertTo:lv4战斗机C-保护状态
+addResources:setFlag=1
+isVisible:if not self.hasFlag(id=1)
+
+[action_关闭保护机场]
+text:关闭保护机场模式
+convertTo:lv4战斗机C-降落状态
+addResources:unsetFlag=1
+isVisible:if self.hasFlag(id=1) and self.hasParent(withTag="机场")
+[action_打开战术策略规划]
+addResources: setFlag=2
+isGuiBlinking: if self.hasFlag(id=2)
+displayType: action
+text:打开防御规划菜单
+alwaysSinglePress: true
+allowMultipleInQueue: false
+buildSpeed: 0s
+isVisible:if self.hasFlag(id=1)
+[action_500px]
+text:防御半径500
+description:拦截距离机场500像素以内的敌机
+addResources:unsetFlag=3-8,setFlag=3
+isVisible:if self.hasFlag(id=2)
+isGuiBlinking: if self.hasFlag(id=3)
+[action_700px]
+text:防御半径700
+description:拦截距离机场700像素以内的敌机(需雷达lv1，没有则自动切换为此机场可探测的最大距离)(出厂默认)
+addResources:setFlag=3-4,unsetFlag=3-8
+isVisible:if self.hasFlag(id=2)
+isGuiBlinking: if self.hasFlag(id=4)
+[action_1000px]
+text:防御半径1000
+description:拦截距离机场1000像素以内的敌机(需雷达lv2，没有则自动切换为此机场可探测的最大距离)
+addResources:setFlag=3-5,unsetFlag=3-8
+isVisible:if self.hasFlag(id=2)
+isGuiBlinking: if self.hasFlag(id=5)
+[action_1300px]
+text:防御半径1300
+description:拦截距离机场1300像素以内的敌机(需雷达lv3，没有则自动切换为此机场可探测的最大距离)
+addResources:setFlag=3-6,unsetFlag=3-8
+isVisible:if self.hasFlag(id=2)
+isGuiBlinking: if self.hasFlag(id=6)
+[action_1600px]
+text:防御半径1600
+description:拦截距离机场1600像素以内的敌机(需雷达lv4，没有则自动切换为此机场可探测的最大距离)
+addResources:setFlag=3-7,unsetFlag=3-8
+isVisible:if self.hasFlag(id=2)
+isGuiBlinking: if self.hasFlag(id=7)
+[action_2000px]
+text:防御半径2000
+description:拦截距离机场2000像素以内的敌机(需雷达lv5，没有则自动切换为此机场可探测的最大距离)(出厂默认)
+addResources:setFlag=3-8
+isVisible:if self.hasFlag(id=2)
+isGuiBlinking: if self.hasFlag(id=8)
+[action_关闭战术策略规划]
+addResources: unsetFlag=2
+displayType: action
+text:关闭防御规划菜单
+alwaysSinglePress: true
+allowMultipleInQueue: false
+buildSpeed: 0s
+isVisible:if self.hasFlag(id=2)
+[action_打开战术策略规划2]
+addResources: setFlag=11
+isGuiBlinking: if self.hasFlag(id=11)
+displayType: action
+text:打开攻击/截击规划菜单
+alwaysSinglePress: true
+allowMultipleInQueue: false
+buildSpeed: 0s
+[action_800x]
+text:附近无敌机返航
+description:开火后附近800像素内无敌机即返航(出厂默认)
+addResources:unsetFlag=9
+isVisible:if self.hasFlag(id=11)
+isGuiBlinking: if not self.hasFlag(id=9)
+[action_x]
+text:燃料过少返航
+description:开火后不返航直到燃料过少时自动返航
+addResources:setFlag=9
+isVisible:if self.hasFlag(id=11)
+isGuiBlinking: if self.hasFlag(id=9)
+[action_关闭战术策略规划2]
+addResources: unsetFlag=11
+displayType: action
+text:关闭防御规划菜单
+alwaysSinglePress: true
+allowMultipleInQueue: false
+buildSpeed: 0s
+isVisible:if self.hasFlag(id=11)
+[action_打开战术策略规划3]
+addResources: setFlag=12
+isGuiBlinking: if self.hasFlag(id=12)
+displayType: action
+text:打开挂载规划菜单
+alwaysSinglePress: true
+allowMultipleInQueue: false
+buildSpeed: 0s
+[action_对空A]
+text:对空挂载方案A
+description:常规的对空挂载方案(每架4远程AAM，4近程AAM)
+addResources:unsetFlag=13-20,setFlag=13
+isVisible:if self.hasFlag(id=12)
+isGuiBlinking: if self.hasFlag(id=13)
+[action_对空B]
+text:对空挂载方案B
+description:格斗弹较少，侧重远程打击的对空挂载方案(每架6远程AAM，2近程AAM)
+addResources:setFlag=14,unsetFlag=13-20
+isVisible:if self.hasFlag(id=12)
+isGuiBlinking: if self.hasFlag(id=14)
+[action_对地A]
+text:对地挂载方案A
+description:常规的对地挂载方案(每架2近程AAM，6JDAM，需要lv3.制导炸弹I)
+addResources:setFlag=15,unsetFlag=13-20
+isVisible:if self.hasFlag(id=12)
+isGuiBlinking: if self.hasFlag(id=15)
+isActive:if self.resource(type="3科技-制导航弹1",greaterThan=0)
+[action_对地B]
+text:对地挂载方案B
+description:侧重毁伤大型目标(如舰艇等)的对地挂载方案(每架2近程AAM，4ASM，需要lv4.空射反舰导弹I)
+addResources:setFlag=16,unsetFlag=13-20
+isVisible:if self.hasFlag(id=12)
+isGuiBlinking: if self.hasFlag(id=16)
+isActive:if self.resource(type="4科技-空射反舰1",greaterThan=0)
+[action_对地C]
+text:对地挂载方案C
+description:侧重于摧毁对方陆地移动单位的对地挂载方案(每架2近程AAM，2JDAM，8小型AGM，需要lv3.制导炸弹)
+addResources:setFlag=17,unsetFlag=13-20
+isVisible:if self.hasFlag(id=12)
+isGuiBlinking: if self.hasFlag(id=17)
+isActive:if self.resource(type="3科技-制导航弹1",greaterThan=0)
+[action_对地D]
+text:对地挂载方案D
+description:在新的时代来临后的挂载方案(每架2近程AAM，6JASSM，需要科技lv5.空射反舰导弹II)
+#好时代，来临力
+addResources:setFlag=18,unsetFlag=13-20
+isVisible:if self.hasFlag(id=12)
+isGuiBlinking: if self.hasFlag(id=18)
+isActive:if self.resource(type="5科技-空射反舰2",greaterThan=0)
+[action_关闭战术策略规划3]
+addResources: unsetFlag=12
+displayType: action
+text:关闭挂载规划菜单
+alwaysSinglePress: true
+allowMultipleInQueue: false
+buildSpeed: 0s
+isVisible:if self.hasFlag(id=12)

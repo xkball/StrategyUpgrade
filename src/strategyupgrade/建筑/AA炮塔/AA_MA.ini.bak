@@ -1,0 +1,58 @@
+
+[core]
+name: 防空导弹-改造中
+class: CustomUnitMetadata
+price: 900
+maxHp: 450
+mass: 114514
+energyMax:3601
+energyRegen:1
+startEnergyAtZero:true
+
+#footprint used for collisions with units (left, up, right, down)
+footprint: 0,0,1,1
+
+#used for placement, and placement of other buildings
+constructionFootprint: 0,0,1,1
+
+techLevel: 1
+buildSpeed: 20s
+
+radius: 20
+
+isBio: false
+isBuilding: true
+buildingToFootprintOffsetX:20
+buildingToFootprintOffsetY:20
+
+[graphics]
+total_frames: 1
+
+image:        AA_2T3.png
+image_wreak:NONE
+image_turret:AA_Missile.png
+
+teamColorsOnTurret:true
+[attack]
+canAttack: false
+canAttackFlyingUnits: false
+canAttackLandUnits:   false
+canAttackUnderwaterUnits: false
+maxAttackRange: 310
+
+[movement]
+movementType:BUILDING
+moveSpeed: 0
+moveAccelerationSpeed: 0.01
+moveDecelerationSpeed: 0.01
+
+maxTurnSpeed: 0
+turnAcceleration: 0.1
+
+[turret_AAA1]
+x:  0
+y: 0
+canShoot:false
+
+[ai]
+upgradedFrom:大型防空炮群T1

@@ -1,0 +1,18 @@
+[core]
+copyFrom:ht.ini
+showInEditor:false
+name: lv2重型坦克群(APCBC)-b
+displayText:lv2重型坦克群(APCBC)
+[hiddenAction_桥]
+autoTrigger:if not numberOfUnitsInTeam(withTag="桥1",withInRange=80,greaterThan=0) and not numberOfUnitsInTeam(withTag="桥2",withInRange=150,greaterThan=0)
+convertTo:lv2重型坦克群(APCBC)
+
+[hiddenAction_桥2]
+@copyFrom_skipThisSection:true
+[hiddenAction_防掉]
+autoTrigger:if not numberOfUnitsInTeam(withTag="桥1",withInRange=75,greaterThan=0) and self.isOverwater
+addWaypoint_type:move
+addWaypoint_target_nearestUnit_team:own
+addWaypoint_target_nearestUnit_tagged:桥1
+[movement]
+movementType:OVER_CLIFF_WATER

@@ -1,0 +1,110 @@
+[core]
+
+name: 火箭弹发射车-开火模式
+displayDescription:火箭弹发射车，用得好可以发挥不错的效果
+
+class: CustomUnitMetadata
+price: 350
+maxHp:80
+mass: 1145
+
+techLevel: 2
+buildSpeed: 35s
+#availableInDemo: true
+
+radius: 11
+displayRadius: 2
+
+isBio: false
+softCollisionOnAll: 0
+fogOfWarSightRange: 10
+
+energyMax:40
+energyRegen:0
+energyNeedsToRechargeToFull:true
+
+[action_convert1]
+text:复位
+convertTo:火箭弹发射车
+price:0
+description:恢复移动
+buildSpeed:0.1s
+displayType: action
+whenBuilding_cannotMove: true
+whenBuilding_temporarilyConvertTo:火箭弹发射车
+[action_showAmmo]
+#infoOnly: true
+addResources: energy=1
+price:  energy=1
+text: 火箭弹剩余
+description:目前战车还剩余多少火箭弹
+displayType: none
+buildSpeed: 0s
+pos: 0.1
+displayRemainingStockpile: true
+highPriorityQueue: true
+isActive:false
+[graphics]
+total_frames: 1
+
+image:        MRL_Attacking.png
+image_wreak: NONE
+image_turret: NONE
+
+
+imageScale:1
+turretImageScale:1
+
+image_shadow: AUTO
+shadowOffsetX:1
+shadowOffsetY:1
+
+lock_body_rotation_with_main_turret:true
+
+dustEffect: true
+[attack]
+canAttack: true
+canAttackFlyingUnits: false
+canAttackLandUnits:   true
+canAttackUnderwaterUnits: false
+
+
+
+maxAttackRange: 240
+shootDelay: 15
+
+
+[turret_1]
+x: 0
+y: 0
+turnSpeed:0.5
+turnSpeedAcceleration:1
+shoot_sound:missile_fire
+projectile:1
+energyUsage:1
+
+[projectile_1]
+targetGround:true
+targetGroundSpread:35
+areaRadius:17
+areaDamage:300
+life:900
+speed:5
+speedSpread:0.2
+frame:10
+shieldDamageMultiplier: 0.3
+shieldDefectionMultiplier: 0.6
+buildingDamageMultiplier: 1
+largeHitEffect:true
+trailEffect:true
+tags:弹B
+
+[movement]
+movementType: LAND
+moveSpeed: 0
+moveAccelerationSpeed: 0.7
+moveDecelerationSpeed: 0.7
+maxTurnSpeed: 0.5
+turnAcceleration: 1
+
+moveIgnoringBody:true

@@ -1,0 +1,299 @@
+[core]
+
+name: 战列舰"深蓝"-被帽风帽穿甲弹模式_
+displayDescription:不错的战列舰，攻防兼备，小范围防空极为优秀，机动也不差，但是输出看运气。可切换弹种。
+
+class: CustomUnitMetadata
+price: 40000
+maxHp: 4100
+mass: 650000
+maxShield:8500
+shieldRegen:0.15
+shieldDisplayOnlyDeflection:true
+shieldDeflectionDisplayRate:10
+showInEditor:false
+techLevel: 2
+buildSpeed: 0.0003
+#availableInDemo: true
+
+radius: 40
+displayRadius: 40
+
+isBio: false
+softCollisionOnAll: 0
+fogOfWarSightRange: 23
+builtFrom_1_name: 海军工厂T4
+builtFrom_1_pos:  10
+
+nukeOnDeath:true
+nukeOnDeathRange:50
+nukeOnDeathDamage:100
+numBitsOnDeath:15
+tags:远洋战舰
+energyMax:800
+energyRegen:0
+energyStartingPercentage:0.125
+armour:30
+[hiddenAction_副炮装弹]
+autoTrigger:if self.hasParent()
+addResources:energy=15
+[resource_HE]
+displayName:HE弹
+[resource_APC]
+displayName:APC弹/APCBC弹
+[hiddenAction_装弹1]
+autoTrigger:if self.resource(type="HE",lessThan=180) and self.hasParent()
+addResources:HE=3
+[hiddenAction_装弹2]
+autoTrigger:if self.resource(type="APC",lessThan=140) and self.hasParent()
+addResources:APC=2
+[action_showAmmo1]
+#infoOnly: true
+addResources: HE=1
+price:  HE=1
+text: 高爆弹剩余
+description:目前战舰还剩余多少高爆弹
+displayType: none
+buildSpeed: 0s
+pos: 0.1
+displayRemainingStockpile: true
+highPriorityQueue: true
+isActive:false
+[action_showAmmo2]
+#infoOnly: true
+addResources: APC=1
+price:  APC=1
+text: 硬被帽-被帽风帽穿甲弹剩余
+description:目前战舰还剩余多少硬被帽-被帽风帽穿甲弹
+displayType: none
+buildSpeed: 0s
+pos: 0.1
+displayRemainingStockpile: true
+highPriorityQueue: true
+isActive:false
+[action_showAmmo3]
+#infoOnly: true
+addResources: energy=1
+price:  energy=1
+text: 副炮炮弹剩余
+description:目前战舰还剩余多少副炮炮弹
+displayType: none
+buildSpeed: 0s
+pos: 0.1
+displayRemainingStockpile: true
+highPriorityQueue: true
+isActive:false
+[hiddenAction_回补给站]
+autoTrigger:if self.resource(type="APC",lessThan=1)
+alsoTriggerAction:自动返回
+addResources:unsetFlag=1
+[hiddenAction_自动返回]
+addWaypoint_type:loadInto
+addWaypoint_prepend: true
+addWaypoint_target_nearestUnit_team:own
+addWaypoint_target_nearestUnit_tagged:海军基地
+[hiddenAction_脱离]
+autoTrigger:if self.resource(type="APC",greaterThan=139) and self.hasParent()
+disconnectFromParent:true
+[hiddenAction_convert1]
+autoTriggerOnEvent:created
+convertTo:战列舰"深蓝"-被帽风帽穿甲弹模式
+price:0
+addResources:HE=50,APC=50
+[graphics]
+total_frames: 1
+
+image:        Deep_Blue_Class_BB.png
+image_wreak: Deep_Blue_Class_BB_Sink.png
+image_turret: 406mm_Gun_Turret.png
+
+
+imageScale:0.8
+turretImageScale:0.6
+
+image_shadow: AUTO
+shadowOffsetX:1
+shadowOffsetY:1
+
+
+splastEffect: true
+[attack]
+canAttack: true
+canAttackFlyingUnits: true
+canAttackLandUnits:   true
+canAttackUnderwaterUnits: false
+
+turretSize: 20
+turretTurnSpeed: 10
+
+
+maxAttackRange: 330
+shootDelay: 600
+
+[turret_MainGunTurretA]
+x: 0
+y: 62
+image:406mm_Gun_Turret(no_spot).png
+turnSpeed:0.3
+turnSpeedAcceleration:0.25
+shoot_sound:cannon_firing
+shoot_flame:large
+shoot_light:#FFFF00
+projectile:1
+canAttackFlyingUnits:false
+[turret_MainGunTurretB]
+x: 0
+y: 45
+turnSpeed:0.3
+turnSpeedAcceleration:0.25
+shoot_sound:cannon_firing
+shoot_flame:large
+shoot_light:#FFFF00
+projectile:1
+canAttackFlyingUnits:false
+[turret_MainGunTurretX]
+x: 0
+y: -75
+idleDir:180
+turnSpeed:0.3
+turnSpeedAcceleration:0.25
+shoot_sound:cannon_firing
+shoot_flame:large
+shoot_light:#FFFF00
+projectile:1
+canAttackFlyingUnits:false
+[turret_Secondary1]
+x:10
+y:35
+image:130mm_Turret.png
+turnSpeed:1
+limitingRange:210
+delay:180
+projectile:2
+
+[turret_Secondary2]
+x:-10
+y:35
+image:130mm_Turret.png
+turnSpeed:1
+limitingRange:210
+delay:180
+projectile:2
+
+[turret_Secondary3]
+x:10
+y:-50
+idleDir:180
+image:130mm_Turret.png
+turnSpeed:1
+limitingRange:210
+delay:180
+projectile:2
+
+[turret_Secondary4]
+x:-10
+y:-50
+idleDir:180
+image:130mm_Turret.png
+turnSpeed:1
+limitingRange:210
+delay:180
+projectile:2
+[turret_Secondary5]
+x:10
+y:28
+image:130mm_Turret.png
+turnSpeed:1
+limitingRange:210
+delay:180
+projectile:2
+canAttackFlyingUnits:false
+[turret_Secondary6]
+x:-10
+y:28
+image:130mm_Turret.png
+turnSpeed:1
+limitingRange:210
+delay:180
+projectile:2
+canAttackFlyingUnits:false
+[turret_Secondary7]
+x:10
+y:-43
+idleDir:180
+image:130mm_Turret.png
+turnSpeed:1
+limitingRange:210
+delay:180
+projectile:2
+canAttackFlyingUnits:false
+[turret_Secondary8]
+x:-10
+y:-43
+idleDir:180
+image:130mm_Turret.png
+turnSpeed:1
+limitingRange:210
+delay:180
+projectile:2
+canAttackFlyingUnits:false
+[turret_AAA1]
+x:5
+y:0
+invisible:true
+turnSpeed:3
+limitingRange:170
+delay:3
+canAttackLandUnits:false
+projectile:3
+
+[turret_AAA2]
+x:5
+y:0
+invisible:true
+turnSpeed:3
+limitingRange:170
+delay:3
+canAttackLandUnits:false
+projectile:3
+
+[projectile_1]
+areaDamage:1500
+life:1200
+speed:3
+targetGround:true
+targetGroundSpread:40
+areaRadius:30
+speedSpread:0.28
+deflectionPower:3
+lightColor:#FF3434
+image:N_APCBC_Shell.png
+drawSize:0.6
+shieldDamageMultiplier: 0.4
+shieldDefectionMultiplier: 0.3
+buildingDamageMultiplier: 0.1
+largeHitEffect: true
+
+[projectile_2]
+directDamage:40
+life:900
+speed:2.5
+image:A_AP_Shell.png
+drawSize:0.5
+
+[projectile_3]
+directDamage:8
+life:180
+speed:3
+color:#C1C100
+drawSize:1
+
+[movement]
+movementType: WATER
+moveSpeed: 0.4
+moveAccelerationSpeed: 0.1
+moveDecelerationSpeed: 0.1
+maxTurnSpeed: 0.8
+turnAcceleration: 0.3
+
+moveIgnoringBody:true

@@ -1,0 +1,142 @@
+[core]
+
+name: lv3超重型自行火炮
+displayDescription:装备420mm长身管炮的超重自火，伤害高，射程远，装填慢，精度低(注意:停下来才能开火!!!)\n维护费:30资金/s(每发炮弹15资金)\n参考:苏联420毫米2Б1"奥卡河(Ока)"自行迫榴炮\n\n贴图:@南达科他
+class: CustomUnitMetadata
+price:225000
+maxHp: 800
+mass: 1145
+
+energyMax:15
+energyRegen:0
+energyNeedsToRechargeToFull:true
+
+techLevel: 2
+buildSpeed: 120s
+#availableInDemo: true
+
+radius: 30
+displayRadius: 30
+
+isBio: false
+softCollisionOnAll: 0
+tags:陆军单位A组,重装甲,h0
+generation_credits:-30
+generation_delay:60
+builtFrom_1_name: 陆军工厂
+builtFrom_1_pos:  12.5
+builtFrom_1_isLocked:if self.resource(type="2科技-超大口径陆炮1",lessThan=1) or self.resource(type="1科技-自火1",lessThan=1) or self.resource(type="2科技-驻退/复进机",lessThan=1)or self.resource(type="3科技-陆柴油机大3",lessThan=1)
+builtFrom_1_isLockedMessage: 需求科技:lv2.超大口径陆炮，lv1.自行火炮车体，lv2.驻退/复进机，lv3.柴油机III(大)
+[hiddenAction_桥]
+autoTrigger:if numberOfUnitsInTeam(withTag="桥1",withInRange=80,greaterThan=0)
+convertTo:lv3超重型自行火炮-b
+[hiddenAction_装弹]
+autoTrigger:if self.hasParent(withTag="陆补给站")
+addResources:energy=1,credits=-15
+[action_showAmmo]
+#infoOnly: true
+addResources: energy=1
+price:  energy=1
+text: 炮弹剩余
+description:目前火炮还剩余多少弹药
+displayType: none
+buildSpeed: 0s
+pos: 0.1
+displayRemainingStockpile: true
+highPriorityQueue: true
+isActive:false
+[hiddenAction_返回]
+addWaypoint_type:loadInto
+addWaypoint_prepend: true
+addWaypoint_target_nearestUnit_team:own
+addWaypoint_target_nearestUnit_tagged:陆军补给站
+[graphics]
+total_frames: 3
+image:     gun.png
+image_wreak:gun_weak.png
+image_turret: NONE
+animation_moving_start:0
+animation_moving_end:1
+animation_moving_speed:10
+image_offsetX:-1
+imageScale:0.8
+image_shadow: AUTO
+shadowOffsetX:-2
+shadowOffsetY:-1
+dustEffectReverse:true
+lock_body_rotation_with_main_turret:true
+dustEffect: true
+[attack]
+canAttack: true
+canAttackFlyingUnits: false
+canAttackLandUnits:   if not self.isMoving
+canAttackUnderwaterUnits: false
+
+maxAttackRange: 290
+shootDelay: 660
+[turret_1]
+x: 0
+y: 0
+turnSpeed:0.3
+turnSpeedAcceleration:0.3
+shoot_sound:cannon_firing
+shoot_flame:large
+shoot_light:#FFFF00
+projectile:1
+energyUsage:1
+size:30
+
+[projectile_1]
+areaDamage:850
+life:1200
+speed:3
+targetGround:true
+targetGroundSpread:22
+areaRadius:37
+speedSpread:0.28
+deflectionPower:2
+lightColor:#FF3434
+image:A_HEAT_Shell.png
+drawSize:0.8
+largeHitEffect: true
+buildingDamageMultiplier: 2
+[movement]
+movementType: LAND
+moveSpeed: 0.25
+moveAccelerationSpeed: 1
+moveDecelerationSpeed: 1
+maxTurnSpeed: 0.3
+turnAcceleration: 0.3
+[action_打开战术策略规划]
+addResources: setFlag=1
+isGuiBlinking: if self.hasFlag(id=1)
+displayType: action
+text:打开补给规划菜单
+alwaysSinglePress: true
+allowMultipleInQueue: false
+buildSpeed: 0s
+[action_返航-炮弹0]
+text:炮弹为0返航
+addResources:unsetFlag=5-6,setFlag=5
+isVisible:if self.hasFlag(id=1)
+[action_返航-炮弹0.2]
+text:炮弹剩余20％返航
+addResources:unsetFlag=5-6,setFlag=6
+isVisible:if self.hasFlag(id=1)
+[action_关闭]
+addResources: unsetFlag=1
+isVisible:if self.hasFlag(id=1)
+displayType: action
+text:关闭补给规划菜单
+alwaysSinglePress: true
+allowMultipleInQueue: false
+buildSpeed: 0s
+[hiddenAction_回补给站1]
+autoTrigger:if self.energy(lessThan=1) and not self.hasFlag(id=5)
+alsoTriggerAction:返回
+[hiddenAction_回补给站5]
+autoTrigger:if self.energy(lessThan=4) and self.hasFlag(id=6)
+alsoTriggerAction:返回
+[hiddenAction_脱离1]
+autoTrigger:if self.energy(greaterThan=14) and self.hasParent(withTag="陆补给站")
+disconnectFromParent:true

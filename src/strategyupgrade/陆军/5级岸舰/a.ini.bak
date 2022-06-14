@@ -1,0 +1,181 @@
+[core]
+
+name: lv5岸舰导弹
+displayDescription:一共装备12枚导弹(只能对舰开火)，机动性高，拦截率较低(注意:停下来才能开火!!!)\n维护费:70资金/s\n参考:中国鹰击-62岸防导弹系统\n\n贴图:@射程之内的真理
+class: CustomUnitMetadata
+price: 1000000
+maxHp:850
+mass: 600
+maxShield:50
+shieldRegen:0.15
+shieldDisplayOnlyDeflection:true
+shieldDeflectionDisplayRate:10
+
+techLevel: 1
+buildSpeed: 70s
+#availableInDemo: true
+
+radius: 40
+displayRadius: 40
+
+isBio: false
+softCollisionOnAll: 25
+fogOfWarSightRange: 6
+builtFrom_1_name: 陆军工厂
+builtFrom_1_pos:  11
+builtFrom_1_isLocked:if self.resource(type="5科技-ASCM3",lessThan=1) or self.resource(type="4科技-导弹车底盘",lessThan=1) or self.resource(type="4科技-雷达3",lessThan=1)
+builtFrom_1_isLockedMessage: 需求科技:lv5.反舰导弹III，lv4.导弹车底盘，lv4.雷达III
+energyMax:60
+energyRegen:0
+armour:1
+tags:陆军单位A组,中装甲,h0
+generation_credits:-70
+generation_delay:60
+[hiddenAction_桥]
+autoTrigger:if numberOfUnitsInTeam(withTag="桥1",withInRange=80,greaterThan=0)
+convertTo:lv5岸舰导弹-b
+[hiddenAction_桥2]
+autoTrigger:if numberOfUnitsInTeam(withTag="桥2",withInRange=150,greaterThan=0)
+convertTo:lv5岸舰导弹-b
+[hiddenAction_装弹]
+autoTrigger:if self.hasParent(withTag="陆补给站")
+addResources:energy=2
+[action_showAmmo1]
+#infoOnly: true
+addResources: energy=5
+price: energy=5
+text: 导弹剩余
+description:目前导弹系统一共还剩余多少反舰导弹
+displayType: none
+buildSpeed: 0s
+pos: 0.1
+displayRemainingStockpile: true
+highPriorityQueue: true
+isActive:false
+[action_返回]
+text:返回最近可用补给站
+alwaysSinglePress: true
+addWaypoint_type:loadInto
+addWaypoint_prepend: true
+addWaypoint_target_nearestUnit_team:own
+addWaypoint_target_nearestUnit_tagged:陆军补给站
+[graphics]
+total_frames: 1
+
+image:     sn.png
+image_wreak:NONE
+image_turret: NONE
+
+imageScale:1
+turretImageScale:1
+
+image_shadow: AUTO
+shadowOffsetX:1
+shadowOffsetY:1
+lock_body_rotation_with_main_turret: true
+dustEffect: true
+[attack]
+canAttack: true
+canAttackFlyingUnits: false
+canAttackLandUnits:   if not self.isMoving
+canAttackUnderwaterUnits: false
+canAttackNotTouchingWaterUnits:false
+maxAttackRange:850
+
+[turret_1]
+x: 12
+y: 10
+turnSpeed: 1
+projectile:1
+resourceUsage: energy=5
+delay:60
+[turret_2]
+x: -12
+y: 10
+turnSpeed: 1
+projectile:1
+resourceUsage: energy=5
+delay:60
+[turret_3]
+x: -31
+y: 4
+turnSpeed: 1
+projectile:1
+resourceUsage: energy=5
+delay:60
+[turret_4]
+x: 31
+y: 4
+turnSpeed: 1
+projectile:1
+resourceUsage: energy=5
+delay:60
+[projectile_1]
+directDamage:10
+areaDamage:350
+areaRadius:16
+life:300
+image:zsn.png
+speed: 0.6
+targetSpeed: 7
+targetSpeedAcceleration:0.6
+trailEffect: true
+largeHitEffect: true
+initialUnguidedSpeedHeight: 2
+lightCastOnGround: false
+gravity:0.18
+deflectionPower:1
+lightColor: #FFEEEE00
+lightSize: 1
+autoTargetingOnDeadTarget: true
+drawSize:1
+tags:弹Z2
+areaDamageNoFalloff:true
+mutator2_ifUnitWithTags:中型舰艇
+mutator2_areaDamageMultiplier:0.6
+mutator3_ifUnitWithTags:大型舰艇
+mutator3_areaDamageMultiplier:0.4
+mutator4_ifUnitWithTags:小型舰艇
+mutator4_areaDamageMultiplier:1
+[movement]
+movementType:LAND
+moveSpeed: 0.4
+moveAccelerationSpeed: 1
+moveDecelerationSpeed: 1
+maxTurnSpeed: 3
+turnAcceleration: 3
+
+moveIgnoringBody:true
+[action_打开战术策略规划]
+addResources: setFlag=1
+isGuiBlinking: if self.hasFlag(id=1)
+displayType: action
+text:打开补给规划菜单
+alwaysSinglePress: true
+allowMultipleInQueue: false
+buildSpeed: 0s
+[action_返航-炮弹0]
+text:导弹为0返航
+addResources:unsetFlag=5-6,setFlag=5
+isVisible:if self.hasFlag(id=1)
+[action_返航-炮弹0.2]
+text:导弹剩余25％返航
+addResources:unsetFlag=5-6,setFlag=6
+isVisible:if self.hasFlag(id=1)
+[action_关闭]
+addResources: unsetFlag=1
+isVisible:if self.hasFlag(id=1)
+displayType: action
+text:关闭补给规划菜单
+alwaysSinglePress: true
+allowMultipleInQueue: false
+buildSpeed: 0s
+[hiddenAction_回补给站1]
+autoTrigger:if self.energy(lessThan=5) and not self.hasFlag(id=5)
+alsoTriggerAction:返回
+[hiddenAction_回补给站5]
+autoTrigger:if self.energy(lessThan=16) and self.hasFlag(id=6)
+alsoTriggerAction:返回
+[hiddenAction_脱离1]
+autoTrigger:if self.energy(greaterThan=59) and self.hasParent(withTag="陆补给站")
+disconnectFromParent:true

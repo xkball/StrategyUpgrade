@@ -1,0 +1,205 @@
+
+[core]
+name: 歼击轰炸机
+class: CustomUnitMetadata
+price: 1000
+maxHp: 225
+mass: 2000
+displayDescription:-[装备4枚对地导弹，2枚远程空空导弹]-\n-[参考:中国歼轰-7"飞豹"歼击轰炸机；苏联Су-30мк系列战斗轰炸机]
+techLevel: 2
+buildSpeed: 30s
+
+availableInDemo: true
+radius: 12
+#displayRadius: 11
+isBio: false
+#softCollisionOnAll: 3
+softCollisionOnAll: 24
+selfRegenRate:0.005
+builtFrom_3_name:空军工厂T3
+builtFrom_3_pos:  8.9
+builtFrom_4_name:空军工厂T4
+builtFrom_4_pos:  8.9
+builtFrom_5_name:空军工厂T5
+builtFrom_5_pos:  8.9
+energyMax: 2
+energyRegen: 0
+tags:空军单位A组
+[hiddenAction_起飞!]
+autoTrigger:if self.energy(full=true) and self.hasParent() and self.ammo(greaterThan=11)
+disconnectFromParent:true
+[hiddenAction_装弹]
+autoTrigger:if self.hasParent()
+addResources:energy=0.4,dy=-1
+[hiddenAction_装弹2]
+autoTrigger:if self.ammo(lessThan=12) and self.hasParent()
+addResources:ammo=1,dy=-1
+[action_showMissile]
+#infoOnly: true
+addResources: ammo=3
+price:  ammo=3
+text: 对地导弹剩余
+description:目前战机还剩余多少对地导弹
+displayType: none
+buildSpeed: 0s
+pos: 0.1
+displayRemainingStockpile: true
+highPriorityQueue: true
+isActive:false
+[action_showM]
+#infoOnly: true
+addResources: energy=1
+price:  energy=1
+text: 空空导弹剩余
+description:目前战机还剩余多少空空导弹
+displayType: none
+buildSpeed: 0s
+pos: 0.1
+displayRemainingStockpile: true
+highPriorityQueue: true
+isActive:false
+[hiddenAction_回机场]
+autoTrigger:if self.ammo(lessThan=1)
+alsoTriggerAction:自动返航
+addResources:unsetFlag=1
+[hiddenAction_自动返航]
+addWaypoint_type:loadInto
+addWaypoint_prepend: true
+addWaypoint_target_nearestUnit_team:own
+addWaypoint_target_nearestUnit_tagged:机场
+[graphics]
+total_frames: 1
+
+image:        FB.png
+image_wreak:  FB_dead.png
+image_turret: NONE
+#scaleImagesTo: 20
+#scaleTurretImagesTo: 9
+
+image_shadow: AUTO
+shadowOffsetX:1
+shadowOffsetY:1
+movementEffect:      custom:trail
+movementEffectRate: 0.1
+[attack]
+turretRotateWithBody: false
+
+canAttack: true
+canAttackFlyingUnits: true
+canAttackLandUnits:   true
+canAttackUnderwaterUnits: false
+
+turretSize: 10
+turretTurnSpeed: 4
+maxAttackRange: 230
+shootDelay: 150
+
+
+#isFixedFiring: true
+
+
+[turret_1]
+x:5
+y:5
+turnSpeed:1.0
+#turnSpeed:1.0
+turnSpeedAcceleration:0.1
+turnSpeedDeceleration:0.1
+shoot_sound:missile_fire
+energyUsage:1
+limitingRange:200
+projectile:1
+canAttackLandUnits:false
+[turret_2]
+x:-5
+y:5
+turnSpeed:1.0
+#turnSpeed:1.0
+turnSpeedAcceleration:0.1
+turnSpeedDeceleration:0.1
+shoot_sound:missile_fire
+energyUsage:1
+limitingRange:200
+projectile:1
+warmup:20
+canAttackLandUnits:false
+[turret_3]
+x:-5
+y:5
+turnSpeed:1.0
+#turnSpeed:1.0
+turnSpeedAcceleration:0.1
+turnSpeedDeceleration:0.1
+shoot_sound:missile_fire
+resourceUsage: ammo=3
+projectile:2
+canAttackFlyingUnits:false
+[turret_4]
+x:5
+y:5
+turnSpeed:1.0
+#turnSpeed:1.0
+turnSpeedAcceleration:0.1
+turnSpeedDeceleration:0.1
+shoot_sound:missile_fire
+resourceUsage: ammo=3
+projectile:2
+warmup:30
+canAttackFlyingUnits:false
+[projectile_1]
+directDamage: 160
+life: 300
+speed: 6
+targetSpeed:7
+image:missile.png
+drawSize:0.7
+trailEffect:true
+shieldDamageMultiplier: 1
+shieldDefectionMultiplier: 0.1
+buildingDamageMultiplier: 1.0
+[projectile_2]
+directDamage: 50
+areaDamage: 30
+areaRadius:20
+life: 300
+speed: 0.5
+targetSpeed:6
+image:ASCM.png
+drawSize:0.5
+trailEffect:true
+shieldDamageMultiplier: 1
+shieldDefectionMultiplier: 0.1
+buildingDamageMultiplier: 0.4
+
+[movement]
+movementType: AIR
+moveSpeed: 2
+moveAccelerationSpeed: 0.05
+moveDecelerationSpeed: 0.05
+maxTurnSpeed: 3.6
+turnAcceleration: 0.2
+slowDeathFall: true
+[effect_trail]
+
+stripIndex: effects
+frameIndex: 0
+
+
+life: 120
+fadeOut: true
+attachedToUnit: false
+color: #FFFFFF
+fadeInTime:10
+scaleFrom: 0.8
+scaleTo: 0.9
+alpha: 0.6
+drawUnderUnits:true
+#ySpeedRelative:-1
+atmospheric:true
+
+dirOffsetRandom:1
+
+shadow:true
+
+xSpeedAbsoluteRandom: 0.2
+ySpeedAbsoluteRandom: 0.2

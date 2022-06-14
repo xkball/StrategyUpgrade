@@ -1,0 +1,163 @@
+
+[core]
+name:现代反潜机
+displayDescription:-[用于反潜，拥有4枚反潜鱼雷]-\n-[可以投放声呐]-\n-[拥有磁异常探测器，可以发现800单位长度距离以内的潜艇]-\n-[参考:中国"高新5号"反潜机]
+class: CustomUnitMetadata
+price: 2000
+maxHp: 240
+mass: 2000
+techLevel: 2
+buildSpeed: 30s
+
+availableInDemo: true
+radius: 15
+#displayRadius: 11
+isBio: false
+#softCollisionOnAll: 3
+softCollisionOnAll: 3
+selfRegenRate:0.005
+builtFrom_5_name:空军工厂T5
+builtFrom_5_pos:  8.91
+transportSlotsNeeded: 2
+energyMax: 4
+energyRegen: 0
+tags:空军单位A组
+[hiddenAction_起飞!]
+autoTrigger:if self.energy(full=true) and self.hasParent() and self.ammo(greaterThan=11)
+disconnectFromParent:true
+[hiddenAction_装弹]
+autoTrigger:if self.hasParent()
+addResources:energy=0.4,dy=-1
+[hiddenAction_装弹2]
+autoTrigger:if self.ammo(lessThan=12) and self.hasParent()
+addResources:ammo=1,dy=-1
+[action_showSonar]
+#infoOnly: true
+addResources: ammo=6
+price:  ammo=6
+text: 声呐剩余
+description:目前战机还剩余多少组投放式声呐
+displayType: none
+buildSpeed: 0s
+pos: 0.1
+displayRemainingStockpile: true
+highPriorityQueue: true
+isActive:false
+[action_showTorpedoes]
+#infoOnly: true
+addResources: energy=1
+price:  energy=1
+text:鱼雷剩余
+description:目前战机还剩余多少反潜鱼雷
+displayType: none
+buildSpeed: 0s
+pos: 0.1
+displayRemainingStockpile: true
+highPriorityQueue: true
+isActive:false
+[hiddenAction_回机场]
+autoTrigger:if self.energy(empty=true)
+alsoTriggerAction:自动返航
+addResources:unsetFlag=1
+[hiddenAction_自动返航]
+addWaypoint_type:loadInto
+addWaypoint_prepend: true
+addWaypoint_target_nearestUnit_team:own
+addWaypoint_target_nearestUnit_tagged:机场
+[graphics]
+total_frames: 1
+
+image:        AS.png
+image_wreak:  AS_dead.png
+image_turret: NONE
+#scaleImagesTo: 20
+#scaleTurretImagesTo: 9
+
+image_shadow: AUTO
+shadowOffsetX:1
+shadowOffsetY:1
+[attack]
+turretRotateWithBody: false
+isMelee: true
+canAttack: true
+canAttackFlyingUnits:false
+canAttackLandUnits:false
+canAttackUnderwaterUnits:true
+meleeEngangementDistance:400
+turretSize: 10
+turretTurnSpeed: 4
+shootDelay: 150
+
+
+#isFixedFiring: true
+
+[action_buildSonar]
+text:投放声呐
+description:只能在海上投放。声呐存在时间60s，可以同时探测一条潜艇和一条水面舰艇。
+price:ammo=6
+buildSpeed:1s
+produceUnits:声呐A*1
+isActive:if self.overWater()
+[turret_1]
+#鱼雷
+x:5
+y:5
+turnSpeed:1.0
+#turnSpeed:1.0
+turnSpeedAcceleration:0.1
+turnSpeedDeceleration:0.1
+shoot_sound:att.wav
+shoot_sound_vol:4
+energyUsage:1
+limitingRange:220
+projectile:TT
+[turret_radar1]
+x: 0
+y: 0
+turnSpeed: 999
+#turnSpeed: 2
+turnSpeedAcceleration: 999
+turnSpeedDeceleration: 999
+idleSpin:0.5
+canShoot:true
+invisible:true
+projectile:磁场异常
+limitingRange:800
+[projectile_TT]
+#torpedo
+directDamage:600
+life:600
+speed:0.6
+drawSize: 1
+image:torpedo.png
+largeHitEffect: true
+deflectionPower:-1
+trailEffect: true
+initialUnguidedSpeedHeight:0
+lightCastOnGround: false
+gravity:10
+[projectile_磁场异常]
+image:NONE.png
+directDamage:0
+speed:999999
+deflectionPower:-1
+life:1200
+explodeEffect:CUSTOM:lightningShock
+spawnUnit:索敌*1
+[effect_lightningShock]
+life: 1
+hOffset: 0
+dirOffset: 0
+fadeInTime: 0
+fadeOut: false
+attachedToUnit: true
+image:NONE.png
+total_frames: 1
+[movement]
+movementType: AIR
+moveSpeed: 1.4
+moveAccelerationSpeed: 0.05
+moveDecelerationSpeed: 0.05
+maxTurnSpeed: 3.6
+turnAcceleration: 0.2
+slowDeathFall: true

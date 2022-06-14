@@ -1,0 +1,312 @@
+[core]
+
+
+name: lv2大型潜艇-水面状态
+displayDescription:早期大型潜艇，6具水下鱼雷管(鱼雷备弹20发)，上浮后拥有甲板炮和较弱的防空炮，可以布设水雷(4组)\n维护费:55资金/s(鱼雷每发25.2资金，水雷每组30资金)\n参考:苏联К级潜艇，英国Triton级潜艇，德国Ⅶ型潜艇\n\n贴图:@射程之内的真理
+
+class: CustomUnitMetadata
+price: 350000
+maxHp: 300
+mass: 15000
+
+techLevel: 1
+buildSpeed: 75s
+#availableInDemo: true
+
+radius: 50
+displayRadius: 15
+isBio: false
+softCollisionOnAll: 35
+fogOfWarSightRange: 7
+armour:3
+maxShield:50
+shieldRegen:0.01
+shieldDisplayOnlyDeflection:true
+shieldDeflectionDisplayRate:10
+tags:远洋战舰,小型舰艇
+energyMax:1800
+energyRegen:0.06
+energyNeedsToRechargeToFull:true
+builtFrom_1_name: 海军工厂
+builtFrom_1_pos:  4
+builtFrom_1_isLocked:if self.resource(type="2科技-海电动1",lessThan=1) or self.resource(type="2科技-小防空炮1",lessThan=1) or self.resource(type="2科技-SS1",lessThan=1) or self.resource(type="2科技-海柴油机2",lessThan=1) or self.resource(type="1科技-氧雷",lessThan=1) or self.resource(type="2科技-声呐1",lessThan=1) 
+builtFrom_1_isLockedMessage: 需求科技:lv2.潜艇船体I，lv2.舰用柴油机II，lv2.早期舰用电力推进系统，lv2.小口径防空炮I，lv1.氧气鱼雷，lv2.声呐1
+generation_credits:-55
+generation_delay:60
+[resource_DG]
+displayName:甲板炮炮弹
+[resource_M]
+displayName:水雷
+[hiddenAction_装弹1]
+autoTrigger:if self.resource(type="DG",lessThan=120) and self.hasParent()
+addResources:DG=12
+[hiddenAction_装弹2]
+autoTrigger:if self.ammo(lessThan=60) and self.hasParent()
+addResources:ammo=5,credits=-42
+[hiddenAction_装弹3]
+autoTrigger:if self.resource(type="M",lessThan=12) and self.hasParent()
+addResources:M=1,credits=-10
+[action_showAmmo1]
+#infoOnly: true
+addResources: DG=1
+price:  DG=1
+text: 甲板炮炮弹剩余
+description:目前潜艇还剩余多少甲板炮炮弹
+displayType: none
+buildSpeed: 0s
+pos: 0.1
+displayRemainingStockpile: true
+highPriorityQueue: true
+isActive:false
+[action_showAmmo2]
+#infoOnly: true
+addResources: ammo=3
+price:  ammo=3
+text: 鱼雷剩余
+description:目前潜艇还剩余多少鱼雷
+displayType: none
+buildSpeed: 0s
+pos: 0.1
+displayRemainingStockpile: true
+highPriorityQueue: true
+isActive:false
+[action_convert1]
+text:下潜
+convertTo:lv2大型潜艇-下潜状态
+price:0
+description:下潜，需要15s时间，航速降低，AA炮和甲板炮无法开火
+buildSpeed:15s
+[action_showMine]
+#infoOnly: true
+addResources: M=3
+price:  M=3
+text: 水雷剩余
+description:目前潜艇还剩余多少枚水雷
+displayType: none
+buildSpeed: 0s
+pos: 0.1
+displayRemainingStockpile: true
+highPriorityQueue: true
+isActive:false
+[action_返回]
+text:返回最近补给站
+alwaysSinglePress: true
+addWaypoint_type:loadInto
+addWaypoint_prepend: true
+addWaypoint_target_nearestUnit_team:own
+addWaypoint_target_nearestUnit_tagged:海军基地-
+[action_layMine]
+text:布雷
+description:布设水雷
+price:M=3
+buildSpeed:1s
+produceUnits:水雷*1
+isActive:if self.overWater()
+[graphics]
+total_frames: 1
+
+image:        SS.png
+image_wreak:  SS_Sink.png
+image_turret: 100mmGun.png
+
+
+imageScale:1
+turretImageScale:0.6
+
+image_shadow: AUTO
+shadowOffsetX:1
+shadowOffsetY:1
+
+splastEffect: true
+[attack]
+canAttack: true
+canAttackFlyingUnits: true
+canAttackLandUnits:   true
+canAttackUnderwaterUnits: true
+
+turretSize: 10
+turretTurnSpeed: 10
+shootDelay: 120
+[turret_TPlauncherP]
+x: -2
+y: 32
+invisible:true
+delay:60
+limitingRange:210
+turnSpeed: 0.5
+#turnSpeed: 1.0
+turnSpeedAcceleration: 0.5
+turnSpeedDeceleration: 0.5
+canAttackUnderwaterUnits:false
+canAttackNotTouchingWaterUnits:false
+canAttackFlyingUnits:false
+projectile:2
+energyUsage:300
+resourceUsage:ammo=3
+[turret_TPlauncherS]
+x: 2
+y: 32
+invisible:true
+delay:60
+limitingRange:210
+turnSpeed: 0.5
+#turnSpeed: 1.0
+turnSpeedAcceleration: 0.5
+turnSpeedDeceleration: 0.5
+canAttackUnderwaterUnits:false
+canAttackNotTouchingWaterUnits:false
+canAttackFlyingUnits:false
+projectile:2
+energyUsage:300
+resourceUsage:ammo=4
+warmup:30
+[turret_DeckGunA]
+x: 0
+y: 20
+turnSpeed: 1.0
+#turnSpeed: 1.0
+turnSpeedAcceleration: 0.5
+turnSpeedDeceleration: 0.5
+canAttackUnderwaterUnits:false
+shoot_sound:cannon_firing
+shoot_light:#FFFF00
+projectile:1
+resourceUsage:DG=1
+limitingRange:225
+[turret_DeckGunB]
+x: 0
+y: 0
+turnSpeed: 1.0
+#turnSpeed: 1.0
+turnSpeedAcceleration: 0.5
+turnSpeedDeceleration: 0.5
+canAttackUnderwaterUnits:false
+shoot_sound:cannon_firing
+shoot_light:#FFFF00
+idleDir:180
+projectile:1
+resourceUsage:DG=1
+limitingRange:225
+[turret_AAA1]
+x:0
+y:4
+image:AAA_turret_2.png
+turnSpeed:3
+limitingRange:170
+delay:10
+canAttackLandUnits:false
+canAttackUnderwaterUnits:false
+projectile:3
+idleDir:180
+[projectile_1]
+image:A_AP_Shell.png
+directDamage:70
+life:120
+speed:3
+drawSize:0.5
+
+[projectile_2]
+areaDamage: 800
+life: 320
+speed: 0.65
+speedSpread:0.25
+image:torpedo.png
+drawSize:1
+targetGround:true
+targetGroundSpread:30
+areaRadius:45
+buildingDamageMultiplier: 0.1
+
+[projectile_3]
+directDamage:15
+life:180
+speed:3
+color:#C1C100
+drawSize:1
+[movement]
+movementType: WATER
+moveSpeed: 0.24
+moveAccelerationSpeed: 0.1
+moveDecelerationSpeed:0.2
+maxTurnSpeed: 0.5
+turnAcceleration: 0.5
+[action_打开战术策略规划]
+addResources: setFlag=1
+isGuiBlinking: if self.hasFlag(id=1)
+displayType: action
+text:打开补给规划菜单
+alwaysSinglePress: true
+allowMultipleInQueue: false
+buildSpeed: 0s
+[action_补给-鱼雷или全部-鱼雷]
+text:鱼雷补给完后脱离
+addResources:setFlag=10
+isVisible:if self.hasFlag(id=1)
+isGuiBlinking: if self.hasFlag(id=10)
+[action_补给-鱼雷или全部-всё]
+text:全部弹药补给完后脱离
+addResources:unsetFlag=10
+isVisible:if self.hasFlag(id=1)
+isGuiBlinking: if not self.hasFlag(id=10)
+[action_返航-炮弹0]
+text:鱼雷为0返航
+addResources:unsetFlag=4-9,setFlag=5
+isVisible:if self.hasFlag(id=1)
+isGuiBlinking: if self.hasFlag(id=5)
+[action_返航-炮弹0.2]
+text:鱼雷剩余20％返航
+addResources:unsetFlag=4-9,setFlag=6
+isVisible:if self.hasFlag(id=1)
+isGuiBlinking: if self.hasFlag(id=6)
+[action_返航-全空]
+text:所有弹药打空返航
+addResources:unsetFlag=4-9,setFlag=7
+isVisible:if self.hasFlag(id=1)
+isGuiBlinking: if self.hasFlag(id=7)
+[action_返航-副炮]
+text:甲板炮弹药打空返航
+addResources:unsetFlag=4-9,setFlag=8
+isVisible:if self.hasFlag(id=1)
+isGuiBlinking: if self.hasFlag(id=8)
+[action_返航-水雷]
+text:剩余水雷为0返航
+addResources:unsetFlag=4-9,setFlag=4
+isVisible:if self.hasFlag(id=1)
+isGuiBlinking: if self.hasFlag(id=4)
+[action_返航-任一]
+text:任意弹药打空返航
+addResources:unsetFlag=4-9,setFlag=9
+isVisible:if self.hasFlag(id=1)
+isGuiBlinking: if self.hasFlag(id=9)
+[action_关闭]
+addResources: unsetFlag=1
+isVisible:if self.hasFlag(id=1)
+displayType: action
+text:关闭补给规划菜单
+alwaysSinglePress: true
+allowMultipleInQueue: false
+buildSpeed: 0s
+[hiddenAction_回补给站1]
+autoTrigger:if self.ammo(lessThan=3) and not self.hasFlag(id=5)
+alsoTriggerAction:返回
+[hiddenAction_回补给站2]
+autoTrigger:if self.ammo(lessThan=3) and self.resource(type="DG",lessThan=1) and self.resource(type="M",lessThan=3) and self.hasFlag(id=7)
+alsoTriggerAction:返回
+[hiddenAction_回补给站3]
+autoTrigger:if self.resource(type="DG",lessThan=1) and self.hasFlag(id=8)
+alsoTriggerAction:返回
+[hiddenAction_回补给站4]
+autoTrigger:if self.resource(type="DG",lessThan=1) or self.ammo(lessThan=3) or self.resource(type="M",lessThan=3) and self.hasFlag(id=9)
+alsoTriggerAction:返回
+[hiddenAction_回补给站5]
+autoTrigger:if self.ammo(lessThan=13) and self.hasFlag(id=6)
+alsoTriggerAction:返回
+[hiddenAction_回补给站6]
+autoTrigger:if self.resource(type="M",lessThan=3) and self.hasFlag(id=4)
+alsoTriggerAction:返回
+[hiddenAction_脱离1]
+autoTrigger:if self.ammo(greaterThan=59) and self.hasParent(withTag="海军基地") and self.hasFlag(id=10)
+disconnectFromParent:true
+[hiddenAction_脱离2]
+autoTrigger:if self.ammo(greaterThan=59) and self.resource(type="DG",greaterThan=119) and self.resource(type="M",greaterThan=11) and self.hasParent(withTag="海军基地") and not self.hasFlag(id=10)
+disconnectFromParent:true

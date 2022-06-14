@@ -1,0 +1,282 @@
+
+[core]
+name: 小型岸防炮台(带AA)
+class: CustomUnitMetadata
+price: 1500
+maxHp: 1000
+mass: 114514
+maxShield:700
+shieldRegen:0.06
+shieldDisplayOnlyDeflection:true
+shieldDeflectionDisplayRate:10
+
+#footprint used for collisions with units (left, up, right, down)
+footprint: 0,0,1,1
+
+#used for placement, and placement of other buildings
+constructionFootprint: 0,0,1,1
+
+techLevel: 1
+buildSpeed: 15s
+
+radius: 20
+isBio: false
+isBuilding: true
+armour:20
+armourMinDamageToKeep:0
+buildingToFootprintOffsetX:20
+buildingToFootprintOffsetY:20
+tags:塔-未满,岸炮,低空干扰1,低空干扰2
+[resource_ammo2]
+displayName:AA弹
+[hiddenAction_c]
+autoTrigger:if self.ammo(greaterThan=119) and self.resource(type="ammo2",lessThan=149)
+convertTo:小型岸防炮台(带AA)状态2
+[hiddenAction_装弹1]
+autoTrigger:if self.ammo(lessThan=120) and numberOfUnitsInTeam(withTag="弹药库-未满",withInRange=75,greaterThan=0)
+addResources:ammo=1
+[hiddenAction_装弹2]
+autoTrigger:if self.ammo(lessThan=120) and numberOfUnitsInTeam(withTag="弹药库-未满",withInRange=75,greaterThan=1)
+addResources:ammo=1
+[hiddenAction_装弹3]
+autoTrigger:if self.ammo(lessThan=120) and numberOfUnitsInTeam(withTag="弹药库-未满",withInRange=75,greaterThan=2)
+addResources:ammo=1
+[hiddenAction_装弹4]
+autoTrigger:if self.ammo(lessThan=120) and numberOfUnitsInTeam(withTag="弹药库-未满",withInRange=75,greaterThan=3)
+addResources:ammo=1
+[hiddenAction_装弹5]
+autoTrigger:if self.ammo(lessThan=120) and numberOfUnitsInTeam(withTag="弹药库-满",withInRange=75,greaterThan=0)
+addResources:ammo=1
+[hiddenAction_装弹6]
+autoTrigger:if self.ammo(lessThan=120) and numberOfUnitsInTeam(withTag="弹药库-满",withInRange=75,greaterThan=1)
+addResources:ammo=1
+[hiddenAction_装弹7]
+autoTrigger:if self.ammo(lessThan=120) and numberOfUnitsInTeam(withTag="弹药库-满",withInRange=75,greaterThan=2)
+addResources:ammo=1
+[hiddenAction_装弹8]
+autoTrigger:if self.ammo(lessThan=120) and numberOfUnitsInTeam(withTag="弹药库-满",withInRange=75,greaterThan=3)
+addResources:ammo=1
+[hiddenAction_装弹9]
+autoTrigger:if self.ammo(lessThan=120) and numberOfUnitsInTeam(withTag="弹药库-满",withInRange=75,greaterThan=4)
+addResources:ammo=1
+[hiddenAction_装弹10]
+autoTrigger:if self.ammo(lessThan=120) and numberOfUnitsInTeam(withTag="弹药库-满",withInRange=75,greaterThan=5)
+addResources:ammo=1
+[hiddenAction_装弹11]
+autoTrigger:if self.ammo(lessThan=120) and numberOfUnitsInTeam(withTag="弹药库-满",withInRange=75,greaterThan=6)
+addResources:ammo=1
+[hiddenAction_装弹12]
+autoTrigger:if self.ammo(lessThan=120) and numberOfUnitsInTeam(withTag="弹药库-满",withInRange=75,greaterThan=7)
+addResources:ammo=1
+[hiddenAction_装弹13]
+autoTrigger:if self.ammo(lessThan=120) and numberOfUnitsInTeam(withTag="弹药库-未满",withInRange=75,greaterThan=4)
+addResources:ammo=1
+[hiddenAction_装弹14]
+autoTrigger:if self.ammo(lessThan=120) and numberOfUnitsInTeam(withTag="弹药库-未满",withInRange=75,greaterThan=5)
+addResources:ammo=1
+[hiddenAction_装弹15]
+autoTrigger:if self.ammo(lessThan=120) and numberOfUnitsInTeam(withTag="弹药库-未满",withInRange=75,greaterThan=6)
+addResources:ammo=1
+[hiddenAction_装弹16]
+autoTrigger:if self.ammo(lessThan=120) and numberOfUnitsInTeam(withTag="弹药库-未满",withInRange=75,greaterThan=7)
+addResources:ammo=1
+[hiddenAction_装弹1a]
+autoTrigger:if self.resource(type="ammo2",lessThan=150) and numberOfUnitsInTeam(withTag="弹药库-未满",withInRange=75,greaterThan=0)
+addResources:ammo2=1
+[hiddenAction_装弹2a]
+autoTrigger:if self.resource(type="ammo2",lessThan=150) and numberOfUnitsInTeam(withTag="弹药库-未满",withInRange=75,greaterThan=1)
+addResources:ammo2=1
+[hiddenAction_装弹3a]
+autoTrigger:if self.resource(type="ammo2",lessThan=150) and numberOfUnitsInTeam(withTag="弹药库-未满",withInRange=75,greaterThan=2)
+addResources:ammo2=1
+[hiddenAction_装弹4a]
+autoTrigger:if self.resource(type="ammo2",lessThan=150) and numberOfUnitsInTeam(withTag="弹药库-未满",withInRange=75,greaterThan=3)
+addResources:ammo2=1
+[hiddenAction_装弹5a]
+autoTrigger:if self.resource(type="ammo2",lessThan=150) and numberOfUnitsInTeam(withTag="弹药库-满",withInRange=75,greaterThan=0)
+addResources:ammo2=1
+[hiddenAction_装弹6a]
+autoTrigger:if self.resource(type="ammo2",lessThan=150) and numberOfUnitsInTeam(withTag="弹药库-满",withInRange=75,greaterThan=1)
+addResources:ammo2=1
+[hiddenAction_装弹7a]
+autoTrigger:if self.resource(type="ammo2",lessThan=150) and numberOfUnitsInTeam(withTag="弹药库-满",withInRange=75,greaterThan=2)
+addResources:ammo2=1
+[hiddenAction_装弹8a]
+autoTrigger:if self.resource(type="ammo2",lessThan=150) and numberOfUnitsInTeam(withTag="弹药库-满",withInRange=75,greaterThan=3)
+addResources:ammo2=1
+[hiddenAction_装弹9a]
+autoTrigger:if self.resource(type="ammo2",lessThan=150) and numberOfUnitsInTeam(withTag="弹药库-满",withInRange=75,greaterThan=4)
+addResources:ammo2=1
+[hiddenAction_装弹10a]
+autoTrigger:if self.resource(type="ammo2",lessThan=150) and numberOfUnitsInTeam(withTag="弹药库-满",withInRange=75,greaterThan=5)
+addResources:ammo2=1
+[hiddenAction_装弹11a]
+autoTrigger:if self.resource(type="ammo2",lessThan=150) and numberOfUnitsInTeam(withTag="弹药库-满",withInRange=75,greaterThan=6)
+addResources:ammo2=1
+[hiddenAction_装弹12a]
+autoTrigger:if self.resource(type="ammo2",lessThan=150) and numberOfUnitsInTeam(withTag="弹药库-满",withInRange=75,greaterThan=7)
+addResources:ammo2=1
+[hiddenAction_装弹13a]
+autoTrigger:if self.resource(type="ammo2",lessThan=150) and numberOfUnitsInTeam(withTag="弹药库-未满",withInRange=75,greaterThan=4)
+addResources:ammo2=1
+[hiddenAction_装弹14a]
+autoTrigger:if self.resource(type="ammo2",lessThan=150) and numberOfUnitsInTeam(withTag="弹药库-未满",withInRange=75,greaterThan=5)
+addResources:ammo2=1
+[hiddenAction_装弹15a]
+autoTrigger:if self.resource(type="ammo2",lessThan=150) and numberOfUnitsInTeam(withTag="弹药库-未满",withInRange=75,greaterThan=6)
+addResources:ammo2=1
+[hiddenAction_装弹16a]
+autoTrigger:if self.resource(type="ammo2",lessThan=150) and numberOfUnitsInTeam(withTag="弹药库-未满",withInRange=75,greaterThan=7)
+addResources:ammo2=1
+[hiddenAction_装弹1aa]
+autoTrigger:if self.ammo(lessThan=120) and numberOfUnitsInTeam(withTag="驳船可供给状态",withInRange=75,greaterThan=0)
+addResources:ammo=1
+[hiddenAction_装弹2aa]
+autoTrigger:if self.ammo(lessThan=120) and numberOfUnitsInTeam(withTag="驳船可供给状态",withInRange=75,greaterThan=1)
+addResources:ammo=1
+[hiddenAction_装弹3aa]
+autoTrigger:if self.ammo(lessThan=120) and numberOfUnitsInTeam(withTag="驳船可供给状态",withInRange=75,greaterThan=2)
+addResources:ammo=1
+[hiddenAction_装弹4aa]
+autoTrigger:if self.ammo(lessThan=120) and numberOfUnitsInTeam(withTag="驳船可供给状态",withInRange=75,greaterThan=3)
+addResources:ammo=1
+[hiddenAction_装弹1ab]
+autoTrigger:if self.resource(type="ammo2",lessThan=150) and numberOfUnitsInTeam(withTag="驳船可供给状态",withInRange=75,greaterThan=0)
+addResources:ammo2=1
+[hiddenAction_装弹2ab]
+autoTrigger:if self.resource(type="ammo2",lessThan=150) and numberOfUnitsInTeam(withTag="驳船可供给状态",withInRange=75,greaterThan=1)
+addResources:ammo2=1
+[hiddenAction_装弹3ab]
+autoTrigger:if self.resource(type="ammo2",lessThan=150) and numberOfUnitsInTeam(withTag="驳船可供给状态",withInRange=75,greaterThan=2)
+addResources:ammo2=1
+[hiddenAction_装弹4ab]
+autoTrigger:if self.resource(type="ammo2",lessThan=150) and numberOfUnitsInTeam(withTag="驳船可供给状态",withInRange=75,greaterThan=3)
+addResources:ammo2=1
+[hiddenAction_装填补给AI1]
+autoTrigger:if self.isControlledByAI() and self.ammo(lessThan=120)
+addResources:ammo=10
+[hiddenAction_装填补给AI2]
+autoTrigger:if self.isControlledByAI() and self.resource(type="ammo2",lessThan=150)
+addResources:ammo2=15
+[action_showAmmo1]
+#infoOnly: true
+addResources: ammo=5
+price:  ammo=5
+text:主炮弹药剩余
+description:目前炮塔还剩余多少180mm主炮炮弹
+displayType: none
+buildSpeed: 0s
+pos: 0.1
+displayRemainingStockpile: true
+highPriorityQueue: true
+isActive:false
+[action_showAmmo2]
+#infoOnly: true
+addResources: ammo2=1
+price:  ammo2=1
+text:防空炮弹药剩余
+description:目前炮塔还剩余多少防空炮弹
+displayType: none
+buildSpeed: 0s
+pos: 0.1
+displayRemainingStockpile: true
+highPriorityQueue: true
+isActive:false
+[graphics]
+total_frames: 1
+
+image:        base2.png
+image_wreak:base2-weak.png
+image_turret:Shored_GunT1.png
+
+teamColorsOnTurret:true
+[attack]
+canAttack: true
+canAttackFlyingUnits: true
+canAttackLandUnits:   true
+canAttackUnderwaterUnits: false
+maxAttackRange: 270
+
+[movement]
+movementType:BUILDING
+moveSpeed: 0
+moveAccelerationSpeed: 0.01
+moveDecelerationSpeed: 0.01
+
+maxTurnSpeed: 0
+turnAcceleration: 0.1
+
+
+[turret_MainGunTurret]
+x: 0
+y: 0
+turnSpeed: 1.0
+#turnSpeed: 1.0
+turnSpeedAcceleration: 0.5
+turnSpeedDeceleration: 0.5
+canAttackUnderwaterUnits:false
+canAttackFlyingUnits: false
+shoot_sound:cannon_firing
+shoot_flame:large
+shoot_light:#FFFF00
+projectile:1
+shouldResetTurret:false
+size:25
+delay:180
+canAttackCondition:if self.ammo(greaterThan=0)
+resourceUsage:ammo=5
+[turret_AAA1]
+x:-12
+y:0
+invisible:true
+turnSpeed:3
+limitingRange:170
+delay:6
+canAttackLandUnits:false
+canAttackUnderwaterUnits:false
+projectile:2
+shouldResetTurret:false
+size:2
+canAttackCondition:if self.resource(type="ammo2",greaterThan=0)
+resourceUsage:ammo2=1
+[turret_AAA2]
+x:12
+y:0
+invisible:true
+turnSpeed:3
+limitingRange:170
+delay:6
+canAttackLandUnits:false
+canAttackUnderwaterUnits:false
+projectile:2
+shouldResetTurret:false
+size:2
+canAttackCondition:if self.resource(type="ammo2",greaterThan=0)
+resourceUsage:ammo2=1
+[projectile_1]
+areaDamage:330
+life:1200
+speed:3
+targetGround:true
+targetGroundSpread:6
+areaRadius:14
+speedSpread:0.28
+deflectionPower:1
+lightColor:#FF3434
+image:N_AP_Shell.png
+drawSize:0.4
+shieldDamageMultiplier: 0.4
+shieldDefectionMultiplier: 0.3
+buildingDamageMultiplier: 1.0
+largeHitEffect: true
+
+[projectile_2]
+directDamage:20
+life:180
+speed:3
+color:#C1C100
+drawSize:1
+
+[ai]
+
+upgradedFrom:小型岸防炮台_

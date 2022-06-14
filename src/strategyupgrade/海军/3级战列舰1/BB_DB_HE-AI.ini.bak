@@ -1,0 +1,40 @@
+[core]
+copyFrom:BB_DB_APCBC-AI.ini
+name: 战列舰"深蓝"-高爆弹模式_
+displayDescription:不错的战列舰，攻防兼备，小范围防空极为优秀，机动也不差，但是输出看运气。可切换弹种。
+price: 40000
+[hiddenAction_回补给站]
+autoTrigger:if self.resource(type="HE",lessThan=1)
+[hiddenAction_convert1]
+convertTo:战列舰"深蓝"-高爆弹模式
+price:0
+[hiddenAction_脱离]
+autoTrigger:if self.resource(type="HE",greaterThan=179) and self.hasParent()
+[attack]
+canAttack: true
+canAttackFlyingUnits: true
+canAttackLandUnits:   true
+canAttackUnderwaterUnits: false
+
+turretSize: 20
+turretTurnSpeed: 10
+
+
+maxAttackRange: 350
+shootDelay: 600
+[projectile_1]
+areaDamage:1100
+life:1200
+speed:3
+targetGround:true
+targetGroundSpread:40
+areaRadius:33
+speedSpread:0.28
+deflectionPower:3
+lightColor:#FF3434
+image:N_HE_Shell.png
+drawSize:0.6
+shieldDamageMultiplier: 0.9
+shieldDefectionMultiplier: 0.5
+buildingDamageMultiplier: 0.8
+largeHitEffect: true

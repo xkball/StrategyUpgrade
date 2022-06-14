@@ -1,0 +1,126 @@
+[core]
+
+name: 自行火炮
+displayDescription:-[装备155mm长身管炮的重型自行火炮，射程比较远]-\n-[装甲较薄，火力精度较高]-
+
+class: CustomUnitMetadata
+price:650
+maxHp: 50
+mass: 510
+
+energyMax:35
+energyRegen:0
+
+techLevel: 1
+buildSpeed: 5s
+#availableInDemo: true
+
+radius: 18
+displayRadius: 18
+
+isBio: false
+softCollisionOnAll: 0
+builtFrom_1_name: 陆军工厂T2
+builtFrom_1_pos:  3
+builtFrom_2_name: 陆军工厂T3
+builtFrom_2_pos:  4
+tags:陆军单位A组
+overrideAndReplace:Heavytank
+[hiddenAction_装弹]
+autoTrigger:if self.hasParent(withTag="陆补给站)
+addResources:energy=3,dy=-1
+[action_showAmmo]
+#infoOnly: true
+addResources: energy=1
+price:  energy=1
+text: 炮弹剩余
+description:目前火炮还剩余多少弹药
+displayType: none
+buildSpeed: 0s
+pos: 0.1
+displayRemainingStockpile: true
+highPriorityQueue: true
+isActive:false
+[hiddenAction_脱离]
+autoTrigger:if self.energy(full=true) and self.hasParent(withTag="陆补给站)
+disconnectFromParent:true
+[hiddenAction_回补给站]
+autoTrigger:if self.energy(lessThan=1)
+alsoTriggerAction:自动返回
+addResources:unsetFlag=1
+[hiddenAction_自动返回]
+addWaypoint_type:loadInto
+addWaypoint_prepend: true
+addWaypoint_target_nearestUnit_team:own
+addWaypoint_target_nearestUnit_tagged:陆军补给站
+[graphics]
+total_frames: 1
+image:       Artillery.png
+image_wreak:Artillery_Weak.png
+image_turret: NONE
+
+imageScale:1.2
+image_shadow: AUTO
+shadowOffsetX:1
+shadowOffsetY:1
+dustEffectReverse:true
+lock_body_rotation_with_main_turret:true
+dustEffect: true
+[attack]
+canAttack: true
+canAttackFlyingUnits: false
+canAttackLandUnits:   true
+canAttackUnderwaterUnits: false
+isFixedFiring: true
+maxAttackRange: 210
+shootDelay: 195
+[turret_1]
+x: 0
+y: 0
+turnSpeed:1
+turnSpeedAcceleration:0.7
+shoot_sound:cannon_firing
+shoot_flame:large
+shoot_light:#FFFF00
+projectile:1
+energyUsage:1
+size:16
+
+[turret_radar]
+x: 0
+y: -8
+turnSpeed: 2
+#turnSpeed: 2
+turnSpeedAcceleration: 1
+turnSpeedDeceleration: 1
+idleSpin:0.7
+canShoot:false
+canAttackLandUnits:false
+image:Radar.png
+
+[projectile_1]
+areaDamage:230
+life:1200
+speed:3
+targetGround:true
+targetGroundSpread:4
+areaRadius:9
+speedSpread:0.35
+deflectionPower:1
+lightColor:#FF3434
+image:A_HEAT_Shell.png
+drawSize:0.5
+shieldDamageMultiplier: 0.9
+shieldDefectionMultiplier: 0.5
+buildingDamageMultiplier: 1.1
+largeHitEffect: true
+
+[movement]
+movementType: LAND
+moveSpeed: 0.39
+moveAccelerationSpeed: 1
+moveDecelerationSpeed: 1
+maxTurnSpeed: 1
+turnAcceleration: 0.7
+
+moveIgnoringBody:true

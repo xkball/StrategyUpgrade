@@ -1,0 +1,19 @@
+[core]
+copyFrom:thuck.ini
+name: 弹药运输卡车-b
+displayText:弹药运输卡车
+[hiddenAction_桥]
+autoTrigger:if not numberOfUnitsInTeam(withTag="桥1",withInRange=80,greaterThan=0) and not numberOfUnitsInTeam(withTag="桥2",withInRange=150,greaterThan=0)
+convertTo:弹药运输卡车
+[hiddenAction_防掉]
+autoTrigger:if not numberOfUnitsInTeam(withTag="桥1",withInRange=75,greaterThan=0) and self.isOverwater
+addWaypoint_type:move
+addWaypoint_target_nearestUnit_team:own
+addWaypoint_target_nearestUnit_tagged:桥1
+[hiddenAction_桥]
+autoTrigger:if not numberOfUnitsInTeam(withTag="桥1",withInRange=80,greaterThan=0) and not numberOfUnitsInTeam(withTag="桥2",withInRange=150,greaterThan=0)
+convertTo:lv2火箭弹发射车群
+[hiddenAction_桥2]
+@copyFrom_skipThisSection:true
+[movement]
+movementType:OVER_CLIFF_WATER

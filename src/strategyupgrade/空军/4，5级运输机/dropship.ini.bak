@@ -1,0 +1,58 @@
+[core]
+
+name: 运输机
+displayDescription:快速运输单位，拥有4格运输槽，但是只能在机场与机场之间运输陆地单位，局限较大
+class: CustomUnitMetadata
+price:credits=2500
+maxHp:250
+mass:1200
+techLevel: 1
+buildSpeed:30s
+radius:20
+isBio: false
+maxTransportingUnits:4
+transportUnitsCanUnloadUnits:false
+tags:运输机
+transportUnitsRequireMovementType:BUILDING
+transportUnitsRequireTag:海上建筑
+builtFrom_4_name:空军工厂T4
+builtFrom_4_pos:  6.1
+builtFrom_5_name:空军工厂T5
+builtFrom_5_pos:  6.1
+transportSlotsNeeded: 5
+[action_自动返航]
+text:降落
+description:自动寻找最近的机场并降落
+addWaypoint_type:loadInto
+addWaypoint_prepend: true
+addWaypoint_target_nearestUnit_team:own
+addWaypoint_target_nearestUnit_tagged:机场
+[action_自动返航2]
+text:降落并卸货
+description:自动寻找最近的机场并降落卸下单位
+addWaypoint_type:loadInto
+addWaypoint_prepend: true
+addWaypoint_target_nearestUnit_team:own
+addWaypoint_target_nearestUnit_tagged:机场
+convertTo:运输机_
+[hiddenAction_降落]
+autoTrigger:if self.hasParent()
+convertTo:运输机-机场着陆
+[graphics]
+total_frames: 1
+image:Y.png
+image_wreak:Y_D.png
+image_turret: NONE
+image_shadow: AUTO
+[attack]
+canAttack:false
+canAttackFlyingUnits: false
+canAttackLandUnits:   false
+canAttackUnderwaterUnits: false
+maxAttackRange:0
+aimOffsetSpread:0
+[movement]
+movementType:AIR
+moveSpeed: 2
+moveAccelerationSpeed: 0.25
+moveDecelerationSpeed: 0.25

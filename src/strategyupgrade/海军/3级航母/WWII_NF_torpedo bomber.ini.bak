@@ -1,0 +1,222 @@
+[core]
+
+showInEditor: false
+name: 早期-海航轰炸机机组(航空鱼雷)-降落状态
+class: CustomUnitMetadata
+price:3300
+maxHp:400
+mass:450
+borrowResourcesWhileAlive:舰载机检测a=1
+techLevel: 1
+buildSpeed:15s
+builtFrom_1_name:空军工厂
+builtFrom_1_pos:  1
+radius:8
+displayRadius:8
+isBio: false
+fogOfWarSightRange:5
+
+energyMax:90
+energyRegen:0
+energyNeedsToRechargeToFull:false
+tags:早期-海航飞机,爷没满
+[action_convert1]
+text:换轻航弹
+convertTo:早期-海航轰炸机机组(轻型炸弹)-降落状态-满
+price:0
+buildSpeed:30s
+[action_convert2]
+text:换重航弹
+convertTo:早期-海航轰炸机机组(重型炸弹)-降落状态-满
+price:0
+buildSpeed:30s
+[resource_燃料]
+displayName:燃料
+#[hiddenAction_自裁]
+#autoTrigger:if self.resource(type="舰载机检测1",lessThan=0)
+#addResources:hp=-114514
+[hiddenAction_补给航弹]
+autoTrigger:if self.hasParent(withTag="航母1")
+addResources:energy=3
+[hiddenAction_补给燃油]
+autoTrigger:if self.hasParent(withTag="航母1") and self.resource(type="燃料",lessThan=60)
+addResources:燃料=2
+[hiddenAction_消耗燃油]
+autoTrigger:if not self.hasParent(withTag="航母1") and not self.isAtGroundHeight() and not numberOfUnitsInTeam(withTag="航母1",withInRange=50,greaterThan=0)
+addResources:燃料=-3
+[hiddenAction_返航]
+autoTrigger:if self.resource(type="燃料",lessThan=30) or self.energy(lessThan=1)
+alsoTriggerAction:返航降落
+[action_showAmmo]
+#infoOnly: true
+addResources: energy=90
+price:  energy=90
+text: 航空鱼雷剩余
+description:目前舰载机还剩余多少航空鱼雷
+displayType: none
+buildSpeed: 0s
+pos: 0.1
+displayRemainingStockpile: true
+highPriorityQueue: true
+isActive:false
+[action_showFuel]
+#infoOnly: true
+addResources: 燃料=1
+price:  燃料=1
+text: 燃料剩余
+description:显示剩余燃料还能支持舰载机滞空多少秒
+displayType: none
+buildSpeed: 0s
+pos: 0.1
+displayRemainingStockpile: true
+highPriorityQueue: true
+isActive:false
+[hiddenAction_满了]
+autoTrigger:if self.energy(full=true) and not self.resource(type="燃料",lessThan=50)
+convertTo:早期-海航轰炸机机组(航空鱼雷)-降落状态-满
+[hiddenAction_起飞]
+autoTrigger:if numberOfUnitsInTeam(withTag="舰载机目标B",withInRange=1080,greaterThan=0) and self.energy(full=true) and self.resource(type="燃料",greaterThan=59)
+convertTo:早期-海航轰炸机机组(航空鱼雷)-起飞状态
+disconnectFromParent:true
+alsoTriggerAction:发动打稽
+[hiddenAction_敌舰爬]
+autoTrigger:if numberOfUnitsInTeam(withTag="舰载机目标B2",withInRange=1080,greaterThan=0) and self.energy(full=true) and self.resource(type="燃料",greaterThan=27)
+alsoTriggerAction:发动打稽
+[action_芜湖]
+text:起飞
+convertTo:早期-海航轰炸机机组(航空鱼雷)-起飞状态
+disconnectFromParent:true
+[hiddenAction_返航降落]
+addWaypoint_type:loadInto
+addWaypoint_prepend: true
+addWaypoint_target_nearestUnit_team:own
+addWaypoint_target_nearestUnit_tagged:CV1
+[hiddenAction_发动打稽]
+addWaypoint_type:move
+addWaypoint_prepend: true
+addWaypoint_target_nearestUnit_team:own
+addWaypoint_target_nearestUnit_tagged:舰载机目标B
+[hiddenAction_发动打稽2]
+addWaypoint_type:move
+addWaypoint_prepend: true
+addWaypoint_target_nearestUnit_team:own
+addWaypoint_target_nearestUnit_tagged:舰载机目标B2
+[graphics]
+total_frames:1
+image:        WWII_NF_Planes9.png
+image_wreak:  NONE
+image_turret: NONE
+image_shadow: NONE
+shadowOffsetX:1
+shadowOffsetY:1
+
+imageScale:0.6
+
+lock_body_rotation_with_main_turret: true
+
+[attack]
+canAttack: false
+canAttackFlyingUnits: false
+canAttackLandUnits:   false
+canAttackUnderwaterUnits:false
+turretSize: 1
+turretTurnSpeed: 6
+maxAttackRange: 25
+shootDelay: 120
+attackMovement:bomber
+#isFixedFiring: true
+turretRotateWithBody: false
+isMelee: true
+meleeEngangementDistance:100
+[turret_1]
+x: 0
+y: 8
+projectile: 1
+size: 1
+canShoot: true
+energyUsage:10
+canAttackCondition:if not self.hasParent(withTag="CV1")
+[turret_2]
+x: 9
+y: -8
+projectile: 1
+size: 1
+canShoot: true
+energyUsage:10
+canAttackCondition:if self.hp(greaterThan=100) and not self.hasParent(withTag="CV1")
+[turret_3]
+x: -9
+y: -8
+projectile: 1
+size: 1
+canShoot: true
+energyUsage: 10
+canAttackCondition:if self.hp(greaterThan=200) and not self.hasParent(withTag="CV1")
+[turret_4]
+x: 0
+y: 8
+projectile: 1
+size: 1
+canShoot: true
+energyUsage:10
+canAttackCondition:if self.hp(greaterThan=300) and not self.hasParent(withTag="CV1")
+[turret_5]
+x: 9
+y: -8
+projectile: 1
+size: 1
+canShoot: true
+energyUsage:10
+canAttackCondition:if self.hp(greaterThan=400) and not self.hasParent(withTag="CV1")
+[turret_6]
+x: -9
+y: -8
+projectile: 1
+size: 1
+canShoot: true
+energyUsage: 10
+canAttackCondition:if self.hp(greaterThan=500) and not self.hasParent(withTag="CV1")
+[projectile_1]
+#bomb
+#cannot use directDamage with targetGround
+directDamage: 195
+life: 250
+speed: 0.1
+targetSpeed: 0.3
+drawSize: 1
+image:400lbBomb.png
+trailEffect: false
+largeHitEffect: true
+targetGround: true
+areaDamage:220
+areaRadius: 25
+targetGroundSpread:20
+deflectionPower: 3
+shieldDamageMultiplier: 1
+shieldDefectionMultiplier: 1
+buildingDamageMultiplier: 1.2
+
+
+[movement]
+movementType: LAND
+moveSpeed:0.2
+moveAccelerationSpeed: 0.2
+moveDecelerationSpeed: 0.005
+maxTurnSpeed:2
+turnAcceleration:0.8
+targetHeight:0
+targetHeightDrift:0
+moveSlidingMode:true
+moveIgnoringBody:false
+moveSlidingDir: 10
+
+slowDeathFall: true
+
+
+[hiddenAction_0]
+autoTriggerOnEvent:created
+addResources:燃料=100,energy=120
+addWaypoint_type:loadInto
+addWaypoint_prepend: true
+addWaypoint_target_nearestUnit_team:own
+addWaypoint_target_nearestUnit_tagged:CV1

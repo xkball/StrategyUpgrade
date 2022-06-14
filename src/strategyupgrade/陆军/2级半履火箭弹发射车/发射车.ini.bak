@@ -1,0 +1,173 @@
+[core]
+
+name: 半履带火箭弹发射车
+displayDescription:-[拥有6发300mm火箭弹]-\n-[射速中等，补给速度慢，精度低]-\n-[参考:德国Sd.kfz.251/1c(40式火箭发射车型号)]
+
+class: CustomUnitMetadata
+price:800
+maxHp: 40
+mass:90
+shieldRegen:0.06
+shieldDisplayOnlyDeflection:true
+shieldDeflectionDisplayRate:10
+
+energyMax:240
+energyRegen:0
+
+techLevel: 2
+buildSpeed: 8s
+#availableInDemo: true
+
+radius: 14
+displayRadius: 14
+
+isBio: false
+softCollisionOnAll: 0
+fogOfWarSightRange: 5
+tags:陆军单位A组
+builtFrom_2_name: 陆军工厂T3
+builtFrom_2_pos:  8
+[hiddenAction_装弹]
+autoTrigger:if self.hasParent(withTag="陆补给站")
+addResources:energy=6,dy=-2
+[action_showAmmo]
+#infoOnly: true
+addResources: energy=40
+price:  energy=40
+text: 高爆弹剩余
+description:目前战车还剩余多少弹药
+displayType: none
+buildSpeed: 0s
+pos: 0.1
+displayRemainingStockpile: true
+highPriorityQueue: true
+isActive:false
+[hiddenAction_脱离]
+autoTrigger:if self.energy(full=true) and self.hasParent(withTag="陆补给站")
+disconnectFromParent:true
+[hiddenAction_回补给站]
+autoTrigger:if self.energy(lessThan=1)
+alsoTriggerAction:自动返回
+addResources:unsetFlag=1
+[hiddenAction_自动返回]
+addWaypoint_type:loadInto
+addWaypoint_prepend: true
+addWaypoint_target_nearestUnit_team:own
+addWaypoint_target_nearestUnit_tagged:陆军补给站
+[graphics]
+total_frames: 1
+
+image:       base.png
+image_wreak:weak.png
+image_turret: NONE
+
+imageScale:1
+turretImageScale:1
+
+image_shadow: AUTO
+shadowOffsetX:1
+shadowOffsetY:1
+dustEffectReverse:true
+lock_body_rotation_with_main_turret:true
+dustEffect: true
+[attack]
+canAttack: true
+canAttackFlyingUnits: false
+canAttackLandUnits:   true
+canAttackUnderwaterUnits: false
+
+maxAttackRange: 110
+shootDelay: 360
+[turret_1]
+x: 7
+y: 2
+turnSpeed:0.6
+turnSpeedAcceleration:0.45
+shoot_sound:missile_fire
+shoot_flame:large
+shoot_light:#FFFF00
+projectile:1
+energyUsage:40
+size:1
+[turret_2]
+x: 7
+y: -5
+turnSpeed:0.6
+turnSpeedAcceleration:0.45
+shoot_sound:missile_fire
+shoot_flame:large
+shoot_light:#FFFF00
+projectile:1
+energyUsage:40
+size:1
+warmup:60
+[turret_3]
+x: 7
+y: -12
+turnSpeed:0.6
+turnSpeedAcceleration:0.45
+shoot_sound:missile_fire
+shoot_flame:large
+shoot_light:#FFFF00
+projectile:1
+energyUsage:40
+size:1
+warmup:120
+[turret_4]
+x: -7
+y: 2
+turnSpeed:0.6
+turnSpeedAcceleration:0.45
+shoot_sound:missile_fire
+shoot_flame:large
+shoot_light:#FFFF00
+projectile:1
+energyUsage:40
+size:1
+warmup:180
+[turret_5]
+x: -7
+y: -5
+turnSpeed:0.6
+turnSpeedAcceleration:0.45
+shoot_sound:missile_fire
+shoot_flame:large
+shoot_light:#FFFF00
+projectile:1
+energyUsage:40
+size:1
+warmup:240
+[turret_6]
+x: 7
+y: -5
+turnSpeed:0.6
+turnSpeedAcceleration:0.45
+shoot_sound:missile_fire
+shoot_flame:large
+shoot_light:#FFFF00
+projectile:1
+energyUsage:40
+size:1
+warmup:300
+[projectile_1]
+areaDamage:360
+life:1200
+speed:3
+targetGround:true
+targetGroundSpread:28
+areaRadius:25
+speedSpread:0.28
+deflectionPower:1
+image:rocket.png
+drawSize:0.7
+largeHitEffect: true
+initialUnguidedSpeedHeight: 5
+lightCastOnGround: false
+gravity:5
+[movement]
+movementType: OVER_CLIFF
+moveSpeed: 0.52
+moveAccelerationSpeed: 1
+moveDecelerationSpeed: 1
+maxTurnSpeed: 0.6
+turnAcceleration: 0.45

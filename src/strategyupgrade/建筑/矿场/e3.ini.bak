@@ -1,0 +1,35 @@
+[core]
+name: 采矿场T3
+copyFrom: e1.ini
+price: 4500
+maxHp: 2000
+overrideAndReplace: NONE
+
+generation_resources: kcyl=22,credits=1500
+techLevel: 3
+buildSpeed: 0.0004
+
+[action_upgradeT3]
+@copyFrom_skipThisSection:true
+[action_upgradeT2]
+@copyFrom_skipThisSection:true
+[animation_idle]
+@copyFrom_skipThisSection:true
+
+onActions : idle
+body_0s: {frame:0}
+body_0.3s: {frame:1}
+body_0.5s: {frame:2}
+body_0.6s: {frame:1}
+body_1.0s: {frame:0}
+
+
+[projectile_explode]
+areaDamage: 450
+
+[graphics]
+image:MineT3.png
+
+[ai]
+upgradedFrom: 采矿场T1
+

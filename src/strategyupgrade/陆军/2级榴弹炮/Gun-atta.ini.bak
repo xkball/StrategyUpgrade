@@ -1,0 +1,105 @@
+[core]
+
+name: 重型榴弹炮-攻击状态
+displayDescription:-[装备203mm长身管炮]-\n-[伤害可观，需要部署]-\n-[参考:苏联Б-4型203мм炮]
+
+class: CustomUnitMetadata
+price:850
+maxHp: 45
+mass: 510
+
+energyMax:15
+energyRegen:0
+energyNeedsToRechargeToFull:true
+
+techLevel: 2
+buildSpeed: 8s
+#availableInDemo: true
+
+radius: 25
+displayRadius: 25
+
+isBio: false
+softCollisionOnAll: 0
+[action_stopFire]
+convertTo: 重型榴弹炮
+displayType: action
+price:  0
+text:复位
+buildSpeed: 0.5s
+whenBuilding_cannotMove: true
+whenBuilding_temporarilyConvertTo:重型榴弹炮
+[action_showAmmo]
+#infoOnly: true
+addResources: energy=1
+price:  energy=1
+text: 炮弹剩余
+description:目前火炮还剩余多少弹药
+displayType: none
+buildSpeed: 0s
+pos: 0.1
+displayRemainingStockpile: true
+highPriorityQueue: true
+isActive:false
+[graphics]
+total_frames: 1
+image:     Gun.png
+image_wreak:NONE
+image_turret: NONE
+
+
+imageScale:0.5
+image_shadow: AUTO
+shadowOffsetX:1
+shadowOffsetY:1
+dustEffectReverse:true
+lock_body_rotation_with_main_turret:true
+dustEffect: true
+[attack]
+canAttack: true
+canAttackFlyingUnits: false
+canAttackLandUnits:   true
+canAttackUnderwaterUnits: false
+
+maxAttackRange: 200
+shootDelay: 300
+[turret_1]
+x: 0
+y: 3
+turnSpeed:1
+turnSpeedAcceleration:0.7
+shoot_sound:cannon_firing
+shoot_flame:large
+shoot_light:#FFFF00
+projectile:1
+energyUsage:1
+size:20
+
+[projectile_1]
+areaDamage:220
+life:1200
+speed:3
+targetGround:true
+targetGroundSpread:6
+areaRadius:12
+speedSpread:0.35
+deflectionPower:1
+lightColor:#FF3434
+image:A_HEAT_Shell.png
+drawSize:0.5
+shieldDamageMultiplier: 0.9
+shieldDefectionMultiplier: 0.5
+buildingDamageMultiplier: 1.1
+largeHitEffect: true
+
+[movement]
+movementType: LAND
+moveSpeed: 0
+moveAccelerationSpeed: 1
+moveDecelerationSpeed: 1
+maxTurnSpeed: 1
+turnAcceleration: 0.7
+
+moveIgnoringBody:true
+[ai]
+upgradedFrom:重型榴弹炮

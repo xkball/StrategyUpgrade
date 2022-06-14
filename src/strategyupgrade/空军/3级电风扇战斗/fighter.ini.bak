@@ -1,0 +1,63 @@
+[core]
+name: lv3战斗机B-降落状态
+displayDescription:性能不算好的战斗机，但是处于高空，干扰略小，性能大幅提升\n飞行高度:高空，最大作战半径:700像素\n维护费:45资金/s\n参考:苏联МиГ-3战斗机\n\n贴图:@射程之内的真理
+class: CustomUnitMetadata
+copyFrom:基础.ini
+techLevel: 1
+builtFrom_1_name:空军工厂
+builtFrom_1_pos:  6
+builtFrom_1_isLocked:if self.resource(type="2科技-轴炮2",lessThan=1) or self.resource(type="3科技-V12引擎",lessThan=1) or self.resource(type="3科技-战斗3",lessThan=1) or self.resource(type="1科技-射击调节器",lessThan=1)
+builtFrom_1_isLockedMessage: 需求科技:lv2.轴炮II，lv3.战斗机机身III，lv3.V12布局活塞引擎(高空型)，lv1.射击调节器
+tags:早期飞机,低空,3战斗b,飞机,低空1
+[hiddenAction_维修]
+autoTrigger:if self.hasParent(withTag="机场")
+addResources:hp=20
+[hiddenAction_消耗燃油]
+addResources:燃料=0
+[hiddenAction_芜湖]
+autoTrigger:if self.resource(type="燃料",greaterThan=17) and self.hasParent(withTag="3级战斗b攻击")
+alsoTriggerAction:打
+disconnectFromParent:true
+convertTo:lv3战斗机B-飞行状态
+[hiddenAction_打]
+addWaypoint_type:attackmove
+addWaypoint_prepend: true
+addWaypoint_target_nearestUnit_team:own
+addWaypoint_target_nearestUnit_tagged:3级战斗b目标
+[action_返航降落]
+text:返航
+addWaypoint_type:loadInto
+addWaypoint_prepend: true
+addWaypoint_target_nearestUnit_team:own
+addWaypoint_target_nearestUnit_tagged:空军后勤机场
+#[action_调动1]
+#text:陆路调动
+[hiddenAction_转移1]
+autoTrigger:if self.hasParent(withTag="空军后勤机场") and self.resource(type="燃料",greaterThan=17) and self.hp(greaterThan=499) and numberOfUnitsInTeam(withTag="空军战斗机场",withInRange=200,greaterThan=0)
+isActive:if self.hasParent(withTag="空军后勤机场") and self.resource(type="燃料",greaterThan=17) and self.hp(greaterThan=499) and numberOfUnitsInTeam(withTag="空军战斗机场",withInRange=200,greaterThan=0)
+disconnectFromParent:true
+alsoTriggerAction:转移2
+[hiddenAction_转移2]
+addWaypoint_type:loadInto
+addWaypoint_prepend: true
+addWaypoint_target_nearestUnit_team:own
+addWaypoint_target_nearestUnit_tagged:机场-战斗
+
+[movement]
+movementType: HOVER
+moveSpeed:0.3
+moveAccelerationSpeed: 1.6
+moveDecelerationSpeed: 0.005
+maxTurnSpeed:2
+turnAcceleration:0.8
+moveSlidingMode:true
+moveIgnoringBody:false
+moveSlidingDir: 10
+targetHeight:0
+slowDeathFall: true
+[hiddenAction_AI]
+autoTrigger:if self.isControlledByAI()
+convertTo: lv3战斗机Bai
+[hiddenAction_出厂flag]
+autoTriggerOnEvent:created
+addResources:setFlag=3-4

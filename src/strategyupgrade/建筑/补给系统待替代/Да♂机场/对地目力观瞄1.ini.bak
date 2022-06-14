@@ -1,0 +1,171 @@
+
+[core]
+
+
+name:机场对地雷达站lv0
+displayDescription:目力观瞄，事屑
+class: CustomUnitMetadata
+price: 250000,jc=1500
+maxHp: 500
+mass: 4500
+
+techLevel: 2
+buildSpeed: 70s
+#availableInDemo: true
+
+radius: 30
+
+fogOfWarSightRange:10
+maxShield:150
+shieldRegen:0.05
+shieldDisplayOnlyDeflection:true
+shieldDeflectionDisplayRate:10
+#used for placement, and placement of other buildings
+isBio: false
+isBuilding: false
+ignoreInUnitCapCalculation:true
+tags:目力l0,机场自带雷达站,h0
+[graphics]
+total_frames: 1
+
+image:        NONE.png
+image_wreak:  NONE
+image_turret:NONE
+
+
+imageScale:1
+turretImageScale:1
+image_shadow: AUTO
+shadowOffsetX:0
+shadowOffsetY:0
+splastEffect: false
+
+
+[action_r]
+text:雷达1级
+addResources:setFlag=10
+price:100000,jc=500
+buildSpeed: 15s
+convertTo:机场对地雷达站lv1
+[attack]
+canAttack:true
+canAttackFlyingUnits: false
+canAttackLandUnits:true
+canAttackUnderwaterUnits:false
+turretSize: 20
+turretTurnSpeed: 15
+aimOffsetSpread:0
+turretMultiTargeting: true
+shootDelay:1s
+maxAttackRange:2000
+[turret_1]
+x: 0
+y: 0
+turnSpeed: 2
+#turnSpeed: 2
+turnSpeedAcceleration: 1
+turnSpeedDeceleration: 1
+idleSpin:0.5
+canAttackFlyingUnits:false
+[turret_radar1]
+x: 0
+y: 0
+turnSpeed: 999
+#turnSpeed: 2
+turnSpeedAcceleration: 999
+turnSpeedDeceleration: 999
+idleSpin:0.5
+canShoot:false
+invisible:true
+limitingAngle:72
+limitingRange:500
+resourceUsage: setFlag=6
+
+[turret_radar2]
+x: 0
+y: 0
+turnSpeed: 999
+#turnSpeed: 2
+turnSpeedAcceleration: 999
+turnSpeedDeceleration: 999
+invisible:true
+limitingAngle:72
+idleDir:36
+limitingRange:500
+resourceUsage: setFlag=6
+
+[turret_radar3]
+x: 0
+y: 0
+turnSpeed: 999
+#turnSpeed: 2
+turnSpeedAcceleration: 999
+turnSpeedDeceleration: 999
+invisible:true
+limitingAngle:72
+idleDir:-36
+limitingRange:500
+resourceUsage: setFlag=6
+
+[turret_radar4]
+x: 0
+y: 0
+turnSpeed: 999
+#turnSpeed: 2
+turnSpeedAcceleration: 999
+turnSpeedDeceleration: 999
+invisible:true
+limitingAngle:72
+idleDir:108
+limitingRange:500
+resourceUsage: setFlag=6
+
+[turret_radar5]
+x: 0
+y: 0
+turnSpeed: 999
+#turnSpeed: 2
+turnSpeedAcceleration: 999
+turnSpeedDeceleration: 999
+invisible:true
+limitingAngle:72
+idleDir:-108
+limitingRange:500
+resourceUsage: setFlag=6
+
+
+[projectile_目力]
+image:NONE.png
+directDamage:0
+speed:999999
+deflectionPower:-1
+life:1200
+explodeEffect:CUSTOM:lightningShock
+spawnUnit:索敌*1
+[effect_lightningShock]
+life: 1
+hOffset: 0
+dirOffset: 0
+fadeInTime: 0
+fadeOut: false
+attachedToUnit: true
+image:NONE.png
+total_frames: 1
+[movement]
+movementType:HOVER
+moveSpeed: 1
+moveAccelerationSpeed: 0.55
+moveDecelerationSpeed: 0.55
+maxTurnSpeed: 2
+turnAcceleration: 2
+reverseSpeedPercentage:0
+moveIgnoringBody:true
+[hiddenAction_500a]
+autoTrigger:if self.hasFlag(id=6)
+temporarilyAddTags:地500
+addResources:unsetFlag=6
+[hiddenAction_n500a]
+temporarilyRemoveTags:地500
+autoTrigger:if self.hasParent(withTag="fl500")
+[ai]
+upgradedFrom:机场对地雷达站lv1

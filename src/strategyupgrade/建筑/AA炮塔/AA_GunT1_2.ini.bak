@@ -1,0 +1,159 @@
+
+[core]
+name: 防空炮组S1状态2
+class: CustomUnitMetadata
+price: credits=500,jc=100
+maxHp: 200
+mass: 114514
+
+
+#footprint used for collisions with units (left, up, right, down)
+footprint: 0,0,0,0
+
+#used for placement, and placement of other buildings
+constructionFootprint: 0,0,0,0
+
+techLevel: 1
+buildSpeed: 15s
+
+radius: 20
+
+isBio: false
+isBuilding: true
+overrideAndReplace:antiAirTurret
+tags:塔-未满
+[graphics]
+total_frames: 1
+
+image:        AA_1.png
+image_wreak:NONE
+image_turret:NONE
+
+teamColorsOnTurret:true
+#tags:塔-未满
+[action_convert1]
+text:增设大口径防空炮
+convertTo:防空炮组S2
+price:250
+description:增加一个新的大口径防空炮组，需要空军2级。
+buildSpeed:5s
+displayType: Upgrade
+#isActive:if self.resource(type="tecA",greaterThan=1)
+[hiddenAction_c]
+autoTrigger:if not self.ammo(greaterThan=199)
+convertTo:防空炮组S1
+[hiddenAction_装弹1]
+autoTrigger:if self.ammo(lessThan=200) and numberOfUnitsInTeam(withTag="弹药库-未满",withInRange=75,greaterThan=0)
+addResources:ammo=7
+[hiddenAction_装弹2]
+autoTrigger:if self.ammo(lessThan=200) and numberOfUnitsInTeam(withTag="弹药库-未满",withInRange=75,greaterThan=1)
+addResources:ammo=7
+[hiddenAction_装弹3]
+autoTrigger:if self.ammo(lessThan=200) and numberOfUnitsInTeam(withTag="弹药库-未满",withInRange=75,greaterThan=2)
+addResources:ammo=7
+[hiddenAction_装弹4]
+autoTrigger:if self.ammo(lessThan=200) and numberOfUnitsInTeam(withTag="弹药库-未满",withInRange=75,greaterThan=3)
+addResources:ammo=7
+[hiddenAction_装弹5]
+autoTrigger:if self.ammo(lessThan=200) and numberOfUnitsInTeam(withTag="弹药库-满",withInRange=75,greaterThan=0)
+addResources:ammo=7
+[hiddenAction_装弹6]
+autoTrigger:if self.ammo(lessThan=200) and numberOfUnitsInTeam(withTag="弹药库-满",withInRange=75,greaterThan=1)
+addResources:ammo=7
+[hiddenAction_装弹7]
+autoTrigger:if self.ammo(lessThan=200) and numberOfUnitsInTeam(withTag="弹药库-满",withInRange=75,greaterThan=2)
+addResources:ammo=7
+[hiddenAction_装弹8]
+autoTrigger:if self.ammo(lessThan=200) and numberOfUnitsInTeam(withTag="弹药库-满",withInRange=75,greaterThan=3)
+addResources:ammo=7
+[hiddenAction_装弹9]
+autoTrigger:if self.ammo(lessThan=200) and numberOfUnitsInTeam(withTag="弹药库-满",withInRange=75,greaterThan=4)
+addResources:ammo=7
+[hiddenAction_装弹10]
+autoTrigger:if self.ammo(lessThan=200) and numberOfUnitsInTeam(withTag="弹药库-满",withInRange=75,greaterThan=5)
+addResources:ammo=7
+[hiddenAction_装弹11]
+autoTrigger:if self.ammo(lessThan=200) and numberOfUnitsInTeam(withTag="弹药库-满",withInRange=75,greaterThan=6)
+addResources:ammo=7
+[hiddenAction_装弹12]
+autoTrigger:if self.ammo(lessThan=200) and numberOfUnitsInTeam(withTag="弹药库-满",withInRange=75,greaterThan=7)
+addResources:ammo=7
+[hiddenAction_装弹13]
+autoTrigger:if self.ammo(lessThan=200) and numberOfUnitsInTeam(withTag="弹药库-未满",withInRange=75,greaterThan=4)
+addResources:ammo=7
+[hiddenAction_装弹14]
+autoTrigger:if self.ammo(lessThan=200) and numberOfUnitsInTeam(withTag="弹药库-未满",withInRange=75,greaterThan=5)
+addResources:ammo=7
+[hiddenAction_装弹15]
+autoTrigger:if self.ammo(lessThan=200) and numberOfUnitsInTeam(withTag="弹药库-未满",withInRange=75,greaterThan=6)
+addResources:ammo=7
+[hiddenAction_装弹16]
+autoTrigger:if self.ammo(lessThan=200) and numberOfUnitsInTeam(withTag="弹药库-未满",withInRange=75,greaterThan=7)
+addResources:ammo=7
+[hiddenAction_装填补给AI1]
+autoTrigger:if self.isControlledByAI() and self.ammo(lessThan=200)
+addResources:ammo=10
+[action_showAmmo2]
+#infoOnly: true
+addResources: ammo=1
+price:  ammo=1
+text:防空炮弹药剩余
+description:目前炮塔还剩余多少37mm防空炮弹
+displayType: none
+buildSpeed: 0s
+pos: 0.1
+displayRemainingStockpile: true
+highPriorityQueue: true
+isActive:false
+[attack]
+canAttack: true
+canAttackFlyingUnits: true
+canAttackLandUnits:   false
+canAttackUnderwaterUnits: false
+maxAttackRange: 150
+
+[movement]
+movementType:BUILDING
+moveSpeed: 0
+moveAccelerationSpeed: 0.01
+moveDecelerationSpeed: 0.01
+
+maxTurnSpeed: 0
+turnAcceleration: 0.1
+
+
+[turret_AAA1]
+x: 7
+y: 0
+turnSpeed: 3
+#turnSpeed: 1.0
+turnSpeedAcceleration: 0.5
+turnSpeedDeceleration: 0.5
+canAttackUnderwaterUnits:false
+projectile:1
+shouldResetTurret:false
+size:1
+delay:5
+resourceUsage:ammo=1
+[turret_AAA2]
+x: -7
+y: 0
+turnSpeed: 3
+#turnSpeed: 1.0
+turnSpeedAcceleration: 0.5
+turnSpeedDeceleration: 0.5
+canAttackUnderwaterUnits:false
+projectile:1
+shouldResetTurret:false
+size:1
+delay:5
+resourceUsage:ammo=1
+[projectile_1]
+directDamage:2
+life:180
+speed:3
+color:#C1C100
+drawSize:1
+
+[ai]
+upgradedFrom:防空炮组S1

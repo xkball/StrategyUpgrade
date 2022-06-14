@@ -1,0 +1,454 @@
+[core]
+
+
+name: lv2轻巡A-穿甲弹模式
+displayDescription:性能不错的轻巡，拥有6具鱼雷管(鱼雷备弹12发)，9门主炮，主炮不可对空\n维护费:80资金/s(鱼雷每发22资金)\n参考:苏联"基洛夫(Киров)"级巡洋舰(注:此基洛夫为二战期间的Проект.26巡洋舰，非冷战期间的Проект.1144巡洋舰)，炮塔参考自二战时期的德式轻巡\n\n贴图:@射程之内的真理
+class: CustomUnitMetadata
+price: 510000
+maxHp: 1450
+mass: 114514
+
+techLevel: 1
+buildSpeed: 160s
+#availableInDemo: true
+
+radius: 20
+displayRadius: 10
+
+isBio: false
+softCollisionOnAll: 0
+selfRegenRate:0.02
+fogOfWarSightRange: 12
+armour:15
+armourMinDamageToKeep:3
+maxShield:100
+shieldRegen:0.025
+shieldDisplayOnlyDeflection:true
+shieldDeflectionDisplayRate:10
+tags:远洋战舰,中型舰艇,低空干扰1,h0
+energyMax:1800
+energyRegen:0.06
+energyNeedsToRechargeToFull:true
+builtFrom_1_name: 海军工厂
+builtFrom_1_pos:  6
+builtFrom_1_isLocked:if self.resource(type="2科技-中防空炮2",lessThan=1) or self.resource(type="2科技-CL1",lessThan=1) or self.resource(type="2科技-海蒸汽轮机2",lessThan=1) or self.resource(type="2科技-中口径舰炮2",lessThan=1)
+builtFrom_1_isLockedMessage: 需求科技:lv2.轻巡洋舰船体I，lv2.舰用蒸汽轮机II，lv2.中口径防空炮II，lv.2中口径舰炮II
+generation_credits:-80
+generation_delay:60
+[resource_AP]
+displayName:AP弹
+[resource_HE]
+displayName:HE弹
+[resource_s]
+displayName:副炮炮弹
+[hiddenAction_装弹1]
+autoTrigger:if self.resource(type="AP",lessThan=180) and self.hasParent()
+addResources:AP=18
+[hiddenAction_装弹2]
+autoTrigger:if self.resource(type="HE",lessThan=180) and self.hasParent()
+addResources:HE=18
+[hiddenAction_装弹3]
+autoTrigger:if self.ammo(lessThan=36) and self.hasParent()
+addResources:ammo=3,credits=-22
+[hiddenAction_装弹4]
+autoTrigger:if self.resource(type="s",lessThan=300) and self.hasParent()
+addResources:s=60
+[action_showAmmo1]
+#infoOnly: true
+addResources: AP=1
+price:  AP=1
+text: 穿甲弹剩余
+description:目前战舰还剩余多少穿甲弹
+displayType: none
+buildSpeed: 0s
+pos: 0.1
+displayRemainingStockpile: true
+highPriorityQueue: true
+isActive:false
+[action_showAmmo2]
+#infoOnly: true
+addResources: HE=1
+price:  HE=1
+text: 高爆弹剩余
+description:目前战舰还剩余多少高爆弹
+displayType: none
+buildSpeed: 0s
+pos: 0.1
+displayRemainingStockpile: true
+highPriorityQueue: true
+isActive:false
+[action_showAmmo3]
+#infoOnly: true
+addResources: ammo=4
+price:  ammo=4
+text: 鱼雷剩余
+description:目前战舰还剩余多少鱼雷
+displayType: none
+buildSpeed: 0s
+pos: 0.1
+displayRemainingStockpile: true
+highPriorityQueue: true
+isActive:false
+[action_convert1]
+text:换HE
+convertTo:lv2轻巡A-高爆弹模式
+price:0
+description:换上对装甲目标攻击力较低但对建筑伤害高的HE
+buildSpeed:15s
+ai_isDisabled:if self.overWater()
+[action_返回] 
+text:返回最近补给站 
+alwaysSinglePress: true 
+addWaypoint_type:loadInto 
+addWaypoint_prepend: true 
+addWaypoint_target_nearestUnit_team:own 
+addWaypoint_target_nearestUnit_tagged:海军基地-
+[graphics]
+total_frames: 1
+
+image:        CL.png
+image_wreak:  CL_Sink.png
+image_turret: 150mmGun_Turret.png
+
+
+imageScale:1
+turretImageScale:1
+
+image_shadow: AUTO
+shadowOffsetX:1
+shadowOffsetY:1
+
+
+splastEffect: true
+[attack]
+canAttack: true
+canAttackFlyingUnits: true
+canAttackLandUnits:   true
+canAttackUnderwaterUnits: true
+
+turretSize: 30
+turretTurnSpeed: 10
+
+
+maxAttackRange:240
+shootDelay: 160
+
+[turret_MainGunTurretA]
+x: 0
+y: 43
+turnSpeed: 1.0
+#turnSpeed: 1.0
+turnSpeedAcceleration: 0.5
+turnSpeedDeceleration: 0.5
+canAttackUnderwaterUnits:false
+canAttackFlyingUnits: false
+shoot_sound:cannon_firing
+shoot_flame:large
+shoot_light:#FFFF00
+projectile:1
+resourceUsage:AP=1
+[turret_MainGunTurretB]
+x: 0
+y: 27
+turnSpeed: 1.0
+#turnSpeed: 1.0
+turnSpeedAcceleration: 0.5
+turnSpeedDeceleration: 0.5
+canAttackUnderwaterUnits:false
+canAttackFlyingUnits: false
+shoot_sound:cannon_firing
+shoot_flame:large
+shoot_light:#FFFF00
+projectile:1
+resourceUsage:AP=1
+[turret_MainGunTurretX]
+x: 0
+y: -61
+turnSpeed: 1.0
+#turnSpeed: 1.0
+turnSpeedAcceleration: 0.5
+turnSpeedDeceleration: 0.5
+canAttackUnderwaterUnits:false
+canAttackFlyingUnits: false
+shoot_sound:cannon_firing
+shoot_flame:large
+shoot_light:#FFFF00
+idleDir:180
+projectile:1
+resourceUsage:AP=1
+[turret_TPlauncherP]
+x: -7
+y: -32
+image:Torpedo_LauncherA.png
+delay:30
+limitingRange:190
+turnSpeed: 1.0
+#turnSpeed: 1.0
+turnSpeedAcceleration: 0.5
+turnSpeedDeceleration: 0.5
+canAttackUnderwaterUnits:false
+canAttackNotTouchingWaterUnits:false
+canAttackFlyingUnits:false
+projectile:2
+energyUsage:600
+resourceUsage:ammo=3
+[turret_TPlauncherS]
+x: 7
+y: -32
+image:Torpedo_LauncherA.png
+delay:30
+limitingRange:190
+turnSpeed: 1.0
+#turnSpeed: 1.0
+turnSpeedAcceleration: 0.5
+turnSpeedDeceleration: 0.5
+canAttackUnderwaterUnits:false
+canAttackNotTouchingWaterUnits:false
+canAttackFlyingUnits:false
+projectile:2
+energyUsage:600
+resourceUsage:ammo=3
+[turret_AAA1]
+x:-7
+y:0
+invisible:true
+turnSpeed:3
+limitingRange:170
+delay:10
+canAttackLandUnits:false
+canAttackUnderwaterUnits:false
+projectile:3
+
+[turret_AAA2]
+x:7
+y:0
+invisible:true
+turnSpeed:3
+limitingRange:170
+delay:10
+canAttackLandUnits:false
+canAttackUnderwaterUnits:false
+projectile:3
+
+
+[turret_Secondary1]
+x:-7
+y:-42
+image:AAA_turret_2.png
+turnSpeed:3
+limitingRange:210
+delay:80
+canAttackUnderwaterUnits:false
+projectile:5
+resourceUsage:s=1
+[turret_S2]
+x:7
+y:-42
+image:AAA_turret_2.png
+turnSpeed:3
+limitingRange:210
+delay:80
+canAttackUnderwaterUnits:false
+projectile:5
+resourceUsage:s=1
+[turret_S3]
+x:-7
+y:-53
+image:AAA_turret_2.png
+turnSpeed:3
+limitingRange:210
+delay:80
+canAttackUnderwaterUnits:false
+projectile:5
+resourceUsage:s=1
+[turret_S4]
+x:7
+y:-53
+image:AAA_turret_2.png
+turnSpeed:3
+limitingRange:210
+delay:80
+canAttackUnderwaterUnits:false
+projectile:5
+resourceUsage:s=1
+[projectile_1]
+areaDamage:330
+life:1200
+speed:5
+targetGround:true
+targetGroundSpread:5
+areaRadius:10
+speedSpread:0.28
+deflectionPower:2
+lightColor:#FF3434
+image:N_AP_Shell.png
+drawSize:0.3
+buildingDamageMultiplier: 0.6
+largeHitEffect: true
+mutator1_ifUnitWithTags:重装甲
+mutator1_areaDamageMultiplier:3
+mutator2_ifUnitWithTags:中型舰艇
+mutator2_areaDamageMultiplier:1.1
+mutator7_ifUnitWithTags:大型舰艇
+mutator7_areaDamageMultiplier:0.2
+mutator4_ifUnitWithTags:无装甲
+mutator4_areaDamageMultiplier:10
+mutator5_ifUnitWithTags:轻装甲
+mutator5_areaDamageMultiplier:5
+mutator6_ifUnitWithTags:中装甲
+mutator6_areaDamageMultiplier:4
+mutator3_ifUnitWithTags:步兵
+mutator3_areaDamageMultiplier:0.3
+mutator8_ifUnitWithTags:小型舰艇
+mutator8_areaDamageMultiplier:1.6
+[projectile_2]
+areaDamage: 600
+life: 300
+speed: 0.65
+speedSpread:0.25
+image:torpedo.png
+drawSize:1
+targetGround:true
+targetGroundSpread:30
+areaRadius:40
+buildingDamageMultiplier: 0.1
+
+[projectile_3]
+targetGround:true
+targetGroundSpread:0
+areaRadius:25
+areaDamage:75
+life:900
+speed:5
+speedSpread:0.1
+color:#C1C100
+drawSize:1
+mutator1_ifUnitWithTags:重装甲
+mutator1_areaDamageMultiplier:0
+mutator2_ifUnitWithTags:小型舰艇,中型舰艇,大型舰艇
+mutator2_areaDamageMultiplier:0
+mutator4_ifUnitWithTags:无装甲
+mutator4_areaDamageMultiplier:1.5
+mutator5_ifUnitWithTags:轻装甲
+mutator5_areaDamageMultiplier:0
+mutator6_ifUnitWithTags:中装甲
+mutator6_areaDamageMultiplier:0
+mutator3_ifUnitWithTags:步兵
+mutator3_areaDamageMultiplier:2.5
+areaHitAirAndLandAtSameTime: true
+
+[projectile_4]
+directDamage:50
+life:200
+speed:1.5
+color:#000000
+drawSize:1.5
+trailEffect: true
+[projectile_5]
+areaDamage:120
+life:1200
+speed:5
+targetGround:true
+targetGroundSpread:5
+areaRadius:10
+speedSpread:0.28
+deflectionPower:1
+image:N_AP_Shell.png
+drawSize:0.2
+buildingDamageMultiplier: 0.6
+largeHitEffect: true
+areaHitAirAndLandAtSameTime: true
+mutator1_ifUnitWithTags:重装甲
+mutator1_areaDamageMultiplier:0.9
+mutator2_ifUnitWithTags:中型舰艇
+mutator2_areaDamageMultiplier:0.3
+mutator7_ifUnitWithTags:大型舰艇
+mutator7_areaDamageMultiplier:0.2
+mutator4_ifUnitWithTags:无装甲
+mutator4_areaDamageMultiplier:1.5
+mutator5_ifUnitWithTags:轻装甲
+mutator5_areaDamageMultiplier:1.5
+mutator6_ifUnitWithTags:中装甲
+mutator6_areaDamageMultiplier:1.25
+mutator3_ifUnitWithTags:步兵
+mutator3_areaDamageMultiplier:0.2
+[movement]
+movementType: WATER
+moveSpeed: 0.45
+moveAccelerationSpeed: 0.05
+moveDecelerationSpeed:0.4
+maxTurnSpeed: 0.7
+turnAcceleration: 0.5
+moveIgnoringBody:true
+[action_打开战术策略规划]
+addResources: setFlag=1
+isGuiBlinking: if self.hasFlag(id=1)
+displayType: action
+text:打开补给规划菜单
+alwaysSinglePress: true
+allowMultipleInQueue: false
+buildSpeed: 0s
+[action_补给-炮弹или全部-主炮炮弹]
+text:主炮AP弹补给完后脱离
+addResources:setFlag=10
+isVisible:if self.hasFlag(id=1)
+isGuiBlinking: if self.hasFlag(id=10)
+[action_补给-炮弹или全部-всё]
+text:全部弹药补给完后脱离
+addResources:unsetFlag=10
+isVisible:if self.hasFlag(id=1)
+isGuiBlinking: if not self.hasFlag(id=10)
+[action_返航-炮弹0]
+text:主炮AP弹为0返航
+addResources:unsetFlag=5-9,setFlag=5
+isVisible:if self.hasFlag(id=1)
+isGuiBlinking: if self.hasFlag(id=5)
+[action_返航-炮弹0.2]
+text:主炮AP弹剩余20％返航
+addResources:unsetFlag=5-9,setFlag=6
+isVisible:if self.hasFlag(id=1)
+isGuiBlinking: if self.hasFlag(id=6)
+[action_返航-全空]
+text:所有弹药打空返航
+addResources:unsetFlag=5-9,setFlag=7
+isVisible:if self.hasFlag(id=1)
+isGuiBlinking: if self.hasFlag(id=7)
+[action_返航-鱼雷]
+text:鱼雷打空返航
+addResources:unsetFlag=5-9,setFlag=8
+isVisible:if self.hasFlag(id=1)
+isGuiBlinking: if self.hasFlag(id=8)
+[action_返航-任一]
+text:任意弹药打空返航
+addResources:unsetFlag=5-9,setFlag=9
+isVisible:if self.hasFlag(id=1)
+isGuiBlinking: if self.hasFlag(id=9)
+[action_关闭]
+addResources: unsetFlag=1
+isVisible:if self.hasFlag(id=1)
+displayType: action
+text:关闭补给规划菜单
+alwaysSinglePress: true
+allowMultipleInQueue: false
+buildSpeed: 0s
+[hiddenAction_回补给站1]
+autoTrigger:if self.resource(type="AP",lessThan=1) and not self.hasFlag(id=5)
+alsoTriggerAction:返回
+[hiddenAction_回补给站2]
+autoTrigger:if self.resource(type="AP",lessThan=1) and self.resource(type="HE",lessThan=1) and self.ammo(lessThan=1) and self.hasFlag(id=7) and self.resource(type="s",lessThan=1)
+alsoTriggerAction:返回
+[hiddenAction_回补给站3]
+autoTrigger:if self.ammo(lessThan=1) and self.hasFlag(id=8)
+alsoTriggerAction:返回
+[hiddenAction_回补给站4]
+autoTrigger:if self.resource(type="AP",lessThan=1) or self.ammo(lessThan=1) or self.resource(type="s",lessThan=1) and self.hasFlag(id=9)
+alsoTriggerAction:返回
+[hiddenAction_回补给站5]
+autoTrigger:if self.resource(type="AP",lessThan=25) and self.hasFlag(id=6)
+alsoTriggerAction:返回
+[hiddenAction_脱离1]
+autoTrigger:if self.resource(type="AP",greaterThan=179) and self.hasParent(withTag="海军基地") and self.hasFlag(id=10)
+disconnectFromParent:true
+[hiddenAction_脱离2]
+autoTrigger:if self.resource(type="AP",greaterThan=179)and self.resource(type="HE",greaterThan=179) and self.ammo(greaterThan=35) and self.resource(type="s",greaterThan=299) and self.hasParent(withTag="海军基地") and not self.hasFlag(id=10)
+disconnectFromParent:true

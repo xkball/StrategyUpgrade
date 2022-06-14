@@ -1,0 +1,33 @@
+[core]
+name: lv1战斗机-飞行状态
+copyFrom:基础.ini
+
+class: CustomUnitMetadata
+
+[hiddenAction_降落]
+autoTrigger:if self.hasParent(withTag="机场-后勤")
+convertTo:lv1战斗机-降落状态
+[hiddenAction_返航]
+autoTrigger:if self.resource(type="燃料",lessThan=14) and self.hasFlag(id=9)
+alsoTriggerAction:返航降落
+[hiddenAction_返航2]
+autoTrigger:if numberOfUnitsInEnemyTeam(withTag="飞机",withInRange=300,lessThan=1) and not self.hasFlag(id=9) and self.hasFlag(id=10)
+alsoTriggerAction:返航降落
+[hiddenAction_打]
+addWaypoint_type:attackmove
+addWaypoint_prepend: true
+addWaypoint_target_nearestUnit_team:own
+addWaypoint_target_nearestUnit_tagged:1级战斗目标
+[action_返航降落]
+text:返航
+addWaypoint_type:loadInto
+addWaypoint_prepend: true
+addWaypoint_target_nearestUnit_team:own
+addWaypoint_target_nearestUnit_tagged:空军后勤机场
+
+[hiddenAction_AI]
+autoTrigger:if self.isControlledByAI()
+convertTo: lv1战斗机ai
+[ai]
+
+upgradedFrom:lv1战斗机-降落状态

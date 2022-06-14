@@ -1,0 +1,26 @@
+
+[core]
+
+copyFrom:对地雷达1.ini
+name:机场对地/对海雷达站lv5
+generation_credits:-290
+[graphics]
+total_frames: 1
+
+image:        Rbase2.png
+image_wreak:  NONE
+image_turret:RA5.png
+
+
+
+[action_r]
+addResources:setFlag=14
+price:200000,jc=1000
+buildSpeed: 45s
+convertTo:none
+isActive:false
+isVisible:false
+[turret_1]
+idleSpin:4
+[ai]
+upgradedFrom:对地/对海雷达站lv1

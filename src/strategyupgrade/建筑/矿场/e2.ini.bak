@@ -1,0 +1,43 @@
+[core]
+name: 采矿场T2
+copyFrom: e1.ini
+price: 4500
+maxHp: 1000
+overrideAndReplace: NONE
+
+generation_resources: kcyl=15,credits=600
+techLevel: 2
+buildSpeed: 0.0004
+#[action_upgradeT3]
+#convertTo: 采矿场T3
+#price:  credits=40000,jc=2000
+#text: i:gui.actions.upgradeT3
+#description: 升级
+
+#text: i:units.fabricator.upgrade.name
+
+displayType: upgrade
+buildSpeed: 30s
+iconImage: SHARED:icon_upgrade.png
+[action_upgradeT2]
+@copyFrom_skipThisSection:true
+[animation_idle]
+@copyFrom_skipThisSection:true
+
+onActions : idle
+body_0s: {frame:0}
+body_0.3s: {frame:1}
+body_0.5s: {frame:2}
+body_0.6s: {frame:1}
+body_1.0s: {frame:0}
+
+
+[projectile_explode]
+areaDamage: 450
+
+[graphics]
+image:MineT2.png
+
+[ai]
+upgradedFrom: 采矿场T1
+

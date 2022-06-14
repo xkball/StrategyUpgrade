@@ -1,0 +1,160 @@
+
+[core]
+
+
+name: 轻型现代歼击机MK.Ⅰ
+
+displayDescription:-[装备4枚近程空空格斗弹，没有远程空空导弹，没有机炮]-\n-[飞行速度较高]-\n-[导弹分2波发射，每波发射后需要5秒给下一波导弹供电]-\n-[参考:美国F-16战斗机；中巴合研FC-7"枭龙"歼击机]
+class: CustomUnitMetadata
+price: 300
+maxHp: 150
+mass: 250
+
+techLevel: 1
+buildSpeed: 8s
+#availableInDemo: true
+
+radius: 10
+displayRadius: 10
+
+isBio: false
+softCollisionOnAll: 0
+fogOfWarSightRange: 10
+#builtFrom_1_name: airFactory
+#builtFrom_1_pos:  1
+
+energyMax:4
+energyRegen:0
+tags:空军单位A组
+overrideAndReplace: c_interceptor
+builtFrom_2_name:空军工厂T2
+builtFrom_2_pos:  4.0
+builtFrom_3_name:空军工厂T3
+builtFrom_3_pos:  4.0
+builtFrom_4_name:空军工厂T4
+builtFrom_4_pos:  4.0
+builtFrom_5_name:空军工厂T5
+builtFrom_5_pos:  4.0
+[hiddenAction_装弹]
+autoTrigger:if self.hasParent()
+addResources:energy=0.4,dy=-1
+[hiddenAction_起飞!]
+autoTrigger:if self.energy(full=true) and self.hasParent()
+disconnectFromParent:true
+[hiddenAction_回机场]
+autoTrigger:if self.energy(lessThan=1)
+alsoTriggerAction:自动返航
+addResources:unsetFlag=1
+[hiddenAction_自动返航]
+addWaypoint_type:loadInto
+addWaypoint_prepend: true
+addWaypoint_target_nearestUnit_team:own
+addWaypoint_target_nearestUnit_tagged:机场
+[action_showAmmo]
+#infoOnly: true
+addResources: energy=1
+price:  energy=1
+text: 导弹剩余
+description:目前战机还剩余多少近程空空格斗弹
+displayType: none
+buildSpeed: 0s
+pos: 0.1
+displayRemainingStockpile: true
+highPriorityQueue: true
+isActive:false
+[graphics]
+total_frames:1
+
+image:Light_Fighter.png
+image_wreak:  Light_Fighter_Weak.png
+image_turret: NONE
+
+
+imageScale:1
+turretImageScale:1
+
+image_shadow: AUTO
+shadowOffsetX:1
+shadowOffsetY:1
+movementEffect:      custom:trail
+movementEffectRate: 0.1
+[attack]
+canAttack: true
+canAttackFlyingUnits: true
+canAttackLandUnits:   false
+canAttackUnderwaterUnits: false
+
+turretTurnSpeed: 10
+
+
+maxAttackRange: 180
+shootDelay: 150
+
+
+[turret_1]
+x:5
+y:5
+turnSpeed:1.0
+#turnSpeed:1.0
+turnSpeedAcceleration:0.1
+turnSpeedDeceleration:0.1
+shoot_sound:missile_fire
+energyUsage:1
+
+[turret_2]
+x:-5
+y:5
+turnSpeed:1.0
+#turnSpeed:1.0
+turnSpeedAcceleration:0.1
+turnSpeedDeceleration:0.1
+shoot_sound:missile_fire
+energyUsage:1
+warmup:30
+
+[projectile_1]
+directDamage: 100
+life: 300
+speed: 5
+targetSpeed:6
+frame:4
+trailEffect:true
+shieldDamageMultiplier: 1
+shieldDefectionMultiplier: 0.1
+buildingDamageMultiplier: 1.0
+[movement]
+movementType: AIR
+moveSpeed: 2.8
+moveAccelerationSpeed: 1
+moveDecelerationSpeed: 1
+maxTurnSpeed: 3
+turnAcceleration: 2
+moveIgnoringBody:true
+reverseSpeedPercentage:0
+targetHeight: 20
+targetHeightDrift: 1
+slowDeathFall: true
+[effect_trail]
+
+stripIndex: effects
+frameIndex: 0
+
+
+life: 120
+fadeOut: true
+attachedToUnit: false
+color: #FFFFFF
+fadeInTime:10
+scaleFrom: 0.8
+scaleTo: 0.9
+alpha: 0.6
+drawUnderUnits:true
+#ySpeedRelative:-1
+atmospheric:true
+
+dirOffsetRandom:1
+
+shadow:true
+
+xSpeedAbsoluteRandom: 0.2
+ySpeedAbsoluteRandom: 0.2

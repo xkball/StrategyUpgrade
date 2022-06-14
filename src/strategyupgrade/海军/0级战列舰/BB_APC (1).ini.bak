@@ -1,0 +1,423 @@
+[core]
+
+name: 早期战列舰-被帽穿甲弹模式-现代化改装
+displayDescription:早期战列舰，经历现代化改装，中期仍然可以发挥余热\n维护费:255资金/s(炮弹每发15资金)\n参考:英国"复仇(Revenge)"级战列舰\n\n贴图:@射程之内的真理
+class: CustomUnitMetadata
+price: 2500000
+maxHp: 7000
+mass: 330000
+maxShield:1000
+shieldRegen:0.03
+shieldDisplayOnlyDeflection:true
+shieldDeflectionDisplayRate:10
+
+techLevel: 2
+buildSpeed: 225s
+#availableInDemo: true
+
+radius: 40
+displayRadius: 40
+
+isBio: false
+softCollisionOnAll: 0
+fogOfWarSightRange: 18
+
+nukeOnDeath:true
+nukeOnDeathRange:50
+nukeOnDeathDamage:100
+numBitsOnDeath:15
+tags:远洋战舰,大型舰艇
+armour:2
+generation_credits:-255
+generation_delay:60
+[hiddenAction_1]
+autoTriggerOnEvent:created
+addResources:energy=350,APC=120,HE=120
+[hiddenAction_副炮装弹]
+autoTrigger:if self.hasParent() and self.ammo(lessThan=350)
+addResources:ammo=35
+[resource_HE]
+displayName:HE弹
+[resource_APC]
+displayName:APC弹
+[hiddenAction_装弹1]
+autoTrigger:if self.resource(type="HE",lessThan=120) and self.hasParent()
+addResources:HE=6,credits=-90
+[hiddenAction_装弹2]
+autoTrigger:if self.resource(type="APC",lessThan=120) and self.hasParent()
+addResources:APC=6,credits=-90
+[action_showAmmo1]
+#infoOnly: true
+addResources: HE=1
+price:  HE=1
+text: 高爆弹剩余
+description:目前战舰还剩余多少高爆弹
+displayType: none
+buildSpeed: 0s
+pos: 0.1
+displayRemainingStockpile: true
+highPriorityQueue: true
+isActive:false
+[action_showAmmo2]
+#infoOnly: true
+addResources: APC=1
+price:  APC=1
+text: 硬被帽穿甲弹剩余
+description:目前战舰还剩余多少硬被帽穿甲弹
+displayType: none
+buildSpeed: 0s
+pos: 0.1
+displayRemainingStockpile: true
+highPriorityQueue: true
+isActive:false
+[action_showAmmo3]
+#infoOnly: true
+addResources: ammo=1
+price:  ammo=1
+text: 副炮炮弹剩余
+description:目前战舰还剩余多少副炮炮弹
+displayType: none
+buildSpeed: 0s
+pos: 0.1
+displayRemainingStockpile: true
+highPriorityQueue: true
+isActive:false
+[action_convert1]
+text:换HE
+convertTo:早期战列舰-高爆弹模式-现代化改装
+price:0
+description:换上对装甲目标攻击力较低但溅射范围更大的HE
+buildSpeed:35s
+ai_isDisabled:if self.overWater()
+[action_返回]
+text:返回最近补给站
+alwaysSinglePress: true
+addWaypoint_type:loadInto
+addWaypoint_prepend: true
+addWaypoint_target_nearestUnit_team:own
+addWaypoint_target_nearestUnit_tagged:海军基地-
+[graphics]
+total_frames: 1
+
+image:     BB_Body2.png
+image_wreak: BB_Sink.png
+image_turret:MainGunTurret.png
+
+
+imageScale:0.8
+turretImageScale:0.7
+
+image_shadow: AUTO
+shadowOffsetX:1
+shadowOffsetY:1
+
+
+splastEffect: true
+[attack]
+canAttack: true
+canAttackFlyingUnits: true
+canAttackLandUnits:   true
+canAttackUnderwaterUnits: false
+
+turretSize: 20
+turretTurnSpeed: 10
+
+
+maxAttackRange: 380
+shootDelay: 600
+turretMultiTargeting: true
+[turret_MainGunTurretA]
+x: 0
+y: 54
+turnSpeed:0.6
+turnSpeedAcceleration:0.3
+shoot_sound:cannon_firing
+shoot_flame:large
+shoot_light:#FFFF00
+projectile:1
+canAttackFlyingUnits:false
+resourceUsage: APC=1
+[turret_MainGunTurretB]
+x: 0
+y: 40
+turnSpeed:0.6
+turnSpeedAcceleration:0.3
+shoot_sound:cannon_firing
+shoot_flame:large
+shoot_light:#FFFF00
+projectile:1
+canAttackFlyingUnits:false
+resourceUsage: APC=1
+[turret_MainGunTurretX]
+x: 0
+y: -27
+idleDir:180
+turnSpeed:0.6
+turnSpeedAcceleration:0.3
+shoot_sound:cannon_firing
+shoot_flame:large
+shoot_light:#FFFF00
+projectile:1
+canAttackFlyingUnits:false
+resourceUsage: APC=1
+[turret_MainGunTurretY]
+x: 0
+y: -41
+idleDir:180
+turnSpeed:0.6
+turnSpeedAcceleration:0.3
+shoot_sound:cannon_firing
+shoot_flame:large
+shoot_light:#FFFF00
+projectile:1
+canAttackFlyingUnits:false
+resourceUsage: APC=1
+[turret_Secondary1]
+x:7
+y:10
+image:130turret.png
+turnSpeed:1
+limitingRange:210
+delay:180
+projectile:2
+resourceUsage:ammo=1
+[turret_Secondary2]
+x:-7
+y:10
+image:130turret.png
+turnSpeed:1
+limitingRange:210
+delay:180
+projectile:2
+resourceUsage:ammo=1
+[turret_Secondary3]
+x:7
+y:17
+image:130turret.png
+turnSpeed:1
+limitingRange:210
+delay:180
+projectile:2
+resourceUsage:ammo=1
+[turret_Secondary4]
+x:-7
+y:17
+image:130turret.png
+turnSpeed:1
+limitingRange:210
+delay:180
+projectile:2
+resourceUsage:ammo=1
+[turret_Secondary5]
+x:7
+y:-5
+image:130turret.png
+turnSpeed:1
+limitingRange:210
+delay:180
+projectile:2
+resourceUsage:ammo=1
+idleDir:180
+[turret_Secondary6]
+x:-7
+y:-5
+image:130turret.png
+turnSpeed:1
+limitingRange:210
+delay:180
+projectile:2
+resourceUsage:ammo=1
+idleDir:180
+[turret_AAA1]
+x:5
+y:0
+invisible:true
+turnSpeed:3
+limitingRange:145
+delay:5
+canAttackLandUnits:false
+projectile:3
+
+[turret_AAA2]
+x:5
+y:0
+invisible:true
+turnSpeed:3
+limitingRange:145
+delay:5
+canAttackLandUnits:false
+projectile:3
+[turret_AAA3]
+x:5
+y:0
+invisible:true
+turnSpeed:3
+limitingRange:170
+delay:10
+canAttackLandUnits:false
+projectile:4
+[projectile_1]
+areaDamage:550
+life:1200
+speed:3
+targetGround:true
+targetGroundSpread:48
+areaRadius:30
+speedSpread:0.28
+deflectionPower:3
+lightColor:#FF3434
+image:N_APC_Shell.png
+drawSize:0.6
+buildingDamageMultiplier: 0.1
+mutator1_ifUnitWithTags:重装甲
+mutator1_areaDamageMultiplier:100
+mutator2_ifUnitWithTags:小型舰艇
+mutator2_areaDamageMultiplier:0.3
+mutator3_ifUnitWithTags:步兵
+mutator3_areaDamageMultiplier:0.25
+mutator4_ifUnitWithTags:无装甲
+mutator4_areaDamageMultiplier:100
+mutator5_ifUnitWithTags:轻装甲
+mutator5_areaDamageMultiplier:100
+mutator6_ifUnitWithTags:中装甲
+mutator6_areaDamageMultiplier:100
+mutator7_ifUnitWithTags:大型舰艇
+mutator7_areaDamageMultiplier:1
+mutator8_ifUnitWithTags:中型舰艇
+mutator8_areaDamageMultiplier:0.85
+largeHitEffect: true
+areaDamageNoFalloff:true
+[projectile_2]
+directDamage:40
+life:900
+speed:2.5
+image:A_AP_Shell.png
+drawSize:0.5
+
+[projectile_3]
+targetGround:true
+targetGroundSpread:0
+areaRadius:25
+areaDamage:30
+life:900
+speed:5
+speedSpread:0.1
+color:#C1C100
+drawSize:1
+mutator1_ifUnitWithTags:重装甲
+mutator1_areaDamageMultiplier:0
+mutator2_ifUnitWithTags:小型舰艇,中型舰艇,大型舰艇
+mutator2_areaDamageMultiplier:0
+mutator4_ifUnitWithTags:无装甲
+mutator4_areaDamageMultiplier:1.5
+mutator5_ifUnitWithTags:轻装甲
+mutator5_areaDamageMultiplier:0.25
+mutator6_ifUnitWithTags:中装甲
+mutator6_areaDamageMultiplier:0
+mutator3_ifUnitWithTags:步兵
+mutator3_areaDamageMultiplier:2.5
+areaHitAirAndLandAtSameTime: true
+[projectile_4]
+targetGround:true
+targetGroundSpread:0
+areaRadius:25
+areaDamage:45
+life:900
+speed:5
+speedSpread:0.1
+color:#C1C100
+drawSize:1
+mutator1_ifUnitWithTags:重装甲
+mutator1_areaDamageMultiplier:0
+mutator2_ifUnitWithTags:小型舰艇,中型舰艇,大型舰艇
+mutator2_areaDamageMultiplier:0
+mutator4_ifUnitWithTags:无装甲
+mutator4_areaDamageMultiplier:1.5
+mutator5_ifUnitWithTags:轻装甲
+mutator5_areaDamageMultiplier:0.25
+mutator6_ifUnitWithTags:中装甲
+mutator6_areaDamageMultiplier:0
+mutator3_ifUnitWithTags:步兵
+mutator3_areaDamageMultiplier:2.5
+areaHitAirAndLandAtSameTime: true
+[movement]
+movementType: WATER
+moveSpeed: 0.32
+moveAccelerationSpeed: 0.1
+moveDecelerationSpeed: 0.1
+maxTurnSpeed: 0.8
+turnAcceleration: 0.3
+
+moveIgnoringBody:true
+[action_打开战术策略规划]
+addResources: setFlag=1
+isGuiBlinking: if self.hasFlag(id=1)
+displayType: action
+text:打开补给规划菜单
+alwaysSinglePress: true
+allowMultipleInQueue: false
+buildSpeed: 0s
+[action_补给-炮弹или全部-主炮炮弹]
+text:主炮APC弹补给完后脱离
+addResources:setFlag=10
+isVisible:if self.hasFlag(id=1)
+isGuiBlinking: if self.hasFlag(id=10)
+[action_补给-炮弹или全部-всё]
+text:全部弹药补给完后脱离
+addResources:unsetFlag=10
+isVisible:if self.hasFlag(id=1)
+isGuiBlinking: if not self.hasFlag(id=10)
+[action_返航-炮弹0]
+text:主炮APC弹为0返航
+addResources:unsetFlag=5-9,setFlag=5
+isVisible:if self.hasFlag(id=1)
+isGuiBlinking: if self.hasFlag(id=5)
+[action_返航-炮弹0.2]
+text:主炮APC弹剩余20％返航
+addResources:unsetFlag=5-9,setFlag=6
+isVisible:if self.hasFlag(id=1)
+isGuiBlinking: if self.hasFlag(id=6)
+[action_返航-全空]
+text:所有弹药打空返航
+addResources:unsetFlag=5-9,setFlag=7
+isVisible:if self.hasFlag(id=1)
+isGuiBlinking: if self.hasFlag(id=7)
+[action_返航-副炮]
+text:副炮弹药打空返航
+addResources:unsetFlag=5-9,setFlag=8
+isVisible:if self.hasFlag(id=1)
+isGuiBlinking: if self.hasFlag(id=8)
+[action_返航-任一]
+text:任意弹药打空返航
+addResources:unsetFlag=5-9,setFlag=9
+isVisible:if self.hasFlag(id=1)
+isGuiBlinking: if self.hasFlag(id=9)
+[action_关闭]
+addResources: unsetFlag=1
+isVisible:if self.hasFlag(id=1)
+displayType: action
+text:关闭补给规划菜单
+alwaysSinglePress: true
+allowMultipleInQueue: false
+buildSpeed: 0s
+[hiddenAction_回补给站1]
+autoTrigger:if self.resource(type="APC",lessThan=1) and not self.hasFlag(id=5)
+alsoTriggerAction:返回
+[hiddenAction_回补给站2]
+autoTrigger:if self.resource(type="APC",lessThan=1) and self.resource(type="HE",lessThan=1) and self.ammo(lessThan=1) and self.hasFlag(id=7)
+alsoTriggerAction:返回
+[hiddenAction_回补给站3]
+autoTrigger:if self.ammo(lessThan=1) and self.hasFlag(id=8)
+alsoTriggerAction:返回
+[hiddenAction_回补给站4]
+autoTrigger:if self.resource(type="APC",lessThan=1) or self.ammo(lessThan=1) and self.hasFlag(id=9)
+alsoTriggerAction:返回
+[hiddenAction_回补给站5]
+autoTrigger:if self.resource(type="APC",lessThan=25) and self.hasFlag(id=6)
+alsoTriggerAction:返回
+[hiddenAction_脱离1]
+autoTrigger:if self.resource(type="APC",greaterThan=119) and self.hasParent(withTag="海军基地") and self.hasFlag(id=10)
+disconnectFromParent:true
+[hiddenAction_脱离2]
+autoTrigger:if self.resource(type="APC",greaterThan=119) and self.ammo(greaterThan=349) and self.hasParent(withTag="海军基地") and not self.hasFlag(id=10)
+disconnectFromParent:true

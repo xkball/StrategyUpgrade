@@ -1,0 +1,137 @@
+
+[core]
+name: 指挥中心(固定时代lv5)
+
+isPickableStartingUnit:true
+isBuilding:true
+generation_credits:600
+generation_delay:60
+generation_resources: ny=5,jc=40
+class: CustomUnitMetadata
+price: credits=2000,jc=10000
+maxHp: 4000
+mass: 3000
+techLevel: 1
+buildSpeed: 80s
+#availableInDemo: true
+radius: 30
+tags:城市,h0
+canRepairBuildings: true
+nanoRange: 200
+nanoBuildSpeed: 1
+#footprint used for collisions with units (left, up, right, down)
+footprint: -1,-1,1,1
+#used for placement, and placement of other buildings
+constructionFootprint: -1,-1,1,2
+buildingToFootprintOffsetX:15
+buildingToFootprintOffsetY:10
+exit_x:-7
+exit_y:0
+canBuild_0_name: setRally
+canBuild_0_pos:  0.1
+canBuild_1_name:建造者1
+canBuild_3_name:大型机场-后勤
+canBuild_5_name:大型机场-战斗1
+canBuild_4_name:陆地补给基地
+tags:固定
+[canBuild_5]
+name: reclaim
+pos:  -1
+[canBuild_6]
+name:建筑材料工厂
+pos:1.6
+[canBuild_6A]
+name:弹药工厂
+pos:1.61
+[canBuild_7]
+name: 陆军工厂
+pos:  1
+tech: 1
+[canBuild_8]
+name:空军工厂
+pos:  1.1
+tech: 1
+[graphics]
+total_frames: 4
+image:        base.png
+image_back:base_back.png
+image_wreak:  base_weak.png
+image_turret: NONE
+imageScale:1
+
+image_shadow: AUTO
+shadowOffsetX:1
+shadowOffsetY:1
+
+
+[attack]
+canAttack: true
+canAttackFlyingUnits: true
+canAttackLandUnits:   true
+canAttackUnderwaterUnits: false
+
+turretSize: 20
+turretTurnSpeed: 4
+
+
+maxAttackRange: 200
+shootDelay: 1.2s
+[animation_idle]
+onActions : idle
+body_0s: {frame:0}
+body_0.9s: {frame:1}
+body_1.0s: {frame:2}
+body_1.1s:{frame:3}
+body_1.2s:{frame:4}
+body_1.3s:{frame:3}
+body_1.4s: {frame:2}
+body_1.5s: {frame:1}
+[turret_主炮塔]
+x: 0
+y: 0
+projectile: 1
+turnSpeedAcceleration: 1.0
+shoot_sound:missile_fire
+shoot_sound_vol:0.3
+canShoot: true
+[projectile_1]
+directDamage: 50
+life: 60
+speed: 5
+color:#C1C100
+drawSize:1.5
+trailEffect:true
+lightColor:#C1C100
+ballistic:true
+ballistic_height:8
+[movement]
+movementType: BUILDING
+moveSpeed: 1.1
+moveAccelerationSpeed: 0.07
+moveDecelerationSpeed: 0.17
+
+maxTurnSpeed: 4.1
+turnAcceleration: 0.25
+
+moveSlidingMode :false
+moveIgnoringBody:false
+[turret_建造]
+x:0
+y:0
+canShoot: false
+turnSpeed: 3
+turnSpeedAcceleration: 0.2
+
+isMainNanoTurret: true
+[ai]
+useAsBuilder:true
+buildPriority: 120
+
+noneInBaseExtraPriority: 120
+noneGlobalExtraPriority: 120
+
+maxEachBase: 0
+[hiddenAction_0]
+autoTriggerOnEvent:created
+price:0
+addResources:jc=1000,cl=500,ny=300,rlzy=200,1科技-轻坦1=1,1科技-中坦1=1,1科技-自火1=1,1科技-8缸汽油机1=1,1科技-陆柴油机1=1,1科技-小口径速射炮1=1,1科技-中口径陆炮1=1,1科技-大口径陆炮1=1,1科技-克里斯蒂悬挂=1,1科技-陆均质装甲=1,2科技-轻坦2=1,2科技-中坦2=1,2科技-重坦1=1,2科技-轮式装甲车1=1,2科技-8缸汽油机2=1,2科技-陆柴油机小2=1,2科技-陆柴油机大2=1,2科技-超大口径陆炮1=1,2科技-大口径陆炮2=1,2科技-小口径陆炮2=1,2科技-中口径陆炮2=1,2科技-驻退/复进机=1,2科技-陆硬化装甲1=1,3科技-轻坦3=1,3科技-步兵战车1=1,3科技-陆柴油机小3=1,3科技-陆柴油机大3=1,3科技-小口径陆炮3=1,3科技-中口径陆炮3=1,3科技-陆高射机枪=1,3科技-摇摆式炮塔=1,3科技-陆半自动装弹机=1,3科技-陆硬化装甲2=1,3科技-陆复合装甲1=1,1科技-DD1=1,1科技-BB1=1,1科技-BC1=1,1科技-重油锅炉=1,1科技-海柴油机1=1,1科技-海蒸汽轮机1=1,1科技-中防空炮1=1,1科技-大口径舰炮1=1,1科技-中口径舰炮1=1,1科技-氧雷=1,1科技-德雷尔火控台=1,1科技-测距仪=1,1科技-登陆艇=1,1科技-哈维装甲=1,2科技-CL1=1,2科技-CA1=1,2科技-SS1=1,2科技-海柴油机2=1,2科技-海蒸汽轮机2=1,2科技-海电动1=1,2科技-中防空炮2=1,2科技-中口径舰炮2=1,2科技-小防空炮1=1,2科技-新型扬弹机=1,2科技-雷达1=1,2科技-声呐1=1,2科技-TDS=1,2科技-超重弹=1,2科技-海ClassA装甲=1,2科技-海ClassB装甲=1,3科技-BB2=1,3科技-CB=1,3科技-DD2=1,3科技-C=1,3科技-AACR1=1,3科技-核反应堆1=1,3科技-蒸汽轮机3=1,3科技-海燃气轮机1=1,3科技-大口径舰炮2=1,3科技-刺猬炮=1,3科技-中防空炮3=1,3科技-中小口径速射炮1=1,3科技-雷达2=1,3科技-声呐2=1,3科技-通气管=1,3科技-AACM1=1,3科技-增程岸轰弹=1,3科技-海VH装甲=1,1科技-战斗1=1,1科技-2发机身1=1,1科技-4发机身1=1,1科技-翼炮1=1,1科技-轴炮1=1,1科技-曳光弹=1,1科技-航弹1=1,1科技-直列引擎1=1,1科技-星型引擎1=1,1科技-射击调节器=1,1科技-着舰钩=1,2科技-战斗2=1,2科技-双体机身=1,2科技-多发动机机身2=1,2科技-翼炮2=1,2科技-轴炮2=1,2科技-航弹2=1,2科技-V8引擎=1,2科技-星型引擎2=1,2科技-喷气1=1,2科技-副油箱=1,3科技-战斗3=1,3科技-战斗4喷气=1,3科技-战斗5=1,3科技-直升机1=1,3科技-轴炮3=1,3科技-空空1=1,3科技-遥控炮塔=1,3科技-制导航弹1=1,3科技-火箭弹=1,3科技-喷气2=1,3科技-V12引擎=1,3科技-星型引擎3=1,3科技-机载雷达1=1,3科技-对潜探照灯=1,3科技-鸭翼=1,3科技-干扰弹=1,4科技-主战1=1,4科技-步兵战车2=1,4科技-导弹车底盘=1,4科技-陆燃气轮机1=1,4科技-遥控武器站1=1,4科技-中口径陆炮4=1,4科技-反坦克导弹=1,3科技-陆对空火控=1,4科技-陆观瞄1=1,4科技-垂稳1=1,4科技-陆自动装弹机=1,4科技-陆复合装甲2=1,4科技-陆反应装甲=1,4科技-SS2单壳=1,4科技-SS2双壳=1,4科技-DDG1=1,4科技-CV=1,4科技-核反应堆2=1,4科技-海燃气轮机2=1,4科技-AIP=1,4科技-反潜雷=1,4科技-CIWS1=1,4科技-固定导弹发射架=1,4科技-VLS1=1,4科技-雷达3=1,4科技-舰载相控阵1=1,4科技-声呐3=1,4科技-ASCM1=1,4科技-AACM2=1,4科技-ASCM2=1,4科技-AACM3=1,4科技-战斗6=1,4科技-2发机身3=1,4科技-4发机身3活塞=1,4科技-4发机身3喷气=1,4科技-隐身机身1=1,4科技-地效飞行器机身=1,4科技-转管航炮=1,4科技-空空2=1,4科技-空空3远程=1,4科技-空空3格斗=1,4科技-空射反舰1=1,4科技-喷气3=1,4科技-短距起降1=1,4科技-机载声呐1=1,4科技-机载雷达2=1,4科技-机载相控阵1=1,4科技-电子战吊舱1=1,5科技-轻坦4=1,5科技-陆燃气轮机2=1,5科技-遥控武器站2=1,5科技-陆观瞄2=1,5科技-垂稳2=1,5科技-陆复合装甲3=1,5科技-陆反应装甲2=1,5科技-无轴泵推=1,5科技-全电推进=1,5科技-CIWS2=1,5科技-VLS2=1,5科技-超远程火炮=1,5科技-舰载相控阵2=1,5科技-ASCM3=1,5科技-AACM4=1,5科技-隐身机身2=1,5科技-空空4远程=1,5科技-空空4格斗=1,5科技-空射反舰2=1,5科技-喷气4=1,5科技-短距起降2=1,5科技-机载声呐2=1,5科技-机载相控阵2=1,5科技-电子战吊舱2=1,1科技-情报1=1,2科技-电脑1=1,2科技-情报2=1,3科技-电脑2=1,4科技-电脑3=1,5科技-电脑4=1,3科技-蛋1=1,4科技-蛋2=1,3科技-侦察卫星1=1,4科技-侦察卫星2=1,5科技-侦察卫星3=1,3科技-导航卫星1=1,4科技-导航卫星2=1,5科技-导航卫星3=1,4科技-相控阵=1,4科技-长波雷达=1,tec=5

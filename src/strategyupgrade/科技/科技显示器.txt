@@ -1,0 +1,2737 @@
+
+[core]
+name: 科技显示
+displayDescription: 用于研究整体科技
+class: CustomUnitMetadata
+price: 1500,jc=1000
+maxHp: 3000
+mass:114514
+selfRegenRate:0
+techLevel: 1
+buildSpeed:0s
+availableInDemo: true
+#maxTransportingUnits:4
+#transportUnitsCanUnloadUnits:false
+radius: 7
+isBio: false
+isBuilding:true
+footprint: -1,-1,1,1
+constructionFootprint:-1,-1,1,1
+[graphics]
+total_frames: 1
+imageScale:1
+image:        S-T.png
+image_wreak:  NONE
+image_turret: NONE
+
+image_shadow: AUTO
+shadowOffsetX:1
+shadowOffsetY:1
+
+[attack]
+canAttack: false
+canAttackFlyingUnits: false
+canAttackLandUnits:   false
+canAttackUnderwaterUnits: false
+canAttackNotTouchingWaterUnits: false
+
+[movement]
+movementType: BUILDING
+moveSpeed: 0
+moveAccelerationSpeed: 0.02
+moveDecelerationSpeed: 0.03
+maxTurnSpeed: 0
+turnAcceleration: 0.05
+
+[action_1科技-情报1]
+text:情报科技Ⅰ
+description:拥有较低效率获取情报的能力
+
+#price:tecLV1=1,1科技-情报1=1
+isActive:if self.resource(type="1科技-情报1",equalTo=0)
+buildSpeed:30s
+convertTo:科技显示
+ai_isHighPriority:true
+
+[action_2科技-情报2]
+text:情报科技Ⅱ
+description:拥有中等效率获取情报的能力，需要情报科技Ⅰ为前置
+
+#price:tecLV2=1,2科技-情报2=1
+isActive:if self.resource(type="2科技-情报2",equalTo=0)
+buildSpeed:30s
+convertTo:科技显示
+ai_isHighPriority:true
+
+[action_2科技-情报2确认]
+text:情报科技Ⅱ确认
+price:2科技-情报2=1
+#isActive:if self.resource(type="2科技-情报2",equalTo=0)
+buildSpeed:0s
+convertTo:科技显示
+ai_isHighPriority:true
+[action_2科技-计算机1]
+text:计算机Ⅰ
+description:开始对电子计算机进行理论层面的奠基，为其他科技的研发做准备
+
+#price:tecLV2=1,2科技-电脑1=1
+isActive:if self.resource(type="2科技-电脑1",equalTo=0) and self.resource(type="tec",greaterThan=1)
+buildSpeed:100s
+convertTo:科技显示
+ai_isHighPriority:true
+
+[action_3科技-计算机2]
+text:计算机Ⅱ
+description:有能力制造早期的电子管/晶体管计算机，需要计算机Ⅰ为前置
+
+#price:tecLV3=1,3科技-电脑2=1
+isActive:if self.resource(type="3科技-电脑2",equalTo=0) and self.resource(type="tec",greaterThan=2) and self.resource(type="2科技-电脑1",greaterThan=0)
+buildSpeed:60s
+convertTo:科技显示
+ai_isHighPriority:true
+
+[action_4科技-计算机3]
+text:计算机Ⅲ
+description:有能力制造中期的晶体管计算机，需要计算机Ⅱ科技
+
+#price:tecLV4=1,4科技-电脑3=1
+isActive:if self.resource(type="4科技-电脑3",equalTo=0) and self.resource(type="tec",greaterThan=3) and self.resource(type="3科技-电脑2",greaterThan=0)
+buildSpeed:60s
+convertTo:科技显示
+ai_isHighPriority:true
+
+[action_5科技-计算机4]
+text:计算机Ⅳ
+description:有能力制造现代的计算机，需要计算机Ⅲ
+
+#price:tecLV5=1,5科技-电脑4=1
+isActive:if self.resource(type="5科技-电脑4",equalTo=0) and self.resource(type="tec",greaterThan=4) and self.resource(type="4科技-电脑3",greaterThan=0)
+buildSpeed:60s
+convertTo:科技显示
+ai_isHighPriority:true
+
+
+[action_3科技-侦察卫星1]
+text:侦察卫星Ⅰ
+description:高效率获取情报(需要手操，有CD)，需要计算机Ⅱ科技
+
+#price:tecLV3=1,3科技-侦察卫星1=1
+isActive:if self.resource(type="3科技-侦察卫星1",equalTo=0) and self.resource(type="tec",greaterThan=2) and self.resource(type="3科技-电脑2",greaterThan=0)
+buildSpeed:60s
+convertTo:科技显示
+ai_isHighPriority:true
+
+[action_4科技-侦察卫星2]
+text:侦察卫星Ⅱ
+description:高效率获取情报(需要手操，有CD)，需要计算机Ⅱ，侦察卫星Ⅰ科技
+
+#price:tecLV4=1,4科技-侦察卫星2=1
+isActive:if self.resource(type="4科技-侦察卫星2",equalTo=0) and self.resource(type="tec",greaterThan=3) and self.resource(type="3科技-电脑2",greaterThan=0) and self.resource(type="3科技-侦察卫星1",greaterThan=0)
+buildSpeed:60s
+convertTo:科技显示
+ai_isHighPriority:true
+
+[action_5科技-侦察卫星3]
+text:侦察卫星Ⅲ
+description:高效率获取情报(需要手操，有CD)，需要计算机Ⅳ，侦察卫星Ⅱ科技
+
+#price:tecLV5=1,5科技-侦察卫星3=1
+isActive:if self.resource(type="5科技-侦察卫星3",equalTo=0) and self.resource(type="tec",greaterThan=4) and self.resource(type="5科技-电脑4",greaterThan=0) and self.resource(type="4科技-侦察卫星2",greaterThan=0)
+buildSpeed:60s
+convertTo:科技显示
+ai_isHighPriority:true
+
+[action_3科技-导航卫星1]
+text:导航卫星Ⅰ
+description:某些单位和科技的必须前置科技，需要计算机Ⅱ科技
+
+#price:tecLV3=1,3科技-导航卫星1=1
+isActive:if self.resource(type="3科技-导航卫星1",equalTo=0) and self.resource(type="tec",greaterThan=2) and self.resource(type="3科技-电脑2",greaterThan=0)
+buildSpeed:60s
+convertTo:科技显示
+ai_isHighPriority:true
+
+[action_4科技-导航卫星2]
+text:导航卫星Ⅱ
+description:某些单位和科技的必须前置科技，需要计算机Ⅲ，导航卫星Ⅰ科技
+
+#price:tecLV4=1,4科技-导航卫星2=1
+isActive:if self.resource(type="4科技-导航卫星2",equalTo=0) and self.resource(type="tec",greaterThan=3) and self.resource(type="4科技-电脑3",greaterThan=0) and self.resource(type="3科技-导航卫星1",greaterThan=0)
+buildSpeed:60s
+convertTo:科技显示
+ai_isHighPriority:true
+
+[action_5科技-导航卫星3]
+text:导航卫星Ⅲ
+description:某些单位和科技的必须前置科技，需要计算机Ⅳ，导航卫星Ⅱ科技
+
+#price:tecLV5=1,5科技-导航卫星3=1
+isActive:if self.resource(type="5科技-导航卫星3",equalTo=0) and self.resource(type="tec",greaterThan=4) and self.resource(type="5科技-电脑4",greaterThan=0) and self.resource(type="4科技-导航卫星2",greaterThan=0)
+buildSpeed:60s
+convertTo:科技显示
+ai_isHighPriority:true
+
+[action_3科技-大规模杀伤武器&ICBM1]
+text:大规模杀伤武器&洲际弹道导弹Ⅰ
+description:相当于拥有了在世界上任何一个地方投送大规模杀伤武器的能力，某些单位前置科技，需要计算机Ⅱ，导航卫星Ⅰ
+
+#price:tecLV4=1,3科技-蛋1=1
+isActive:if self.resource(type="3科技-蛋1",equalTo=0) and self.resource(type="tec",greaterThan=2) and self.resource(type="3科技-电脑2",greaterThan=0)and self.resource(type="3科技-导航卫星1",greaterThan=0)
+buildSpeed:120s
+convertTo:科技显示
+ai_isHighPriority:true
+
+[action_4科技-大规模杀伤武器&ICBM2]
+text:大规模杀伤武器&洲际弹道导弹Ⅱ
+description:相当于拥有了在世界上任何一个地方投送大规模杀伤武器的能力，某些单位前置科技，需要大规模杀伤武器&洲际弹道导弹Ⅰ和计算机Ⅲ以及导航卫星Ⅱ
+
+#price:tecLV4=1,4科技-蛋2=1
+isActive:if self.resource(type="4科技-蛋2",equalTo=0) and self.resource(type="tec",greaterThan=3) and self.resource(type="3科技-蛋1",greaterThan=0) and self.resource(type="4科技-电脑3",greaterThan=0) and self.resource(type="4科技-导航卫星2",greaterThan=0)
+buildSpeed:120s
+convertTo:科技显示
+ai_isHighPriority:true
+
+[action_4科技-相控阵雷达]
+text:相控阵雷达
+description:某些单位前置科技，需要计算机Ⅲ科技
+
+#price:tecLV4=1,4科技-相控阵=1
+isActive:if self.resource(type="4科技-相控阵",equalTo=0) and self.resource(type="tec",greaterThan=3) and self.resource(type="4科技-电脑3",greaterThan=0)
+buildSpeed:40s
+convertTo:科技显示
+ai_isHighPriority:true
+
+[action_4科技-长波雷达]
+text:先进型长波雷达
+description:某些单位前置科技，需要计算机Ⅲ科技
+
+#price:tecLV4=1,4科技-长波雷达=1
+isActive:if self.resource(type="4科技-长波雷达",equalTo=0) and self.resource(type="tec",greaterThan=3) and self.resource(type="4科技-电脑3",greaterThan=0)
+buildSpeed:40s
+convertTo:科技显示
+ai_isHighPriority:true
+
+[action_1科技-大口径舰炮1]
+#price:1科技-大口径舰炮1=1,tecN1=1,tecLV1=1  
+  
+text:lv1.大口径舰炮Ⅰ
+description:需求科技1级，前置科技:无
+buildSpeed: 180s
+convertTo:科技显示
+pos: 0.1
+displayRemainingStockpile: false
+highPriorityQueue: true
+isActive:if not self.resource(type="1科技-大口径舰炮1",greaterThan=0)
+
+showMessageToPlayer:等级一海军科技大口径舰炮I研发完成
+[action_3科技-大口径舰炮2]
+#price:3科技-大口径舰炮2=1,tecN3=1,tecLV3=1  
+  
+text:lv3.大口径舰炮Ⅱ
+description:需求科技3级，前置科技:大口径舰炮Ⅰ
+buildSpeed: 180s
+convertTo:科技显示
+pos: 0.1
+displayRemainingStockpile: false
+highPriorityQueue: true
+isActive:if self.resource(type="tec",greaterThan=0) and self.resource(type="1科技-大口径舰炮1",greaterThan=0) and not self.resource(type="3科技-大口径舰炮2",greaterThan=0)
+
+showMessageToPlayer:等级三海军科技大口径舰炮II研发完成
+[action_1科技-中口径舰炮1]
+#price:1科技-中口径舰炮1=1,tecN1=1,tecLV1=1  
+  
+text:lv1.中口径舰炮Ⅰ
+description:需求科技1级，前置科技:无
+buildSpeed: 180s
+convertTo:科技显示
+pos: 0.1
+displayRemainingStockpile: false
+highPriorityQueue: true
+isActive:if not self.resource(type="1科技-中口径舰炮1",greaterThan=0)
+
+showMessageToPlayer:等级一海军科技中口径舰炮I研发完成
+[action_2科技-中口径舰炮2]
+#price:2科技-中口径舰炮2=1,tecN2=1,tecLV2=1  
+  
+text:lv2.中口径舰炮Ⅱ
+description:需求科技2级，前置科技:中口径舰炮Ⅰ
+buildSpeed: 180s
+convertTo:科技显示
+pos: 0.1
+displayRemainingStockpile: false
+highPriorityQueue: true
+isActive:if self.resource(type="tec",greaterThan=0) and self.resource(type="1科技-中口径舰炮1",greaterThan=0) and not self.resource(type="2科技-中口径舰炮2",greaterThan=0)
+
+showMessageToPlayer:等级二海军科技中口径舰炮II研发完成
+[action_3科技-中小口径速射炮1]
+#price:3科技-中小口径速射炮1=1,tecN3=1,tecLV3=1  
+  
+text:lv3.中/小口径速射炮Ⅰ
+description:需求科技3级，前置科技:中口径舰炮Ⅱ，中口径防空炮Ⅲ
+buildSpeed: 180s
+convertTo:科技显示
+pos: 0.1
+displayRemainingStockpile: false
+highPriorityQueue: true
+isActive:if self.resource(type="tec",greaterThan=0) and self.resource(type="2科技-中口径舰炮2",greaterThan=0) and self.resource(type="3科技-中防空炮3",greaterThan=0) and not self.resource(type="3科技-中小口径速射炮1",greaterThan=0)
+
+showMessageToPlayer:等级三海军科技中小口径速射炮I研发完成
+[action_5科技-超远程火炮]
+#price:5科技-超远程火炮=1,tecN5=1,tecLV5=1  
+  
+text:lv5.AGS
+description:需求科技5级，前置科技:中/小口径速射炮Ⅰ，增程岸轰弹
+buildSpeed: 180s
+convertTo:科技显示
+pos: 0.1
+displayRemainingStockpile: false
+highPriorityQueue: true
+isActive:if self.resource(type="tec",greaterThan=0) and self.resource(type="3科技-中小口径速射炮1",greaterThan=0) and self.resource(type="3科技-增程岸轰弹",greaterThan=0) and not self.resource(type="5科技-超远程火炮",greaterThan=0)
+
+showMessageToPlayer:等级五海军科技超远程火炮研发完成
+[action_1科技-中防空炮1]
+#price:1科技-中防空炮1=1,tecN1=1,tecLV1=1  
+  
+text:lv1.大/中口径防空炮Ⅰ
+description:需求科技1级，前置科技:无
+buildSpeed: 180s
+convertTo:科技显示
+pos: 0.1
+displayRemainingStockpile: false
+highPriorityQueue: true
+isActive:if not self.resource(type="1科技-中防空炮1",greaterThan=0)
+
+showMessageToPlayer:等级一海军科技中防空炮I研发完成
+[action_2科技-中防空炮2]
+#price:2科技-中防空炮2=1,tecN2=1,tecLV2=1  
+  
+text:lv2.中口径防空炮Ⅱ
+description:需求科技2级，前置科技:大/中口径防空炮Ⅰ
+buildSpeed: 180s
+convertTo:科技显示
+pos: 0.1
+displayRemainingStockpile: false
+highPriorityQueue: true
+isActive:if self.resource(type="tec",greaterThan=0) and self.resource(type="1科技-中防空炮1",greaterThan=0) and not self.resource(type="2科技-中防空炮2",greaterThan=0)
+
+showMessageToPlayer:等级二海军科技中防空炮II研发完成
+[action_3科技-中防空炮3]
+#price:3科技-中防空炮3=1,tecN3=1,tecLV3=1  
+  
+text:lv3.中口径防空炮Ⅲ
+description:需求科技3级，前置科技:中口径防空炮Ⅱ
+buildSpeed: 180s
+convertTo:科技显示
+pos: 0.1
+displayRemainingStockpile: false
+highPriorityQueue: true
+isActive:if self.resource(type="tec",greaterThan=0) and self.resource(type="2科技-中防空炮2",greaterThan=0) and not self.resource(type="3科技-中防空炮3",greaterThan=0)
+
+showMessageToPlayer:等级三海军科技中防空炮III研发完成
+[action_2科技-小防空炮1]
+#price:2科技-小防空炮1=1,tecN2=1,tecLV2=1  
+  
+text:lv2.小口径防空炮Ⅰ
+description:需求科技2级，前置科技:大/中口径防空炮Ⅰ
+buildSpeed: 180s
+convertTo:科技显示
+pos: 0.1
+displayRemainingStockpile: false
+highPriorityQueue: true
+isActive:if self.resource(type="tec",greaterThan=0) and self.resource(type="1科技-中防空炮1",greaterThan=0) and not self.resource(type="2科技-小防空炮1",greaterThan=0)
+
+showMessageToPlayer:等级二海军科技小口径防空炮I研发完成
+[action_4科技-CIWS1]
+#price:4科技-CIWS1=1,tecN4=1,tecLV4=1  
+  
+text:lv4.CIWS系统Ⅰ
+description:需求科技4级，前置科技:中口径防空炮Ⅲ，舰载雷达Ⅲ
+buildSpeed: 180s
+convertTo:科技显示
+pos: 0.1
+displayRemainingStockpile: false
+highPriorityQueue: true
+isActive:if self.resource(type="tec",greaterThan=0) and self.resource(type="1科技-中防空炮1",greaterThan=0) and self.resource(type="4科技-雷达3",greaterThan=0) and not self.resource(type="4科技-CIWS1",greaterThan=0)
+
+showMessageToPlayer:等级四海军科技CIWS系统Ⅰ研发完成
+[action_5科技-CIWS2]
+#price:5科技-CIWS2=1,tecN5=1,tecLV5=1  
+  
+text:lv5.CIWS系统Ⅱ
+description:需求科技5级，前置科技:CIWS系统Ⅰ
+buildSpeed: 180s
+convertTo:科技显示
+pos: 0.1
+displayRemainingStockpile: false
+[action_4科技-固定导弹发射架]
+#price:4科技-固定导弹发射架=1,tecN4=1,tecLV4=1  
+  
+text:lv4.固定导弹发射架
+description:需求科技4级，前置科技:AACM&单臂发射架Ⅰ，ASCM Ⅰ
+buildSpeed: 180s
+convertTo:科技显示
+pos: 0.1
+displayRemainingStockpile: false
+highPriorityQueue: true
+isActive:if self.resource(type="tec",greaterThan=0) and self.resource(type="3科技-AACM1",greaterThan=0) and self.resource(type="4科技-ASCM1",greaterThan=0) and not self.resource(type="4科技-固定导弹发射架",greaterThan=0)
+
+showMessageToPlayer:等级四海军科技固定导弹发射架研发完成
+[action_4科技-VLS1]
+#price:4科技-VLS1=1,tecN4=1,tecLV4=1  
+  
+text:lv4.VLS Ⅰ
+description:需求科技4级，前置科技:固定导弹发射架，ASCM Ⅱ
+buildSpeed: 180s
+convertTo:科技显示
+pos: 0.1
+displayRemainingStockpile: false
+highPriorityQueue: true
+isActive:if self.resource(type="tec",greaterThan=0) and self.resource(type="4科技-固定导弹发射架",greaterThan=0) and self.resource(type="4科技-ASCM2",greaterThan=0) and not self.resource(type="4科技-VLS1",greaterThan=0)
+
+showMessageToPlayer:等级四海军科技VLS I研发完成
+[action_5科技-VLS2]
+#price:5科技-VLS2=1,tecN5=1,tecLV5=1  
+  
+text:lv5.VLS Ⅱ
+description:需求科技5级，前置科技:VLS Ⅰ
+buildSpeed: 180s
+convertTo:科技显示
+pos: 0.1
+displayRemainingStockpile: false
+highPriorityQueue: true
+isActive:if self.resource(type="tec",greaterThan=0) and self.resource(type="4科技-VLS1",greaterThan=0) and not self.resource(type="5科技-VLS2",greaterThan=0)
+
+showMessageToPlayer:等级五海军科技VLS II研发完成
+[action_2科技-超重弹]
+#price:2科技-超重弹=1,tecN2=1,tecLV2=1  
+  
+text:lv2.超重弹
+description:需求科技2级，前置科技:大口径舰炮Ⅰ，中口径舰炮Ⅱ
+buildSpeed: 180s
+convertTo:科技显示
+pos: 0.1
+displayRemainingStockpile: false
+highPriorityQueue: true
+isActive:if self.resource(type="tec",greaterThan=0) and self.resource(type="1科技-大口径舰炮1",greaterThan=0) and self.resource(type="2科技-中口径舰炮2",greaterThan=0) and not self.resource(type="2科技-超重弹",greaterThan=0)
+
+showMessageToPlayer:等级二海军科技超重弹研发完成
+[action_3科技-AACM1]
+#price:3科技-AACM1=1,tecN3=1,tecLV3=1  
+  
+text:lv3.AACM&单臂发射架Ⅰ
+description:需求科技3级，前置科技:雷达Ⅱ
+buildSpeed: 180s
+convertTo:科技显示
+pos: 0.1
+displayRemainingStockpile: false
+highPriorityQueue: true
+isActive:if self.resource(type="tec",greaterThan=0) and self.resource(type="3科技-雷达2",greaterThan=0) and not self.resource(type="3科技-AACM1",greaterThan=0)
+
+showMessageToPlayer:等级三海军科技AACM&单臂发射架I研发完成
+[action_4科技-AACM2]
+#price:4科技-AACM2=1,tecN4=1,tecLV4=1  
+  
+text:lv4.AACM Ⅱ
+description:需求科技4级，前置科技:AACM Ⅰ，雷达Ⅲ
+buildSpeed: 180s
+convertTo:科技显示
+pos: 0.1
+displayRemainingStockpile: false
+highPriorityQueue: true
+isActive:if self.resource(type="tec",greaterThan=0) and self.resource(type="4科技-雷达3",greaterThan=0) and self.resource(type="3科技-AACM1",greaterThan=0) and not self.resource(type="4科技-AACM2",greaterThan=0)
+
+showMessageToPlayer:等级四海军科技AACM II研发完成
+[action_4科技-AACM3]
+#price:4科技-AACM3=1,tecN4=1,tecLV4=1  
+  
+text:lv4.AACM Ⅲ
+description:需求科技4级，前置科技:AACM Ⅱ
+buildSpeed: 180s
+convertTo:科技显示
+pos: 0.1
+displayRemainingStockpile: false
+highPriorityQueue: true
+isActive:if self.resource(type="tec",greaterThan=0) and self.resource(type="4科技-AACM2",greaterThan=0) and not self.resource(type="4科技-AACM3",greaterThan=0)
+
+showMessageToPlayer:等级四海军科技AACM III研发完成
+[action_4科技-ASCM1]
+#price:4科技-ASCM1=1,tecN4=1,tecLV4=1  
+  
+text:lv4.ASCM Ⅰ
+description:需求科技4级，前置科技:雷达Ⅲ
+buildSpeed: 180s
+convertTo:科技显示
+pos: 0.1
+displayRemainingStockpile: false
+highPriorityQueue: true
+isActive:if self.resource(type="tec",greaterThan=0) and self.resource(type="4科技-雷达3",greaterThan=0) and not self.resource(type="4科技-ASCM1",greaterThan=0)
+
+showMessageToPlayer:等级四海军科技ASCM I研发完成
+[action_4科技-ASCM2]
+#price:4科技-ASCM2=1,tecN4=1,tecLV4=1  
+  
+text:lv4.ASCM Ⅱ
+description:需求科技4级，前置科技:ASCM Ⅰ，雷达Ⅲ
+buildSpeed: 180s
+convertTo:科技显示
+pos: 0.1
+displayRemainingStockpile: false
+highPriorityQueue: true
+isActive:if self.resource(type="tec",greaterThan=0) and self.resource(type="4科技-ASCM1",greaterThan=0) and self.resource(type="4科技-雷达3",greaterThan=0) and not self.resource(type="4科技-ASCM2",greaterThan=0)
+
+showMessageToPlayer:等级四海军科技ASCM II研发完成
+[action_5科技-ASCM3]
+#price:5科技-ASCM3=1,tecN5=1,tecLV5=1  
+  
+text:lv5.ASCM Ⅲ
+description:需求科技5级，前置科技:ASCM Ⅱ
+buildSpeed: 180s
+convertTo:科技显示
+pos: 0.1
+displayRemainingStockpile: false
+highPriorityQueue: true
+isActive:if self.resource(type="tec",greaterThan=0) and self.resource(type="4科技-ASCM2",greaterThan=0) and not self.resource(type="5科技-ASCM3",greaterThan=0)
+
+showMessageToPlayer:等级五海军科技ASCM III研发完成
+[action_3科技-增程岸轰弹]
+#price:3科技-增程岸轰弹=1,tecN3=1,tecLV3=1  
+  
+text:lv3.增程岸轰炮弹
+description:需求科技3级，前置科技:中/小口径速射炮Ⅰ
+buildSpeed: 180s
+convertTo:科技显示
+pos: 0.1
+displayRemainingStockpile: false
+highPriorityQueue: true
+isActive:if self.resource(type="tec",greaterThan=0) and self.resource(type="3科技-中小口径速射炮1",greaterThan=0) and not self.resource(type="3科技-增程岸轰弹",greaterThan=0)
+
+showMessageToPlayer:等级三海军科技增程岸轰炮研发完成
+[action_1科技-氧雷]
+#price:1科技-氧雷=1,tecN1=1,tecLV1=1  
+  
+text:lv1.氧气鱼雷
+description:需求科技1级，前置科技:无
+buildSpeed: 180s
+convertTo:科技显示
+pos: 0.1
+displayRemainingStockpile: false
+highPriorityQueue: true
+isActive:if not self.resource(type="1科技-氧雷",greaterThan=0)
+
+showMessageToPlayer:等级一海军科技氧雷研发完成
+[action_3科技-刺猬炮]
+#price:3科技-刺猬炮=1,tecN3=1,tecLV3=1  
+  
+text:lv3.刺猬炮
+description:需求科技3级，前置科技:无
+buildSpeed: 180s
+convertTo:科技显示
+pos: 0.1
+displayRemainingStockpile: false
+highPriorityQueue: true
+isActive:if self.resource(type="tec",greaterThan=0) and not self.resource(type="3科技-刺猬炮",greaterThan=0)
+
+showMessageToPlayer:等级三海军科技刺猬炮研发完成
+[action_4科技-反潜雷]
+#price:4科技-反潜雷=1,tecN4=1,tecLV4=1  
+  
+text:lv4.反潜线导鱼雷
+description:需求科技4级，前置科技:无
+buildSpeed: 180s
+convertTo:科技显示
+pos: 0.1
+displayRemainingStockpile: false
+highPriorityQueue: true
+isActive:if self.resource(type="tec",greaterThan=0) and not self.resource(type="4科技-反潜雷",greaterThan=0)
+
+showMessageToPlayer:等级四海军科技反潜线导鱼雷研发完成
+[action_1科技-DD1]
+#price:1科技-DD1=1,tecN1=1,tecLV1=1  
+  
+text:lv1.驱逐舰舰体Ⅰ
+description:需求科技1级，前置科技:无
+buildSpeed: 180s
+convertTo:科技显示
+pos: 0.1
+displayRemainingStockpile: false
+highPriorityQueue: true
+isActive:if not self.resource(type="1科技-DD1",greaterThan=0)
+
+showMessageToPlayer:等级一海军科技驱逐舰舰体I研发完成
+[action_3科技-DD2]
+#price:3科技-DD2=1,tecN3=1,tecLV3=1  
+  
+text:lv3.驱逐舰船体Ⅱ
+description:需求科技3级，前置科技:驱逐舰船体Ⅰ
+buildSpeed: 180s
+convertTo:科技显示
+pos: 0.1
+displayRemainingStockpile: false
+highPriorityQueue: true
+isActive:if self.resource(type="tec",greaterThan=0) and not self.resource(type="3科技-DD2",greaterThan=0)
+
+showMessageToPlayer:等级三海军科技驱逐舰舰体II研发完成
+[action_4科技-DDG1]
+#price:4科技-DDG1=1,tecN4=1,tecLV4=1  
+  
+text:lv4.导弹驱逐舰船体Ⅰ
+description:需求科技4级，前置科技:驱逐舰船体Ⅱ
+buildSpeed: 180s
+convertTo:科技显示
+pos: 0.1
+displayRemainingStockpile: false
+highPriorityQueue: true
+isActive:if self.resource(type="tec",greaterThan=0) and self.resource(type="3科技-DD2",greaterThan=0) and not self.resource(type="4科技-DDG1",greaterThan=0)
+
+showMessageToPlayer:等级四海军科技导弹驱逐舰船体I研发完成
+[action_1科技-BB1]
+#price:1科技-BB1=1,tecN1=1,tecLV1=1  
+  
+text:lv1.战列舰船体Ⅰ
+description:需求科技1级，前置科技:无
+buildSpeed: 180s
+convertTo:科技显示
+pos: 0.1
+displayRemainingStockpile: false
+highPriorityQueue: true
+isActive:if not self.resource(type="1科技-BB1",greaterThan=0)
+
+showMessageToPlayer:等级一海军科技战列舰船体I研发完成
+[action_3科技-BB2]
+#price:3科技-BB2=1,tecN3=1,tecLV3=1  
+  
+text:lv3.战列舰船体Ⅱ
+description:需求科技3级，前置科技:战列舰船体Ⅰ
+buildSpeed: 180s
+convertTo:科技显示
+pos: 0.1
+displayRemainingStockpile: false
+highPriorityQueue: true
+isActive:if self.resource(type="tec",greaterThan=0) and self.resource(type="1科技-BB1",greaterThan=0) and not self.resource(type="3科技-BB2",greaterThan=0)
+
+showMessageToPlayer:等级三海军科技战列舰船体II研发完成
+[action_1科技-BC1]
+#price:1科技-BC1=1,tecN1=1,tecLV1=1  
+  
+text:lv1.战列巡洋舰Ⅰ
+description:需求科技1级，前置科技:无
+buildSpeed: 180s
+convertTo:科技显示
+pos: 0.1
+displayRemainingStockpile: false
+highPriorityQueue: true
+isActive:if not self.resource(type="1科技-BC1",greaterThan=0)
+
+showMessageToPlayer:等级一海军科技战列巡洋舰I研发完成
+[action_1科技-登陆艇]
+#price:1科技-登陆艇=1,tecN1=1,tecLV1=1  
+  
+text:lv1.登陆艇
+description:需求科技1级，前置科技:无
+buildSpeed: 180s
+convertTo:科技显示
+pos: 0.1
+displayRemainingStockpile: false
+highPriorityQueue: true
+isActive:if not self.resource(type="1科技-登陆艇",greaterThan=0)
+
+showMessageToPlayer:等级一海军科技登陆艇研发完成
+[action_2科技-CL1]
+#price:2科技-CL1=1,tecN2=1,tecLV2=1  
+  
+text:lv2.轻巡洋舰船体Ⅰ
+description:需求科技2级，前置科技:无
+buildSpeed: 180s
+convertTo:科技显示
+pos: 0.1
+displayRemainingStockpile: false
+highPriorityQueue: true
+isActive:if self.resource(type="tec",greaterThan=0) and not self.resource(type="2科技-CL1",greaterThan=0)
+
+showMessageToPlayer:等级二海军科技轻巡洋舰船体I研发完成
+[action_2科技-CA1]
+#price:2科技-CA1=1,tecN2=1,tecLV2=1  
+  
+text:lv2.重巡洋舰船体Ⅰ
+description:需求科技2级，前置科技:轻巡洋舰船体Ⅰ
+buildSpeed: 180s
+convertTo:科技显示
+pos: 0.1
+displayRemainingStockpile: false
+highPriorityQueue: true
+isActive:if self.resource(type="tec",greaterThan=0) and self.resource(type="2科技-CL1",greaterThan=0) and not self.resource(type="2科技-CA1",greaterThan=0)
+
+showMessageToPlayer:等级二海军科技重巡洋舰船体I研发完成
+[action_3科技-CB]
+#price:3科技-CB=1,tecN3=1,tecLV3=1  
+  
+text:lv3.大型巡洋舰船体
+description:需求科技3级，前置科技:重巡洋舰船体Ⅰ
+buildSpeed: 180s
+convertTo:科技显示
+pos: 0.1
+displayRemainingStockpile: false
+highPriorityQueue: true
+isActive:if self.resource(type="tec",greaterThan=0) and self.resource(type="2科技-CA1",greaterThan=0) and not self.resource(type="3科技-CB",greaterThan=0)
+
+showMessageToPlayer:等级三海军科技大型巡洋舰船体研发完成
+[action_3科技-AACR1]
+#price:3科技-AACR1=1,tecN3=1,tecLV3=1  
+  
+text:lv3.防空轻巡船体
+description:需求科技3级，前置科技:轻巡船体Ⅰ
+buildSpeed: 180s
+convertTo:科技显示
+pos: 0.1
+displayRemainingStockpile: false
+highPriorityQueue: true
+isActive:if self.resource(type="tec",greaterThan=0) and self.resource(type="2科技-CL1",greaterThan=0) and not self.resource(type="3科技-AACR1",greaterThan=0)
+
+showMessageToPlayer:等级三海军科技防空轻巡船体研发完成
+[action_3科技-C]
+#price:3科技-C=1,tecN3=1,tecLV3=1  
+  
+text:lv3.现代巡洋舰船体
+description:需求科技3级，前置科技:轻巡船体Ⅰ
+buildSpeed: 180s
+convertTo:科技显示
+pos: 0.1
+displayRemainingStockpile: false
+highPriorityQueue: true
+isActive:if self.resource(type="tec",greaterThan=0) and self.resource(type="2科技-CL1",greaterThan=0) and not self.resource(type="3科技-C",greaterThan=0)
+
+showMessageToPlayer:等级三海军科技现代巡洋舰船体研发完成
+[action_2科技-SS1]
+#price:2科技-SS1=1,tecN2=1,tecLV2=1  
+  
+text:lv2.潜艇船体Ⅰ
+description:需求科技2级，前置科技:无
+buildSpeed: 180s
+convertTo:科技显示
+pos: 0.1
+displayRemainingStockpile: false
+highPriorityQueue: true
+isActive:if self.resource(type="tec",greaterThan=0) and not self.resource(type="2科技-SS1",greaterThan=0)
+
+showMessageToPlayer:等级二海军科技潜艇船体I研发完成
+[action_4科技-SS2单壳]
+#price:4科技-SS2单壳=1,tecN4=1,tecLV4=1  
+  
+text:lv4.潜艇船体Ⅱ(单壳)
+description:需求科技4级，前置科技:潜艇船体Ⅰ
+buildSpeed: 180s
+convertTo:科技显示
+pos: 0.1
+displayRemainingStockpile: false
+highPriorityQueue: true
+isActive:if self.resource(type="tec",greaterThan=0) and self.resource(type="2科技-SS1",greaterThan=0) and not self.resource(type="4科技-SS2单壳",greaterThan=0)
+
+showMessageToPlayer:等级四海军科技潜艇船体II（单壳)研发完成
+[action_4科技-SS2双壳]
+#price:4科技-SS2双壳=1,tecN4=1,tecLV4=1  
+  
+text:lv4.潜艇船体Ⅱ(双壳)
+description:需求科技4级，前置科技:潜艇船体ⅠI单壳
+buildSpeed: 180s
+convertTo:科技显示
+pos: 0.1
+displayRemainingStockpile: false
+highPriorityQueue: true
+isActive:if self.resource(type="tec",greaterThan=0) and self.resource(type="4科技-SS2单壳",greaterThan=0) and not self.resource(type="4科技-SS2双壳",greaterThan=0)
+
+showMessageToPlayer:等级四海军科技潜艇船体II（双壳)研发完成
+[action_4科技-CV]
+#price:4科技-CV=1,tecN4=1,tecLV4=1  
+  
+text:lv4.现代航母船体
+description:需求科技4级，前置科技:现代巡洋舰船体
+buildSpeed: 180s
+convertTo:科技显示
+pos: 0.1
+displayRemainingStockpile: false
+highPriorityQueue: true
+isActive:if self.resource(type="tec",greaterThan=0) and self.resource(type="3科技-C",greaterThan=0) and not self.resource(type="4科技-CV",greaterThan=0)
+
+showMessageToPlayer:等级四海军科技现代航母船体研发完成
+[action_1科技-重油锅炉]
+#price:1科技-重油锅炉=1,tecN1=1,tecLV1=1  
+  
+text:lv1.重油锅炉
+description:需求科技1级，前置科技:无
+buildSpeed: 180s
+convertTo:科技显示
+pos: 0.1
+displayRemainingStockpile: false
+highPriorityQueue: true
+isActive:if not self.resource(type="1科技-重油锅炉",greaterThan=0)
+
+showMessageToPlayer:等级一海军科技重油锅炉研发完成
+[action_1科技-海柴油机1]
+#price:1科技-海柴油机1=1,tecN1=1,tecLV1=1  
+  
+text:lv1.舰用柴油机Ⅰ
+description:需求科技1级，前置科技:无
+buildSpeed: 180s
+convertTo:科技显示
+pos: 0.1
+displayRemainingStockpile: false
+highPriorityQueue: true
+isActive:if not self.resource(type="1科技-海柴油机1",greaterThan=0)
+
+showMessageToPlayer:等级一海军科技舰用柴油机I研发完成
+[action_2科技-海柴油机2]
+#price:2科技-海柴油机2=1,tecN2=1,tecLV2=1  
+  
+text:lv2.舰用柴油机Ⅱ
+description:需求科技2级，前置科技:舰用柴油机Ⅰ
+buildSpeed: 180s
+convertTo:科技显示
+pos: 0.1
+displayRemainingStockpile: false
+highPriorityQueue: true
+isActive:if self.resource(type="tec",greaterThan=0) and self.resource(type="1科技-海柴油机1",greaterThan=0) and not self.resource(type="2科技-海柴油机2",greaterThan=0)
+
+showMessageToPlayer:等级二海军科技舰用柴油机II研发完成
+[action_1科技-海蒸汽轮机1]
+#price:1科技-海蒸汽轮机1=1,tecN1=1,tecLV1=1  
+  
+text:lv1.舰用蒸汽轮机Ⅰ
+description:需求科技1级，前置科技:无
+buildSpeed: 180s
+convertTo:科技显示
+pos: 0.1
+displayRemainingStockpile: false
+highPriorityQueue: true
+isActive:if not self.resource(type="1科技-海蒸汽轮机1",greaterThan=0)
+
+showMessageToPlayer:等级一海军科技舰用海蒸气轮机I研发完成
+[action_2科技-海蒸汽轮机2]
+#price:2科技-海蒸汽轮机2=1,tecN2=1,tecLV2=1  
+  
+text:lv2.舰用蒸汽轮机Ⅱ
+description:需求科技2级，前置科技:舰用蒸汽轮机Ⅰ
+buildSpeed: 180s
+convertTo:科技显示
+pos: 0.1
+displayRemainingStockpile: false
+highPriorityQueue: true
+isActive:if self.resource(type="tec",greaterThan=0) and self.resource(type="1科技-海蒸汽轮机1",greaterThan=0) and not self.resource(type="2科技-海蒸汽轮机2",greaterThan=0)
+
+showMessageToPlayer:等级二海军科技舰用蒸汽轮机II研发完成
+[action_3科技-蒸汽轮机3]
+#price:3科技-蒸汽轮机3=1,tecN3=1,tecLV3=1  
+  
+text:lv3.舰用蒸汽轮机Ⅲ
+description:需求科技3级，前置科技:舰用蒸汽轮机Ⅱ
+buildSpeed: 180s
+convertTo:科技显示
+pos: 0.1
+displayRemainingStockpile: false
+highPriorityQueue: true
+isActive:if self.resource(type="tec",greaterThan=0) and self.resource(type="2科技-海蒸汽轮机2",greaterThan=0) and not self.resource(type="3科技-蒸汽轮机3",greaterThan=0)
+
+showMessageToPlayer:等级三海军科技舰用蒸汽轮机III研发完成
+[action_3科技-海燃气轮机1]
+#price:3科技-海燃气轮机1=1,tecN3=1,tecLV3=1  
+  
+text:lv3.舰用燃气轮机Ⅰ
+description:需求科技3级，前置科技:舰用蒸汽轮机Ⅱ
+buildSpeed: 180s
+convertTo:科技显示
+pos: 0.1
+displayRemainingStockpile: false
+highPriorityQueue: true
+isActive:if self.resource(type="tec",greaterThan=0) and self.resource(type="2科技-海蒸汽轮机2",greaterThan=0) and not self.resource(type="3科技-海燃气轮机1",greaterThan=0)
+
+showMessageToPlayer:等级三海军科技舰用燃气轮机I研发完成
+[action_4科技-海燃气轮机2]
+#price:4科技-海燃气轮机2=1,tecN4=1,tecLV4=1  
+  
+text:lv4.舰用燃气轮机Ⅱ
+description:需求科技4级，前置科技:舰用燃气轮机Ⅰ
+buildSpeed: 180s
+convertTo:科技显示
+pos: 0.1
+displayRemainingStockpile: false
+highPriorityQueue: true
+isActive:if self.resource(type="tec",greaterThan=0) and self.resource(type="3科技-海燃气轮机1",greaterThan=0) and not self.resource(type="4科技-海燃气轮机2",greaterThan=0)
+
+showMessageToPlayer:等级四海军科技舰用燃气轮机II研发完成
+[action_2科技-海电动1]
+#打 电 动（确信）
+#price:2科技-海电动1=1,tecN2=1,tecLV2=1  
+  
+text:lv2.早期舰用电力推进系统
+description:需求科技2级，前置科技:无
+buildSpeed: 180s
+convertTo:科技显示
+pos: 0.1
+displayRemainingStockpile: false
+highPriorityQueue: true
+isActive:if self.resource(type="tec",greaterThan=0) and not self.resource(type="2科技-海电动1",greaterThan=0)
+
+showMessageToPlayer:等级二海军科技早期用电力推进系统研发完成
+[action_5科技-全电推进]
+#price:5科技-全电推进=1,tecN5=1,tecLV5=1  
+  
+text:lv5.全电推进
+description:需求科技5级，前置科技:早期舰用电力推进系统
+buildSpeed: 180s
+convertTo:科技显示
+pos: 0.1
+displayRemainingStockpile: false
+highPriorityQueue: true
+isActive:if self.resource(type="tec",greaterThan=0) and self.resource(type="2科技-海电动1",greaterThan=0) and not self.resource(type="5科技-全电推进",greaterThan=0)
+
+showMessageToPlayer:等级五海军科技全电推进研发完成
+[action_3科技-核反应堆1]
+#price:3科技-核反应堆1=1,tecN3=1,tecLV3=1  
+  
+text:lv3.舰载核反应堆Ⅰ
+description:需求科技3级，前置科技:无
+buildSpeed: 180s
+convertTo:科技显示
+pos: 0.1
+displayRemainingStockpile: false
+highPriorityQueue: true
+isActive:if self.resource(type="tec",greaterThan=0) and not self.resource(type="3科技-核反应堆1",greaterThan=0)
+
+showMessageToPlayer:等级三海军科技舰载核反应堆I研发完成
+[action_4科技-核反应堆2]
+#price:4科技-核反应堆2=1,tecN4=1,tecLV4=1  
+  
+text:lv4.舰载核反应堆Ⅱ
+description:需求科技4级，前置科技:舰载核反应堆Ⅰ
+buildSpeed: 180s
+convertTo:科技显示
+pos: 0.1
+displayRemainingStockpile: false
+highPriorityQueue: true
+isActive:if self.resource(type="tec",greaterThan=0) and self.resource(type="3科技-核反应堆1",greaterThan=0) and not self.resource(type="4科技-核反应堆2",greaterThan=0)
+
+showMessageToPlayer:等级四海军科技舰载核反应堆II研发完成
+[action_4科技-AIP]
+#price:4科技-AIP=1,tecN4=1,tecLV4=1  
+  
+text:lv4.潜艇常规AIP动力系统
+description:需求科技4级，前置科技:通气管
+buildSpeed: 180s
+convertTo:科技显示
+pos: 0.1
+displayRemainingStockpile: false
+highPriorityQueue: true
+isActive:if self.resource(type="tec",greaterThan=0) and self.resource(type="3科技-通气管",greaterThan=0) and not self.resource(type="4科技-AIP",greaterThan=0)
+
+showMessageToPlayer:等级四海军科技潜艇常规AIP动力系统研发完成
+[action_5科技-无轴泵推]
+#price:5科技-无轴泵推=1,tecN5=1,tecLV5=1  
+  
+text:lv5.无轴泵推
+description:需求科技5级，前置科技:无
+buildSpeed: 180s
+convertTo:科技显示
+pos: 0.1
+displayRemainingStockpile: false
+highPriorityQueue: true
+isActive:if self.resource(type="tec",greaterThan=0) and not self.resource(type="5科技-无轴泵推",greaterThan=0)
+
+showMessageToPlayer:等级五海军科技无轴泵推研发完成
+[action_1科技-哈维装甲]
+#price:1科技-哈维装甲=1,tecN1=1,tecLV1=1  
+  
+text:lv1.哈维装甲钢
+description:需求科技1级，前置科技:无
+buildSpeed: 180s
+convertTo:科技显示
+pos: 0.1
+displayRemainingStockpile: false
+highPriorityQueue: true
+isActive:if not self.resource(type="1科技-哈维装甲",greaterThan=0)
+
+showMessageToPlayer:等级一海军科技哈维装甲钢研发完成
+[action_2科技-海ClassA装甲]
+#price:2科技-海ClassA装甲=1,tecN2=1,tecLV2=1  
+  
+text:lv2.ClassA装甲
+description:需求科技2级，前置科技:哈维装甲钢
+buildSpeed: 180s
+convertTo:科技显示
+pos: 0.1
+displayRemainingStockpile: false
+highPriorityQueue: true
+isActive:if self.resource(type="tec",greaterThan=0) and self.resource(type="1科技-哈维装甲",greaterThan=0) and not self.resource(type="2科技-海ClassA装甲",greaterThan=0)
+
+showMessageToPlayer:等级二海军科技ClassA装甲研发完成
+[action_2科技-海ClassB装甲]
+#price:2科技-海ClassB装甲=1,tecN2=1,tecLV2=1  
+  
+text:lv2.ClassB装甲
+description:需求科技2级，前置科技:哈维装甲钢
+buildSpeed: 180s
+convertTo:科技显示
+pos: 0.1
+displayRemainingStockpile: false
+highPriorityQueue: true
+isActive:if self.resource(type="tec",greaterThan=0) and self.resource(type="1科技-哈维装甲",greaterThan=0) and not self.resource(type="2科技-海ClassB装甲",greaterThan=0)
+
+showMessageToPlayer:等级二海军科技研发完成
+[action_3科技-海VH装甲]
+#price:3科技-海VH装甲=1,tecN3=1,tecLV3=1  
+  
+text:lv3.VH(维克斯硬化)装甲钢
+description:需求科技3级，前置科技:ClassA装甲
+buildSpeed: 180s
+convertTo:科技显示
+pos: 0.1
+displayRemainingStockpile: false
+highPriorityQueue: true
+isActive:if self.resource(type="tec",greaterThan=0) and self.resource(type="2科技-海ClassA装甲",greaterThan=0) and not self.resource(type="3科技-海VH装甲",greaterThan=0)
+
+showMessageToPlayer:等级三海军科技VH（维克斯硬化）装甲研发完成
+[action_1科技-德雷尔火控台]
+#price:1科技-德雷尔火控台=1,tecN1=1,tecLV1=1  
+  
+text:lv1.德雷尔火控台
+description:需求科技1级，前置科技:无
+buildSpeed: 180s
+convertTo:科技显示
+pos: 0.1
+displayRemainingStockpile: false
+highPriorityQueue: true
+isActive:if not self.resource(type="1科技-德雷尔火控台",greaterThan=0)
+
+showMessageToPlayer:等级一海军科技德雷尔火控台研发完成
+[action_1科技-测距仪]
+#price:1科技-测距仪=1,tecN1=1,tecLV1=1  
+  
+text:lv1.长基线体视式光学测距仪
+description:需求科技1级，前置科技:无
+buildSpeed: 180s
+convertTo:科技显示
+pos: 0.1
+displayRemainingStockpile: false
+highPriorityQueue: true
+isActive:if not self.resource(type="1科技-测距仪",greaterThan=0)
+
+showMessageToPlayer:等级一海军科技长基线体视式光学测距仪研发完成
+[action_2科技-新型扬弹机]
+#price:2科技-新型扬弹机=1,tecN2=1,tecLV2=1  
+  
+text:lv2.新型扬弹机
+description:需求科技2级，前置科技:大口径舰炮Ⅰ
+buildSpeed: 180s
+convertTo:科技显示
+pos: 0.1
+displayRemainingStockpile: false
+highPriorityQueue: true
+isActive:if self.resource(type="tec",greaterThan=0) and self.resource(type="1科技-大口径舰炮1",greaterThan=0) and not self.resource(type="2科技-新型扬弹机",greaterThan=0)
+
+showMessageToPlayer:等级二海军科技新型扬弹机研发完成
+[action_2科技-雷达1]
+#price:2科技-雷达1=1,tecN2=1,tecLV2=1  
+  
+text:lv2.雷达Ⅰ
+description:需求科技2级，前置科技:无
+buildSpeed: 180s
+convertTo:科技显示
+pos: 0.1
+displayRemainingStockpile: false
+highPriorityQueue: true
+isActive:if self.resource(type="tec",greaterThan=0) and not self.resource(type="2科技-雷达1",greaterThan=0)
+
+showMessageToPlayer:等级二海军科技雷达I研发完成
+[action_3科技-雷达2]
+#price:3科技-雷达2=1,tecN3=1,tecLV3=1  
+  
+text:lv3.雷达Ⅱ
+description:需求科技3级，前置科技:雷达Ⅰ
+buildSpeed: 180s
+convertTo:科技显示
+pos: 0.1
+displayRemainingStockpile: false
+highPriorityQueue: true
+isActive:if self.resource(type="tec",greaterThan=0) and self.resource(type="2科技-雷达1",greaterThan=0) and not self.resource(type="3科技-雷达2",greaterThan=0)
+
+showMessageToPlayer:等级三海军科技雷达II研发完成
+[action_4科技-雷达3]
+#price:4科技-雷达3=1,tecN4=1,tecLV4=1  
+  
+text:lv4.雷达Ⅲ
+description:需求科技4级，前置科技:雷达Ⅱ
+buildSpeed: 180s
+convertTo:科技显示
+pos: 0.1
+displayRemainingStockpile: false
+highPriorityQueue: true
+isActive:if self.resource(type="tec",greaterThan=0) and self.resource(type="3科技-雷达2",greaterThan=0) and not self.resource(type="4科技-雷达3",greaterThan=0)
+
+showMessageToPlayer:等级四海军科技雷达III研发完成
+[action_4科技-舰载相控阵1]
+#price:4科技-舰载相控阵1=1,tecN4=1,tecLV4=1  
+  
+text:lv4.舰载相控阵雷达
+description:需求科技4级，前置科技:雷达Ⅲ，(主科技树)相控阵雷达
+buildSpeed: 180s
+convertTo:科技显示
+pos: 0.1
+displayRemainingStockpile: false
+highPriorityQueue: true
+isActive:if self.resource(type="tec",greaterThan=0) and self.resource(type="4科技-雷达3",greaterThan=0) and self.resource(type="4科技-相控阵",greaterThan=0) and not self.resource(type="4科技-舰载相控阵1",greaterThan=0)
+
+showMessageToPlayer:等级四海军科技舰载相控阵雷达研发完成
+[action_5科技-舰载相控阵2]
+#price:5科技-舰载相控阵2=1,tecN5=1,tecLV5=1  
+  
+text:lv5.舰载相控阵雷达Ⅱ
+description:需求科技5级，前置科技:舰载相控阵雷达Ⅰ
+buildSpeed: 180s
+convertTo:科技显示
+pos: 0.1
+displayRemainingStockpile: false
+highPriorityQueue: true
+isActive:if self.resource(type="tec",greaterThan=0) and self.resource(type="4科技-舰载相控阵1",greaterThan=0) and not self.resource(type="5科技-舰载相控阵2",greaterThan=0)
+
+showMessageToPlayer:等级五海军科技舰载相控阵雷达II研发完成
+[action_2科技-声呐1]
+#price:2科技-声呐1=1,tecN2=1,tecLV2=1  
+  
+text:lv2.声呐1
+description:需求科技2级，前置科技:潜艇船体Ⅰ
+buildSpeed: 180s
+convertTo:科技显示
+pos: 0.1
+displayRemainingStockpile: false
+highPriorityQueue: true
+isActive:if self.resource(type="tec",greaterThan=0) and self.resource(type="2科技-SS1",greaterThan=0) and not self.resource(type="2科技-声呐1",greaterThan=0)
+
+showMessageToPlayer:等级二海军科技声呐I研发完成
+[action_3科技-声呐2]
+#price:3科技-声呐2=1,tecN3=1,tecLV3=1  
+  
+text:lv3.声呐Ⅱ
+description:需求科技3级，前置科技:声呐Ⅰ
+buildSpeed: 180s
+convertTo:科技显示
+pos: 0.1
+displayRemainingStockpile: false
+highPriorityQueue: true
+isActive:if self.resource(type="tec",greaterThan=0) and self.resource(type="2科技-声呐1",greaterThan=0) and not self.resource(type="3科技-声呐2",greaterThan=0)
+
+showMessageToPlayer:等级三海军科技研声呐II发完成
+[action_4科技-声呐3]
+#price:4科技-声呐3=1,tecN4=1,tecLV4=1  
+  
+text:lv4.声呐Ⅲ
+description:需求科技4级，前置科技:声呐Ⅱ
+buildSpeed: 180s
+convertTo:科技显示
+pos: 0.1
+displayRemainingStockpile: false
+highPriorityQueue: true
+isActive:if self.resource(type="tec",greaterThan=0) and self.resource(type="3科技-声呐2",greaterThan=0) and not self.resource(type="4科技-声呐3",greaterThan=0)
+
+showMessageToPlayer:等级四海军科技声呐III研发完成
+[action_2科技-TDS]
+#price:2科技-TDS=1,tecN2=1,tecLV2=1  
+  
+text:lv2.TDS(鱼雷防护系统)
+description:需求科技2级，前置科技:无
+buildSpeed: 180s
+convertTo:科技显示
+pos: 0.1
+displayRemainingStockpile: false
+highPriorityQueue: true
+isActive:if self.resource(type="tec",greaterThan=0) and not self.resource(type="2科技-TDS",greaterThan=0)
+
+showMessageToPlayer:等级二海军科技TDS（鱼雷防护系统)研发完成
+[action_3科技-通气管]
+#price:3科技-通气管=1,tecN3=1,tecLV3=1  
+  
+text:lv3.通气管
+description:需求科技3级，前置科技:潜艇船体Ⅰ
+buildSpeed: 180s
+convertTo:科技显示
+pos: 0.1
+displayRemainingStockpile: false
+highPriorityQueue: true
+isActive:if self.resource(type="tec",greaterThan=0) and self.resource(type="2科技-SS1",greaterThan=0) and not self.resource(type="3科技-通气管",greaterThan=0)
+
+showMessageToPlayer:等级三海军科技通气管研发完成
+[action_1科技-小口径速射炮1]
+#price:1科技-小口径速射炮1=1,tecL1=1,tecLV1=1 
+  
+text:lv1.小口径陆炮Ⅰ
+description:需求科技1级，前置科技:无
+
+buildSpeed: 180s
+convertTo:科技显示
+pos: 0.1
+displayRemainingStockpile: false
+highPriorityQueue: true
+isActive:if self.resource(type="tec",greaterThan=0) and not self.resource(type="1科技-小口径速射炮1",greaterThan=0)
+
+showMessageToPlayer:陆军科技等级一小口径陆炮I研发完成
+[action_2科技-小口径陆炮2]
+#price:2科技-小口径陆炮2=1,tecL2=1,tecLV2=1 
+  
+text:lv2.小口径陆炮Ⅱ
+description:需求科技2级，前置科技:小口径陆炮Ⅰ
+
+buildSpeed: 180s
+convertTo:科技显示
+pos: 0.1
+displayRemainingStockpile: false
+highPriorityQueue: true
+isActive:if self.resource(type="tec",greaterThan=0) and self.resource(type="2科技-小口径陆炮2",equalTo=1) and not self.resource(type="1科技-小口径速射炮1",equalTo=0)
+
+showMessageToPlayer:陆军科技等级二小口径陆炮II研发完成
+[action_3科技-小口径陆炮3]
+#price:3科技-小口径陆炮3=1,tecL3=1,tecLV3=1  
+  
+text:lv3.小口径陆炮Ⅲ
+description:需求科技3级，前置科技:小口径陆炮Ⅱ
+
+buildSpeed: 180s
+convertTo:科技显示
+pos: 0.1
+displayRemainingStockpile: false
+highPriorityQueue: true
+isActive:if self.resource(type="tec",greaterThan=0) and not self.resource(type="3科技-小口径陆炮3",greaterThan=0) and self.resource(type="2科技-小口径陆炮2",greaterThan=0)
+
+showMessageToPlayer:陆军科技等级三小口径陆炮III研发完成
+[action_1科技-中口径陆炮1]
+#price:1科技-中口径陆炮1=1,tecL1=1,tecLV1=1  
+  
+text:lv1.中口径陆炮Ⅰ
+description:需求科技1级，前置科技:无
+
+buildSpeed: 180s
+convertTo:科技显示
+pos: 0.1
+displayRemainingStockpile: false
+highPriorityQueue: true
+isActive:if self.resource(type="tec",greaterThan=0) and not self.resource(type="1科技-中口径陆炮1",greaterThan=0)
+
+showMessageToPlayer:陆军科技等级一中口径陆炮I研发完成
+[action_2科技-中口径陆炮2]
+#price:2科技-中口径陆炮2=1,tecL2=1,tecLV2=1  
+  
+text:lv2.中口径陆炮Ⅱ
+description:需求科技2级，前置科技:中口径陆炮Ⅰ
+
+buildSpeed: 180s
+convertTo:科技显示
+pos: 0.1
+displayRemainingStockpile: false
+highPriorityQueue: true
+isActive:if self.resource(type="tec",greaterThan=0) and not self.resource(type="2科技-中口径陆炮2",greaterThan=0) and self.resource(type="1科技-中口径陆炮1",greaterThan=0)
+
+showMessageToPlayer:陆军科技等级二总口径陆炮II研发完成
+[action_3科技-中口径陆炮3]
+#price:3科技-中口径陆炮3=1,tecL3=1,tecLV3=1
+  
+text:lv3.中口径陆炮Ⅲ
+description:需求科技3级，前置科技:中口径陆炮Ⅱ
+
+buildSpeed: 180s
+convertTo:科技显示
+pos: 0.1
+displayRemainingStockpile: false
+highPriorityQueue: true
+isActive:if self.resource(type="tec",greaterThan=0) and not self.resource(type="3科技-中口径陆炮3",greaterThan=0) and self.resource(type="2科技-中口径陆炮2",greaterThan=0)
+
+showMessageToPlayer:陆军科技等级三中口径陆炮III研发完成
+[action_4科技-中口径陆炮4]
+#price:4科技-中口径陆炮4=1,tecL4=1,tecLV4=1
+  
+text:lv4.中口径陆炮Ⅳ
+description:需求科技4级，前置科技:中口径陆炮Ⅲ
+
+buildSpeed: 180s
+convertTo:科技显示
+pos: 0.1
+displayRemainingStockpile: false
+highPriorityQueue: true
+isActive:if self.resource(type="tec",greaterThan=0) and not self.resource(type="4科技-中口径陆炮4",greaterThan=0) and self.resource(type="3科技-中口径陆炮3",greaterThan=0)
+
+showMessageToPlayer:陆军科技等级四中口径陆炮IV研发完成
+[action_1科技-大口径陆炮1]
+#price:1科技-大口径陆炮1=1,tecL1=1,tecLV1=1  
+  
+text:lv1.大口径陆炮Ⅰ
+description:需求科技0级，前置科技:中口径舰炮Ⅰ
+
+buildSpeed: 180s
+convertTo:科技显示
+pos: 0.1
+displayRemainingStockpile: false
+highPriorityQueue: true
+isActive:if self.resource(type="tec",greaterThan=0) and not self.resource(type="1科技-大口径陆炮1",greaterThan=0) and self.resource(type="1科技-中口径舰炮1",greaterThan=0)
+
+showMessageToPlayer:陆军科技等级一大口径陆炮I研发完成
+[action_2科技-大口径陆炮2]
+#price:2科技-大口径陆炮2=1,tecL2=1,tecLV2=1
+  
+text:lv2.大口径陆炮Ⅱ
+description:需求科技2级，前置科技:中口径舰炮Ⅰ
+
+buildSpeed: 180s
+convertTo:科技显示
+pos: 0.1
+displayRemainingStockpile: false
+highPriorityQueue: true
+isActive:if self.resource(type="tec",greaterThan=0) and not self.resource(type="2科技-大口径陆炮2",greaterThan=0) and self.resource(type="1科技-中口径舰炮1",greaterThan=0)
+
+showMessageToPlayer:陆军科技等级二大口径陆炮II研发完成
+[action_2科技-超大口径陆炮1]
+#price:2科技-超大口径陆炮1=1,tecL2=1,tecLV2=1
+  
+text:lv2.超大口径陆炮
+description:需求科技2级，前置科技:大口径舰炮Ⅰ
+
+buildSpeed: 180s
+convertTo:科技显示
+pos: 0.1
+displayRemainingStockpile: false
+highPriorityQueue: true
+isActive:if self.resource(type="tec",greaterThan=0) and not self.resource(type="2科技-超大口径陆炮1",greaterThan=0) and self.resource(type="1科技-大口径舰炮1",greaterThan=0)
+
+showMessageToPlayer:陆军科技等级二超大口径陆炮研发完成
+[action_3科技-陆高射机枪]
+#price:3科技-陆高射机枪=1,tecL3=1,tecLV3=1
+  
+text:lv3.高射机枪
+description:需求科技3级，前置科技:无
+
+buildSpeed: 180s
+convertTo:科技显示
+pos: 0.1
+displayRemainingStockpile: false
+highPriorityQueue: true
+isActive:if self.resource(type="tec",greaterThan=0) and not self.resource(type="3科技-陆高射机枪",greaterThan=0)
+
+showMessageToPlayer:陆军科技等级三高射机枪研发完成
+[action_4科技-反坦克导弹]
+#price:4科技-反坦克导弹=1,tecL4=1,tecLV4=1
+  
+text:lv4.反坦克导弹
+description:需求科技4级，前置科技:无
+
+buildSpeed: 180s
+convertTo:科技显示
+pos: 0.1
+displayRemainingStockpile: false
+highPriorityQueue: true
+isActive:if self.resource(type="tec",greaterThan=0) and not self.resource(type="4科技-反坦克导弹",greaterThan=0)
+
+showMessageToPlayer:陆军科技等级四反坦克导弹研发完成
+[action_4科技-遥控武器站1]
+#price:4科技-遥控武器站1=1,tecL4=1,tecLV4=1
+  
+text:lv4.遥控武器站Ⅰ
+description:需求科技4级，前置科技:高射机枪
+
+buildSpeed: 180s
+convertTo:科技显示
+pos: 0.1
+displayRemainingStockpile: false
+highPriorityQueue: true
+isActive:if self.resource(type="tec",greaterThan=0) and not self.resource(type="4科技-遥控武器站1",greaterThan=0) and self.resource(type="3科技-陆高射机枪",greaterThan=0)
+
+showMessageToPlayer:陆军科技等级四遥控武器站I研发完成
+[action_5科技-遥控武器站2]
+#price:5科技-遥控武器站2=1,tecL5=1,tecLV5=1
+  
+text:lv5.遥控武器站Ⅱ
+description:需求科技5级，前置科技:遥控武器站Ⅰ
+
+buildSpeed: 180s
+convertTo:科技显示
+pos: 0.1
+displayRemainingStockpile: false
+highPriorityQueue: true
+isActive:if self.resource(type="tec",greaterThan=0) and not self.resource(type="5科技-遥控武器站2",greaterThan=0) and self.resource(type="4科技-遥控武器站1",greaterThan=0)
+
+showMessageToPlayer:陆军科技等级五遥控武器站II研发完成
+[action_1科技-轻坦1]
+#price:1科技-轻坦1=1,tecL1=1,tecLV1=1
+  
+text:lv1.轻坦车体Ⅰ
+description:需求科技1级，前置科技:无
+
+buildSpeed: 180s
+convertTo:科技显示
+pos: 0.1
+displayRemainingStockpile: false
+highPriorityQueue: true
+isActive:if self.resource(type="tec",greaterThan=0) and not self.resource(type="1科技-轻坦1",greaterThan=0)
+
+showMessageToPlayer:陆军科技等级一轻坦车体I研发完成
+[action_2科技-轻坦2]
+#price:2科技-轻坦2=1,tecL2=1,tecLV2=1
+  
+text:lv2.轻坦车体Ⅱ
+description:需求科技2级，前置科技:轻坦车体Ⅰ
+
+buildSpeed: 180s
+convertTo:科技显示
+pos: 0.1
+displayRemainingStockpile: false
+highPriorityQueue: true
+isActive:if self.resource(type="tec",greaterThan=0) and not self.resource(type="2科技-轻坦2",greaterThan=0) and self.resource(type="1科技-轻坦1",greaterThan=0)
+
+showMessageToPlayer:陆军科技等级二轻坦车体II研发完成
+[action_3科技-轻坦3]
+#price:3科技-轻坦3=1,tecL3=1,tecLV3=1
+  
+text:lv3.轻坦车体Ⅲ
+description:需求科技3级，前置科技:轻坦车体Ⅱ
+
+buildSpeed: 180s
+convertTo:科技显示
+pos: 0.1
+displayRemainingStockpile: false
+highPriorityQueue: true
+isActive:if self.resource(type="tec",greaterThan=0) and not self.resource(type="3科技-轻坦3",greaterThan=0) and self.resource(type="2科技-轻坦2",greaterThan=0)
+
+showMessageToPlayer:陆军科技等级三轻坦车体II研发完成
+[action_5科技-轻坦4]
+#price:5科技-轻坦4=1,tecL5=1,tecLV5=1
+  
+text:lv5.现代轻坦车体(轻坦车体Ⅳ)
+description:需求科技5级，前置科技:轻坦车体Ⅲ
+
+buildSpeed: 180s
+convertTo:科技显示
+pos: 0.1
+displayRemainingStockpile: false
+highPriorityQueue: true
+isActive:if self.resource(type="tec",greaterThan=0) and not self.resource(type="5科技-轻坦4",greaterThan=0) and self.resource(type="3科技-轻坦3",greaterThan=0)
+
+showMessageToPlayer:陆军科技等级五现代轻坦车体(轻坦车体IV)研发完成
+[action_1科技-中坦1]
+#price:1科技-中坦1=1,tecL1=1,tecLV1=1
+  
+text:lv1.中坦车体Ⅰ
+description:需求科技1级，前置科技:轻坦车体Ⅰ
+
+buildSpeed: 180s
+convertTo:科技显示
+pos: 0.1
+displayRemainingStockpile: false
+highPriorityQueue: true
+isActive:if self.resource(type="tec",greaterThan=0) and not self.resource(type="1科技-中坦1",greaterThan=0) and self.resource(type="1科技-轻坦1",greaterThan=0)
+
+showMessageToPlayer:陆军科技等级一中坦车体I研发完成
+[action_2科技-中坦2]
+#price:2科技-中坦2=1,tecL2=1,tecLV2=1
+  
+text:lv2.中坦车体Ⅱ
+description:需求科技2级，前置科技:中坦车体Ⅰ
+
+buildSpeed: 180s
+convertTo:科技显示
+pos: 0.1
+displayRemainingStockpile: false
+highPriorityQueue: true
+isActive:if self.resource(type="tec",greaterThan=0) and not self.resource(type="2科技-中坦2",greaterThan=0) and self.resource(type="1科技-中坦1",greaterThan=0)
+
+showMessageToPlayer:陆军科技等级二中坦车体II研发完成
+[action_1科技-自火1]
+#price:1科技-自火1=1,tecL1=1,tecLV1=1
+  
+text:lv1.自行火炮车体
+description:需求科技1级，前置科技:中坦车体Ⅰ
+
+buildSpeed: 180s
+convertTo:科技显示
+pos: 0.1
+displayRemainingStockpile: false
+highPriorityQueue: true
+isActive:if self.resource(type="tec",greaterThan=0) and not self.resource(type="1科技-自火1",greaterThan=0) and self.resource(type="1科技-中坦1",greaterThan=0)
+
+showMessageToPlayer:陆军科技等级一自行火炮车体研发完成
+[action_2科技-重坦1]
+#price:2科技-重坦1=1,tecL2=1,tecLV2=1
+  
+text:lv2.重坦车体Ⅰ
+description:需求科技2级，前置科技:中坦车体Ⅰ
+
+buildSpeed: 180s
+convertTo:科技显示
+pos: 0.1
+displayRemainingStockpile: false
+highPriorityQueue: true
+isActive:if self.resource(type="tec",greaterThan=0) and not self.resource(type="2科技-重坦1",greaterThan=0) and self.resource(type="1科技-中坦1",greaterThan=0)
+
+showMessageToPlayer:陆军科技等级二重坦车体I研发完成
+[action_4科技-主战1]
+#price:4科技-主战1=1,tecL4=1,tecLV4=1
+  
+text:lv4.主战坦克车体
+description:需求科技4级，前置科技:重坦车体Ⅰ
+
+buildSpeed: 180s
+convertTo:科技显示
+pos: 0.1
+displayRemainingStockpile: false
+highPriorityQueue: true
+isActive:if self.resource(type="tec",greaterThan=0) and not self.resource(type="4科技-主战1",greaterThan=0) and self.resource(type="2科技-重坦1",greaterThan=0)
+
+showMessageToPlayer:陆军科技等级四主战坦克车体研发完成
+[action_2科技-轮式装甲车1]
+#price:2科技-轮式装甲车1=1,tecL2=1,tecLV2=1
+  
+text:lv2.轮式装甲车车体Ⅰ
+description:需求科技2级，前置科技:无
+
+buildSpeed: 180s
+convertTo:科技显示
+pos: 0.1
+displayRemainingStockpile: false
+highPriorityQueue: true
+isActive:if self.resource(type="tec",greaterThan=0) and not self.resource(type="2科技-轮式装甲车1",greaterThan=0)
+
+showMessageToPlayer:陆军科技等级二轮式装甲车车体I研发完成
+[action_3科技-步兵战车1]
+#price:3科技-步兵战车1=1,tecL3=1,tecLV3=1
+  
+text:lv3.步兵战车车体Ⅰ(轮式装甲车车体Ⅱ)
+description:需求科技3级，前置科技:轮式装甲车车体Ⅰ
+
+buildSpeed: 180s
+convertTo:科技显示
+pos: 0.1
+displayRemainingStockpile: false
+highPriorityQueue: true
+isActive:if self.resource(type="tec",greaterThan=0) and not self.resource(type="3科技-步兵战车1",greaterThan=0) and self.resource(type="2科技-轮式装甲车1",greaterThan=0)
+
+showMessageToPlayer:陆军科技等级三步兵战车车体I(轮式装甲车车体II)研发完成
+[action_4科技-步兵战车2]
+#price:4科技-步兵战车2=1,tecL4=1,tecLV4=1
+  
+text:lv4.步兵战车车体Ⅱ
+description:需求科技级，前置科技:步兵战车车体Ⅰ
+
+buildSpeed: 180s
+convertTo:科技显示
+pos: 0.1
+displayRemainingStockpile: false
+highPriorityQueue: true
+isActive:if self.resource(type="tec",greaterThan=0) and not self.resource(type="4科技-步兵战车2",greaterThan=0) and self.resource(type="3科技-步兵战车1",greaterThan=0)
+
+showMessageToPlayer:陆军科技等级四步兵战车车体II研发完成
+[action_4科技-导弹车底盘]
+#price:4科技-导弹车底盘=1,tecL4=1,tecLV4=1
+  
+text:lv4.弹道导弹发射车
+description:需求科技4级，前置科技:洲际弹道导弹Ⅱ
+
+buildSpeed: 180s
+convertTo:科技显示
+pos: 0.1
+displayRemainingStockpile: false
+highPriorityQueue: true
+isActive:if self.resource(type="tec",greaterThan=0) and not self.resource(type="4科技-导弹车底盘",greaterThan=0) and self.resource(type="4科技-蛋2",greaterThan=0)
+
+showMessageToPlayer:陆军科技等级四弹道导弹发射车研发完成
+[action_1科技-8缸汽油机1]
+#price:1科技-8缸汽油机1=1,tecL1=1,tecLV1=1
+  
+text:lv1.8缸汽油机Ⅰ
+description:需求科技1级，前置科技:无
+buildSpeed: 180s
+convertTo:科技显示
+pos: 0.1
+displayRemainingStockpile: false
+highPriorityQueue: true
+isActive:if self.resource(type="tec",greaterThan=0) and not self.resource(type="1科技-8缸汽油机1",greaterThan=0)
+
+showMessageToPlayer:陆军科技等级一8缸汽油机I研发完成
+[action_2科技-8缸汽油机2]
+#price:2科技-8缸汽油机2=1,tecL2=1,tecLV2=1
+  
+text:lv2.8缸汽油机Ⅱ
+description:需求科技2级，前置科技:8缸汽油机Ⅰ
+
+buildSpeed: 180s
+convertTo:科技显示
+pos: 0.1
+displayRemainingStockpile: false
+highPriorityQueue: true
+isActive:if self.resource(type="tec",greaterThan=0) and not self.resource(type="2科技-8缸汽油机2",greaterThan=0) and self.resource(type="1科技-8缸汽油机1",greaterThan=0)
+
+showMessageToPlayer:陆军科技等级二8缸汽油机II研发完成
+[action_1科技-陆柴油机1]
+#price:1科技-陆柴油机1=1,tecL1=1,tecLV1=1
+  
+text:lv1.柴油机Ⅰ
+description:需求科技1级，前置科技:无
+
+buildSpeed: 180s
+convertTo:科技显示
+pos: 0.1
+displayRemainingStockpile: false
+highPriorityQueue: true
+isActive:if self.resource(type="tec",greaterThan=0) and not self.resource(type="1科技-陆柴油机1",greaterThan=0)
+
+showMessageToPlayer:陆军科技等级一陆柴油机I研发完成
+[action_2科技-陆柴油机小2]
+#price:2科技-陆柴油机小2=1,tecL2=1,tecLV2=1
+  
+text:lv2.柴油机Ⅱ(小)
+description:需求科技2级，前置科技:柴油机Ⅰ
+
+buildSpeed: 180s
+convertTo:科技显示
+pos: 0.1
+displayRemainingStockpile: false
+highPriorityQueue: true
+isActive:if self.resource(type="tec",greaterThan=0) and not self.resource(type="2科技-陆柴油机小2",greaterThan=0) and self.resource(type="1科技-陆柴油机1",greaterThan=0)
+
+showMessageToPlayer:陆军科技等级二路柴油机II(小)研发完成
+[action_3科技-陆柴油机小3]
+#price:3科技-陆柴油机小3=1,tecL3=1,tecLV3=1
+  
+text:lv3.柴油机Ⅲ(小)
+description:需求科技3级，前置科技:柴油机Ⅱ(小)
+
+buildSpeed: 180s
+convertTo:科技显示
+pos: 0.1
+displayRemainingStockpile: false
+highPriorityQueue: true
+isActive:if self.resource(type="tec",greaterThan=0) and not self.resource(type="3科技-陆柴油机小3",greaterThan=0) and self.resource(type="2科技-陆柴油机小2",greaterThan=0)
+
+showMessageToPlayer:陆军科技等级三柴油机III(小)研发完成
+[action_2科技-陆柴油机大2]
+#price:2科技-陆柴油机大2=1,tecL2=1,tecLV2=1
+  
+text:lv2.柴油机Ⅱ(大)
+description:需求科技2级，前置科技:柴油机Ⅰ
+
+buildSpeed: 180s
+convertTo:科技显示
+pos: 0.1
+displayRemainingStockpile: false
+highPriorityQueue: true
+isActive:if self.resource(type="tec",greaterThan=0) and not self.resource(type="2科技-陆柴油机大2",greaterThan=0) and self.resource(type="1科技-陆柴油机1",greaterThan=0)
+
+showMessageToPlayer:陆军科技等级二柴油机II(大)研发完成
+[action_3科技-陆柴油机大3]
+#price:3科技-陆柴油机大3=1,tecL3=1,tecLV3=1
+  
+text:lv3.柴油机Ⅲ(大)
+description:需求科技级，前置科技:柴油机Ⅱ(大)
+
+buildSpeed: 180s
+convertTo:科技显示
+pos: 0.1
+displayRemainingStockpile: false
+highPriorityQueue: true
+isActive:if self.resource(type="tec",greaterThan=0) and not self.resource(type="3科技-陆柴油机大3",greaterThan=0) and self.resource(type="2科技-陆柴油机大2",greaterThan=0)
+
+showMessageToPlayer:陆军科技等级三柴油机III(大)研发完成
+[action_4科技-陆燃气轮机1]
+#price:4科技-陆燃气轮机1=1,tecL4=1,tecLV4=1
+  
+text:lv4.燃气轮机Ⅰ
+description:需求科技4级，前置科技:无
+
+buildSpeed: 180s
+convertTo:科技显示
+pos: 0.1
+displayRemainingStockpile: false
+highPriorityQueue: true
+isActive:if self.resource(type="tec",greaterThan=0) and not self.resource(type="4科技-陆燃气轮机1",greaterThan=0)
+
+showMessageToPlayer:陆军科技等级四燃气轮机I研发完成
+[action_5科技-陆燃气轮机2]
+#price:5科技-陆燃气轮机2=1,tecL5=1,tecLV5=1
+  
+text:lv5.燃气轮机Ⅱ
+description:需求科技5级，前置科技:燃气轮机Ⅰ
+
+buildSpeed: 180s
+convertTo:科技显示
+pos: 0.1
+displayRemainingStockpile: false
+highPriorityQueue: true
+isActive:if self.resource(type="tec",greaterThan=0) and not self.resource(type="5科技-陆燃气轮机2",greaterThan=0) and self.resource(type="4科技-陆燃气轮机1",greaterThan=0)
+
+showMessageToPlayer:陆军科技等级五燃气轮机II研发完成
+[action_1科技-克里斯蒂悬挂]
+#price:1科技-克里斯蒂悬挂=1,tecL1=1,tecLV1=1
+  
+text:lv1.克里斯蒂式悬挂
+description:需求科技1级，前置科技:无
+
+buildSpeed: 180s
+convertTo:科技显示
+pos: 0.1
+displayRemainingStockpile: false
+highPriorityQueue: true
+isActive:if self.resource(type="tec",greaterThan=0) and not self.resource(type="1科技-克里斯蒂悬挂",greaterThan=0)
+
+showMessageToPlayer:陆军科技等级一克里斯蒂式悬挂研发完成
+[action_2科技-驻退/复进机]
+#price:2科技-驻退/复进机=1,tecL2=1,tecLV2=1
+  
+text:lv2.驻退/复进机
+description:需求科技2级，前置科技:无
+
+buildSpeed: 180s
+convertTo:科技显示
+pos: 0.1
+displayRemainingStockpile: false
+highPriorityQueue: true
+isActive:if self.resource(type="tec",greaterThan=0) and not self.resource(type="2科技-驻退/复进机",greaterThan=0)
+
+showMessageToPlayer:陆军科技等级二驻退/复进机研发完成
+[action_3科技-摇摆式炮塔]
+#price:3科技-摇摆式炮塔=1,tecL3=1,tecLV3=1
+  
+text:lv3.摇摆式炮塔
+description:需求科技3级，前置科技:无
+
+buildSpeed: 180s
+convertTo:科技显示
+pos: 0.1
+displayRemainingStockpile: false
+highPriorityQueue: true
+isActive:if self.resource(type="tec",greaterThan=0) and not self.resource(type="3科技-摇摆式炮塔",greaterThan=0)
+
+showMessageToPlayer:陆军科技等级三摇摆式炮塔研发完成
+[action_3科技-陆半自动装弹机]
+#price:3科技-陆半自动装弹机=1,tecL3=1,tecLV3=1
+  
+text:lv3.半自动装弹机
+description:需求科技3级，前置科技:无
+
+buildSpeed: 180s
+convertTo:科技显示
+pos: 0.1
+displayRemainingStockpile: false
+highPriorityQueue: true
+isActive:if self.resource(type="tec",greaterThan=0) and not self.resource(type="3科技-陆半自动装弹机",greaterThan=0)
+
+showMessageToPlayer:陆军科技等级三半自动装弹机研发完成
+[action_4科技-陆自动装弹机]
+#price:4科技-陆自动装弹机=1,tecL4=1,tecLV4=1
+  
+text:lv4.自动装弹机
+description:需求科技4级，前置科技:半自动装弹机
+
+buildSpeed: 180s
+convertTo:科技显示
+pos: 0.1
+displayRemainingStockpile: false
+highPriorityQueue: true
+isActive:if self.resource(type="tec",greaterThan=0) and not self.resource(type="4科技-陆自动装弹机",greaterThan=0) and self.resource(type="3科技-陆半自动装弹机",greaterThan=0)
+
+showMessageToPlayer:陆军科技等级四自动装弹机研发完成
+[action_3科技-陆对空火控]
+#price:4科技-陆对空火控=1,tecL4=1,tecLV4=1
+  
+text:lv4.对空火控
+description:需求科技4级，前置科技:无
+
+buildSpeed: 180s
+convertTo:科技显示
+pos: 0.1
+displayRemainingStockpile: false
+highPriorityQueue: true
+isActive:if self.resource(type="tec",greaterThan=0) and not self.resource(type="3科技-陆对空火控",greaterThan=0)
+
+showMessageToPlayer:陆军科技等级四对空火控研发完成
+[action_4科技-陆观瞄1]
+#price:4科技-陆观瞄1=1,tecL4=1,tecLV4=1
+  
+text:lv4.现代观瞄系统Ⅰ
+description:需求科技4级，前置科技:无
+
+buildSpeed: 180s
+convertTo:科技显示
+pos: 0.1
+displayRemainingStockpile: false
+highPriorityQueue: true
+isActive:if self.resource(type="tec",greaterThan=0) and not self.resource(type="4科技-陆观瞄1",greaterThan=0)
+
+showMessageToPlayer:陆军科技等级四现代观瞄系统I研发完成
+[action_5科技-陆观瞄2]
+#price:5科技-陆观瞄2=1,tecL5=1,tecLV5=1
+  
+text:lv5.现代观瞄系统Ⅱ
+description:需求科技5级，前置科技:现代观瞄系统Ⅰ
+
+buildSpeed: 180s
+convertTo:科技显示
+pos: 0.1
+displayRemainingStockpile: false
+highPriorityQueue: true
+isActive:if self.resource(type="tec",greaterThan=0) and not self.resource(type="5科技-陆观瞄2",greaterThan=0) and self.resource(type="4科技-陆观瞄1",greaterThan=0)
+
+showMessageToPlayer:陆军科技等级五现代观瞄系统II研发完成
+[action_4科技-垂稳1]
+#price:4科技-垂稳1=1,tecL4=1,tecLV4=1
+  
+text:lv4.主炮垂直稳定器Ⅰ
+description:需求科技4级，前置科技:无
+
+buildSpeed: 180s
+convertTo:科技显示
+pos: 0.1
+displayRemainingStockpile: false
+highPriorityQueue: true
+isActive:if self.resource(type="tec",greaterThan=0) and not self.resource(type="4科技-垂稳1",greaterThan=0)
+
+showMessageToPlayer:陆军科技等级四主炮垂直稳定器I研发完成
+[action_5科技-垂稳2]
+#price:5科技-垂稳2=1,tecL5=1,tecLV5=1
+  
+text:lv5.主炮垂直稳定器Ⅱ
+description:需求科技5级，前置科技:无
+
+buildSpeed: 180s
+convertTo:科技显示
+pos: 0.1
+displayRemainingStockpile: false
+highPriorityQueue: true
+isActive:if self.resource(type="tec",greaterThan=0) and not self.resource(type="5科技-垂稳2",greaterThan=0)
+
+showMessageToPlayer:陆军科技等级五主炮垂直稳定器II研发完成
+[action_1科技-陆均质装甲]
+#price:1科技-陆均质装甲=1,tecL1=1,tecLV1=1
+  
+text:lv1.均质装甲
+description:需求科技1级，前置科技:无
+
+buildSpeed: 180s
+convertTo:科技显示
+pos: 0.1
+displayRemainingStockpile: false
+highPriorityQueue: true
+isActive:if self.resource(type="tec",greaterThan=0) and not self.resource(type="1科技-陆均质装甲",greaterThan=0)
+
+showMessageToPlayer:陆军科技等级一均质装甲研发完成
+[action_2科技-陆硬化装甲1]
+#price:2科技-陆硬化装甲1=1,tecL2=1,tecLV2=1
+  
+text:lv2.硬化装甲Ⅰ
+description:需求科技2级，前置科技:无
+
+buildSpeed: 180s
+convertTo:科技显示
+pos: 0.1
+displayRemainingStockpile: false
+highPriorityQueue: true
+isActive:if self.resource(type="tec",greaterThan=0) and not self.resource(type="2科技-陆硬化装甲1",greaterThan=0)
+
+showMessageToPlayer:陆军科技等级二硬化装甲I研发完成
+[action_3科技-陆硬化装甲2]
+#price:3科技-陆硬化装甲2=1,tecL3=1,tecLV3=1
+  
+text:lv3.硬化装甲Ⅱ
+description:需求科技3级，前置科技:硬化装甲Ⅰ
+
+buildSpeed: 180s
+convertTo:科技显示
+pos: 0.1
+displayRemainingStockpile: false
+highPriorityQueue: true
+isActive:if self.resource(type="tec",greaterThan=0) and not self.resource(type="3科技-陆硬化装甲2",greaterThan=0)
+
+showMessageToPlayer:陆军科技等级三硬化装甲II研发完成
+[action_3科技-陆复合装甲1]
+#price:3科技-陆复合装甲1=1,tecL3=1,tecLV3=1
+  
+text:lv3.复合装甲Ⅰ
+description:需求科技3级，前置科技:硬化装甲Ⅱ
+
+buildSpeed: 180s
+convertTo:科技显示
+pos: 0.1
+displayRemainingStockpile: false
+highPriorityQueue: true
+isActive:if self.resource(type="tec",greaterThan=0) and not self.resource(type="3科技-陆复合装甲1",greaterThan=0) and self.resource(type="3科技-陆硬化装甲2",greaterThan=0)
+
+showMessageToPlayer:陆军科技等级三复合装甲I研发完成
+[action_4科技-陆复合装甲2]
+#price:4科技-陆复合装甲2=1,tecL4=1,tecLV4=1
+  
+text:lv4.复合装甲Ⅱ
+description:需求科技4级，前置科技:复合装甲Ⅰ
+
+buildSpeed: 180s
+convertTo:科技显示
+pos: 0.1
+displayRemainingStockpile: false
+highPriorityQueue: true
+isActive:if self.resource(type="tec",greaterThan=0) and not self.resource(type="4科技-陆复合装甲2",greaterThan=0) and self.resource(type="3科技-陆复合装甲1",greaterThan=0)
+
+showMessageToPlayer:陆军科技等级四复合装甲II研发完成
+[action_5科技-陆复合装甲3]
+#price:5科技-陆复合装甲3=1,tecL5=1,tecLV5=1
+  
+text:lv5.复合装甲Ⅲ
+description:需求科技5级，前置科技:复合装甲Ⅱ
+
+buildSpeed: 180s
+convertTo:科技显示
+pos: 0.1
+displayRemainingStockpile: false
+highPriorityQueue: true
+isActive:if self.resource(type="tec",greaterThan=0) and not self.resource(type="5科技-陆复合装甲3",greaterThan=0) and self.resource(type="4科技-陆复合装甲2",greaterThan=0)
+
+showMessageToPlayer:陆军科技等级五复合装甲III研发完成
+[action_4科技-陆反应装甲]
+#price:4科技-陆反应装甲=1,tecL4=1,tecLV4=1
+  
+text:lv4.反应装甲Ⅰ
+description:需求科技4级，前置科技:复合装甲Ⅰ
+
+buildSpeed: 180s
+convertTo:科技显示
+pos: 0.1
+displayRemainingStockpile: false
+highPriorityQueue: true
+isActive:if self.resource(type="tec",greaterThan=0) and not self.resource(type="4科技-陆反应装甲",greaterThan=0) and self.resource(type="3科技-陆复合装甲1",greaterThan=0)
+
+showMessageToPlayer:陆军科技等级四反应装甲I研发完成
+[action_5科技-陆反应装甲2]
+#price:5科技-陆反应装甲2=1,tecL5=1,tecLV5=1
+  
+text:lv5.反应装甲Ⅱ
+description:需求科技5级，前置科技:复合装甲Ⅱ，反应装甲Ⅰ
+
+buildSpeed: 180s
+convertTo:科技显示
+pos: 0.1
+displayRemainingStockpile: false
+highPriorityQueue: true
+isActive:if self.resource(type="tec",greaterThan=0) and not self.resource(type="5科技-陆反应装甲2",greaterThan=0) and self.resource(type="4科技-陆复合装甲2",greaterThan=0) and self.resource(type="4科技-陆反应装甲",greaterThan=0) 
+
+showMessageToPlayer:陆军科技等级五反应装甲II研发完成
+[action_1科技-翼炮1]
+#price:1科技-翼炮1=1,tecA1=1,tecLV1=1  
+  
+text:lv1.翼炮Ⅰ(wing gun)
+description:需求科技1级，前置科技:无
+buildSpeed: 180s
+convertTo:科技显示
+pos: 0.1
+displayRemainingStockpile: false
+highPriorityQueue: true
+isActive: if not self.resource(type="1科技-翼炮1",greaterThan=0)
+
+showMessageToPlayer:LV1空军科技翼炮Ⅰ研发完成
+[action_2科技-翼炮2]
+#price:2科技-翼炮2=1,tecA2=1,tecLV2=1  
+  
+text:lv2.翼炮Ⅱ
+description:需求科技2级，前置科技:翼炮Ⅰ
+buildSpeed: 180s
+convertTo:科技显示
+pos: 0.1
+displayRemainingStockpile: false
+highPriorityQueue: true
+isActive:if self.resource(type="tec",greaterThan=0) and self.resource(type="1科技-翼炮1",greaterThan=0) and not self.resource(type="2科技-翼炮2",greaterThan=0)
+
+showMessageToPlayer:LV2空军科技翼炮ll研发完成
+[action_1科技-轴炮1]
+#price:1科技-轴炮1=1,tecA1=1,tecLV1=1  
+  
+text:lv1.轴炮Ⅰ
+description:需求科技1级，前置科技:无
+buildSpeed: 180s
+convertTo:科技显示
+pos: 0.1
+displayRemainingStockpile: false
+highPriorityQueue: true
+isActive:if not self.resource(type="1科技-轴炮1",greaterThan=0)
+
+showMessageToPlayer:LV1空军科技轴炮l研发完成
+[action_2科技-轴炮2]
+#price:2科技-轴炮2=1,tecA2=1,tecLV2=1  
+  
+text:lv2.轴炮Ⅱ
+description:需求科技2级，前置科技:轴炮Ⅰ
+buildSpeed: 180s
+convertTo:科技显示
+pos: 0.1
+displayRemainingStockpile: false
+highPriorityQueue: true
+isActive:if self.resource(type="tec",greaterThan=0) and self.resource(type="1科技-轴炮1",greaterThan=0) and not self.resource(type="2科技-轴炮2",greaterThan=0)
+
+showMessageToPlayer:LV2空军科技轴炮ll研发完成
+[action_3科技-轴炮3]
+#price:3科技-轴炮3=1,tecA3=1,tecLV3=1  
+  
+text:lv3.轴炮Ⅲ
+description:需求科技3级，前置科技:轴炮Ⅱ
+buildSpeed: 180s
+convertTo:科技显示
+pos: 0.1
+displayRemainingStockpile: false
+highPriorityQueue: true
+isActive:if self.resource(type="tec",greaterThan=0) and self.resource(type="2科技-轴炮2",greaterThan=0) and not self.resource(type="3科技-轴炮3",greaterThan=0)
+
+showMessageToPlayer:LV3空军科技轴炮lll研发完成
+[action_4科技-转管航炮]
+#price:4科技-转管航炮=1,tecA4=1,tecLV4=1  
+  
+text:lv4.转管式航炮
+description:需求科技4级，前置科技:轴炮Ⅲ
+buildSpeed: 180s
+convertTo:科技显示
+pos: 0.1
+displayRemainingStockpile: false
+highPriorityQueue: true
+isActive:if self.resource(type="tec",greaterThan=0) and self.resource(type="3科技-轴炮3",greaterThan=0) and not self.resource(type="4科技-转管航炮",greaterThan=0)
+
+showMessageToPlayer:LV4空军科技转管航炮研发完成
+[action_1科技-航弹1]
+#price:1科技-航弹1=1,tecA1=1,tecLV1=1  
+  
+text:lv1.航空炸弹Ⅰ
+description:需求科技1级，前置科技:无
+buildSpeed: 180s
+convertTo:科技显示
+pos: 0.1
+displayRemainingStockpile: false
+highPriorityQueue: true
+isActive: if not self.resource(type="1科技-航弹1",greaterThan=0)
+
+showMessageToPlayer:LV1空军科技航空炸弹l研发完成
+[action_2科技-航弹2]
+#price:2科技-航弹2=1,tecA2=1,tecLV2=1  
+  
+text:lv2.航空炸弹Ⅱ
+description:需求科技2级，前置科技:航空炸弹Ⅰ
+buildSpeed: 180s
+convertTo:科技显示
+pos: 0.1
+displayRemainingStockpile: false
+highPriorityQueue: true
+isActive:if self.resource(type="tec",greaterThan=0) and self.resource(type="1科技-航弹1",greaterThan=0) and not self.resource(type="2科技-航弹2",greaterThan=0)
+
+showMessageToPlayer:LV2空军科技航空炸弹ll研发完成
+[action_3科技-制导航弹1]
+#price:3科技-制导航弹1=1,tecA3=1,tecLV3=1  
+  
+text:lv3.制导航弹Ⅰ
+description:需求科技3级，前置科技:航空炸弹Ⅱ
+buildSpeed: 180s
+convertTo:科技显示
+pos: 0.1
+displayRemainingStockpile: false
+highPriorityQueue: true
+isActive:if self.resource(type="tec",greaterThan=0) and self.resource(type="2科技-航弹2",greaterThan=0) and not self.resource(type="3科技-制导航弹1",greaterThan=0)
+
+showMessageToPlayer:LV3空军科技制导炸弹l研发完成
+[action_3科技-空空1]
+#price:3科技-空空1=1,tecA3=1,tecLV3=1  
+  
+text:lv3.空空导弹Ⅰ
+description:需求科技3级，前置科技:机载雷达Ⅰ
+buildSpeed: 180s
+convertTo:科技显示
+pos: 0.1
+displayRemainingStockpile: false
+highPriorityQueue: true
+isActive:if self.resource(type="tec",greaterThan=0) and self.resource(type="3科技-机载雷达1",greaterThan=0) and not self.resource(type="3科技-空空1",greaterThan=0)
+
+showMessageToPlayer:LV3空军科技空空导弹l研发完成
+[action_4科技-空空2]
+#price:4科技-空空2=1,tecA4=1,tecLV4=1  
+  
+text:lv4.空空导弹Ⅱ
+description:需求科技4级，前置科技:空空导弹Ⅰ，机载雷达Ⅱ
+buildSpeed: 180s
+convertTo:科技显示
+pos: 0.1
+displayRemainingStockpile: false
+highPriorityQueue: true
+isActive:if self.resource(type="tec",greaterThan=0) and self.resource(type="4科技-机载雷达2",greaterThan=0) and self.resource(type="3科技-空空1",greaterThan=0) and not self.resource(type="4科技-空空2",greaterThan=0)
+
+showMessageToPlayer:LV4空军科技空空炸弹ll研发完成
+[action_4科技-空空3远程]
+#price:4科技-空空3远程=1,tecA4=1,tecLV4=1  
+  
+text:lv4.空空导弹Ⅲ(远程方向)
+description:需求科技4级，前置科技:空空导弹Ⅱ
+buildSpeed: 180s
+convertTo:科技显示
+pos: 0.1
+displayRemainingStockpile: false
+highPriorityQueue: true
+isActive:if self.resource(type="tec",greaterThan=0) and self.resource(type="4科技-空空2",greaterThan=0) and not self.resource(type="4科技-空空3远程",greaterThan=0)
+
+showMessageToPlayer:LV4空军科技空空导弹lll（远程方向)研发完成
+[action_5科技-空空4远程]
+#price:5科技-空空4远程=1,tecA5=1,tecLV5=1  
+  
+text:lv5.空空导弹Ⅳ(远程方向)
+description:需求科技5级，前置科技:空空导弹Ⅲ(远程方向)，机载相控阵雷达Ⅱ
+buildSpeed: 180s
+convertTo:科技显示
+pos: 0.1
+displayRemainingStockpile: false
+highPriorityQueue: true
+isActive:if self.resource(type="tec",greaterThan=0) and self.resource(type="4科技-空空3远程",greaterThan=0) and self.resource(type="4科技-机载相控阵1",greaterThan=0) and not self.resource(type="5科技-空空4远程",greaterThan=0)
+
+showMessageToPlayer:LV5空军科技空空lV导弹研发完成
+[action_4科技-空空3格斗]
+#price:4科技-空空3格斗=1,tecA4=1,tecLV4=1  
+  
+text:lv4.空空导弹Ⅲ(格斗弹方向)
+description:需求科技级，前置科技:空空导弹Ⅱ，机载相控阵雷达Ⅰ
+buildSpeed: 180s
+convertTo:科技显示
+pos: 0.1
+displayRemainingStockpile: false
+highPriorityQueue: true
+isActive:if self.resource(type="tec",greaterThan=0) and self.resource(type="4科技-空空2",greaterThan=0) and self.resource(type="4科技-机载相控阵1",greaterThan=0) and not self.resource(type="4科技-空空3格斗",greaterThan=0)
+
+showMessageToPlayer:LV4空军科技空空导弹lll（格斗弹方向)研发完成
+[action_5科技-空空4格斗]
+#price:5科技-空空4格斗=1,tecA5=1,tecLV5=1  
+  
+text:lv5.空空导弹Ⅳ(格斗弹方向)
+description:需求科技级，前置科技:空空导弹Ⅲ(格斗弹方向)，机载相控阵雷达Ⅱ
+buildSpeed: 180s
+convertTo:科技显示
+pos: 0.1
+displayRemainingStockpile: false
+highPriorityQueue: true
+isActive:if self.resource(type="tec",greaterThan=0) and self.resource(type="4科技-空空3格斗",greaterThan=0) and self.resource(type="5科技-机载相控阵2",greaterThan=0) and not self.resource(type="5科技-空空4格斗",greaterThan=0)
+
+showMessageToPlayer:LV5空军科技空空导弹IV（格斗弹方向)研发完成
+[action_3科技-遥控炮塔]
+#price:3科技-遥控炮塔=1,tecA3=1,tecLV3=1  
+  
+text:lv3.机载遥控自卫炮塔
+description:需求科技3级，前置科技:轴炮Ⅱ
+buildSpeed: 180s
+convertTo:科技显示
+pos: 0.1
+displayRemainingStockpile: false
+highPriorityQueue: true
+isActive:if self.resource(type="tec",greaterThan=0) and self.resource(type="2科技-轴炮2",greaterThan=0) and not self.resource(type="3科技-遥控炮塔",greaterThan=0)
+
+showMessageToPlayer:LV3空军科技遥控自卫炮塔研发完成
+[action_3科技-火箭弹]
+#price:3科技-火箭弹=1,tecA3=1,tecLV3=1  
+  
+text:lv3.空射火箭弹
+description:需求科技3级，前置科技:无
+buildSpeed: 180s
+convertTo:科技显示
+pos: 0.1
+displayRemainingStockpile: false
+highPriorityQueue: true
+isActive:if self.resource(type="tec",greaterThan=0) and not self.resource(type="3科技-火箭弹",greaterThan=0)
+
+showMessageToPlayer:LV3空军科技空射火箭弹研发完成
+[action_4科技-空射反舰1]
+#price:4科技-空射反舰1=1,tecA4=1,tecLV4=1  
+  
+text:lv4.空射反舰导弹Ⅰ
+description:需求科技4级，前置科技:无
+buildSpeed: 180s
+convertTo:科技显示
+pos: 0.1
+displayRemainingStockpile: false
+highPriorityQueue: true
+isActive:if self.resource(type="tec",greaterThan=0) and not self.resource(type="4科技-空射反舰1",greaterThan=0)
+
+showMessageToPlayer:LV4空军科技空射反舰l研发完成
+[action_5科技-空射反舰2]
+#price:5科技-空射反舰2=1,tecA5=1,tecLV5=1  
+  
+text:lv5.空射反舰导弹Ⅱ
+description:需求科技4级，前置科技:空射反舰导弹Ⅰ
+buildSpeed: 180s
+convertTo:科技显示
+pos: 0.1
+displayRemainingStockpile: false
+highPriorityQueue: true
+isActive:if self.resource(type="tec",greaterThan=0) and self.resource(type="4科技-空射反舰1",greaterThan=0) and not self.resource(type="5科技-空射反舰2",greaterThan=0)
+
+showMessageToPlayer:LV5空军科技空射反舰ll研发完成
+[action_1科技-直列引擎1]
+#price:1科技-直列引擎1=1,tecA1=1,tecLV1=1  
+  
+text:lv1.直列式活塞引擎
+description:需求科技1级，前置科技:无
+buildSpeed: 180s
+convertTo:科技显示
+pos: 0.1
+displayRemainingStockpile: false
+highPriorityQueue: true
+isActive:if self.resource(type="tec",greaterThan=0) and not self.resource(type="1科技-直列引擎1",greaterThan=0) 
+
+showMessageToPlayer:LV1空军科技直列式活塞引擎研发完成
+[action_2科技-V8引擎]
+#price:2科技-V8引擎=1,tecA2=1,tecLV2=1  
+  
+text:lv2.V8式布局活塞引擎
+description:需求科技2级，前置科技:直列式活塞引擎
+buildSpeed: 180s
+convertTo:科技显示
+pos: 0.1
+displayRemainingStockpile: false
+highPriorityQueue: true
+isActive:if self.resource(type="tec",greaterThan=0) and not self.resource(type="2科技-V8引擎",greaterThan=0) and self.resource(type="1科技-直列引擎1",greaterThan=0) 
+
+showMessageToPlayer:LV2空军科技V8式布局活塞引擎研发完成
+[action_3科技-V12引擎]
+#price:3科技-V12引擎=1,tecA3=1,tecLV3=1  
+  
+text:lv3.V12式布局活塞引擎
+description:需求科技3级，前置科技:V8式布局活塞引擎
+buildSpeed: 180s
+convertTo:科技显示
+pos: 0.1
+displayRemainingStockpile: false
+highPriorityQueue: true
+isActive:if self.resource(type="tec",greaterThan=0) and not self.resource(type="3科技-V12引擎",greaterThan=0) and self.resource(type="2科技-V8引擎",greaterThan=0) 
+
+showMessageToPlayer:LV3空军科技V12式布局活塞引擎研发完成
+[action_1科技-星型引擎1]
+#price:1科技-星型引擎1=1,tecA1=1,tecLV1=1  
+  
+text:lv1.星型布局活塞引擎Ⅰ
+description:需求科技1级，前置科技:直列式活塞引擎
+buildSpeed: 180s
+convertTo:科技显示
+pos: 0.1
+displayRemainingStockpile: false
+highPriorityQueue: true
+isActive:if self.resource(type="tec",greaterThan=0) and not self.resource(type="1科技-星型引擎1",greaterThan=0) and self.resource(type="1科技-直列引擎1",greaterThan=0) 
+
+showMessageToPlayer:LV1空军科技星型布局活塞引擎Ⅰ研发完成
+[action_2科技-星型引擎2]
+#price:2科技-星型引擎2=1,tecA2=1,tecLV2=1  
+  
+text:lv2.星型布局活塞引擎Ⅱ
+description:需求科技2级，前置科技:星型布局活塞引擎Ⅰ
+buildSpeed: 180s
+convertTo:科技显示
+pos: 0.1
+displayRemainingStockpile: false
+highPriorityQueue: true
+isActive:if self.resource(type="tec",greaterThan=0) and not self.resource(type="2科技-星型引擎2",greaterThan=0) and self.resource(type="1科技-星型引擎1",greaterThan=0) 
+
+showMessageToPlayer:LV2空军科技星型布局活塞引擎Ⅱ研发完成
+[action_3科技-星型引擎3]
+#price:3科技-星型引擎3=1,tecA3=1,tecLV3=1  
+  
+text:lv3.星型布局活塞引擎Ⅲ
+description:需求科技3级，前置科技:星型布局活塞引擎Ⅱ
+buildSpeed: 180s
+convertTo:科技显示
+pos: 0.1
+displayRemainingStockpile: false
+highPriorityQueue: true
+isActive:if self.resource(type="tec",greaterThan=0) and not self.resource(type="3科技-星型引擎3",greaterThan=0) and self.resource(type="2科技-星型引擎2",greaterThan=0) 
+
+showMessageToPlayer:LV3空军科技星型布局活塞引擎Ⅲ研发完成
+[action_2科技-喷气1]
+#price:2科技-喷气1=1,tecA2=1,tecLV2=1  
+  
+text:lv2.喷气引擎Ⅰ
+description:需求科技2级，前置科技:无
+buildSpeed: 180s
+convertTo:科技显示
+pos: 0.1
+displayRemainingStockpile: false
+highPriorityQueue: true
+isActive:if self.resource(type="tec",greaterThan=0) and not self.resource(type="2科技-喷气1",greaterThan=0) 
+
+showMessageToPlayer:LV2空军科技喷气引擎Ⅰ研发完成
+[action_3科技-喷气2]
+#price:3科技-喷气2=1,tecA3=1,tecLV3=1  
+  
+text:lv3.喷气引擎Ⅱ
+description:需求科技3级，前置科技:喷气引擎Ⅰ
+buildSpeed: 180s
+convertTo:科技显示
+pos: 0.1
+displayRemainingStockpile: false
+highPriorityQueue: true
+isActive:if self.resource(type="tec",greaterThan=0) and not self.resource(type="3科技-喷气2",greaterThan=0) and self.resource(type="2科技-喷气1",greaterThan=0) 
+
+showMessageToPlayer:LV3空军科技喷气引擎Ⅱ研发完成
+[action_4科技-喷气3]
+#price:4科技-喷气3=1,tecA4=1,tecLV4=1  
+  
+text:lv4.喷气引擎Ⅲ
+description:需求科技4级，前置科技:喷气引擎Ⅱ
+buildSpeed: 180s
+convertTo:科技显示
+pos: 0.1
+displayRemainingStockpile: false
+highPriorityQueue: true
+isActive:if self.resource(type="tec",greaterThan=0) and not self.resource(type="4科技-喷气3",greaterThan=0) and self.resource(type="3科技-喷气2",greaterThan=0) 
+
+showMessageToPlayer:LV4空军科技喷气引擎Ⅲ研发完成
+[action_5科技-喷气4]
+#price:5科技-喷气4=1,tecA5=1,tecLV5=1  
+  
+text:lv5.喷气引擎Ⅳ
+description:需求科技5级，前置科技:喷气引擎Ⅲ
+buildSpeed: 180s
+convertTo:科技显示
+pos: 0.1
+displayRemainingStockpile: false
+highPriorityQueue: true
+isActive:if self.resource(type="tec",greaterThan=0) and not self.resource(type="5科技-喷气4",greaterThan=0) and self.resource(type="4科技-喷气3",greaterThan=0) 
+
+showMessageToPlayer:LV5空军科技喷气引擎Ⅳ研发完成
+[action_4科技-短距起降1]
+#price:4科技-短距起降1=1,tecA4=1,tecLV4=1  
+  
+text:lv4.短距起降引擎(VTOL式)
+description:需求科技4级，前置科技:喷气引擎Ⅲ
+buildSpeed: 180s
+convertTo:科技显示
+pos: 0.1
+displayRemainingStockpile: false
+highPriorityQueue: true
+isActive:if self.resource(type="tec",greaterThan=0) and not self.resource(type="4科技-短距起降1",greaterThan=0) and self.resource(type="4科技-喷气3",greaterThan=0) 
+
+showMessageToPlayer:LV4空军科技短距起降引擎(VTOL式)研发完成
+[action_5科技-短距起降2]
+#price:5科技-短距起降2=1,tecA5=1,tecLV5=1  
+  
+text:lv5.短距起降引擎Ⅱ(升力风扇式)
+description:需求科技5级，前置科技:短距起降引擎(VTOL式)
+buildSpeed: 180s
+convertTo:科技显示
+pos: 0.1
+displayRemainingStockpile: false
+highPriorityQueue: true
+isActive:if self.resource(type="tec",greaterThan=0) and not self.resource(type="5科技-短距起降2",greaterThan=0) and self.resource(type="4科技-短距起降1",greaterThan=0) 
+
+showMessageToPlayer:LV5空军科技短距起降引擎Ⅱ(升力风扇式)研发完成
+[action_1科技-战斗1]
+#price:1科技-战斗1=1,tecA1=1,tecLV1=1  
+  
+text:lv1.战斗机机身Ⅰ
+description:需求科技1级，前置科技:无
+buildSpeed: 180s
+convertTo:科技显示
+pos: 0.1
+displayRemainingStockpile: false
+highPriorityQueue: true
+isActive:if self.resource(type="tec",greaterThan=0) and not self.resource(type="1科技-战斗1",greaterThan=0) 
+
+showMessageToPlayer:LV1空军科技战斗机机身l研发完成
+[action_2科技-战斗2]
+#price:2科技-战斗2=1,tecA2=1,tecLV2=1  
+  
+text:lv2.战斗机机身Ⅱ
+description:需求科技2级，前置科技:战斗机机身Ⅰ
+buildSpeed: 180s
+convertTo:科技显示
+pos: 0.1
+displayRemainingStockpile: false
+highPriorityQueue: true
+isActive:if self.resource(type="tec",greaterThan=0) and self.resource(type="1科技-战斗1",greaterThan=0) and not self.resource(type="2科技-战斗2",greaterThan=0) 
+
+showMessageToPlayer:LV2空军科技战斗机机身ll研发完成
+[action_3科技-战斗3]
+#price:3科技-战斗3=1,tecA3=1,tecLV3=1  
+  
+text:lv3.战斗机机身Ⅲ
+description:需求科技3级，前置科技:战斗机机身Ⅱ
+buildSpeed: 180s
+convertTo:科技显示
+pos: 0.1
+displayRemainingStockpile: false
+highPriorityQueue: true
+isActive:if self.resource(type="tec",greaterThan=0) and not self.resource(type="3科技-战斗3",greaterThan=0) and self.resource(type="2科技-战斗2",greaterThan=0) 
+
+showMessageToPlayer:LV3空军科技战斗机机身lll研发完成
+[action_3科技-战斗4喷气]
+#price:3科技-战斗4喷气=1,tecA3=1,tecLV3=1  
+  
+text:lv3.战斗机机身Ⅳ(喷气)
+description:需求科技3级，前置科技:战斗机机身Ⅲ
+buildSpeed: 180s
+convertTo:科技显示
+pos: 0.1
+displayRemainingStockpile: false
+highPriorityQueue: true
+isActive:if self.resource(type="tec",greaterThan=0) and not self.resource(type="3科技-战斗4喷气",greaterThan=0) and self.resource(type="3科技-战斗3",greaterThan=0) 
+
+showMessageToPlayer:LV3空军科技战斗机机身lV研发完成
+[action_3科技-战斗5]
+#price:3科技-战斗5=1,tecA3=1,tecLV3=1  
+  
+text:lv3.战斗机机身Ⅴ(双发喷气)
+description:需求科技3级，前置科技:战斗机机身Ⅳ(喷气)
+buildSpeed: 180s
+convertTo:科技显示
+pos: 0.1
+displayRemainingStockpile: false
+highPriorityQueue: true
+isActive:if self.resource(type="tec",greaterThan=0) and not self.resource(type="3科技-战斗5",greaterThan=0) and self.resource(type="3科技-战斗4喷气",greaterThan=0) 
+
+showMessageToPlayer:LV3空军科技战斗机机身V研发完成
+[action_4科技-战斗6]
+#price:4科技-战斗6=1,tecA4=1,tecLV4=1  
+  
+text:lv4.战斗机机身Ⅵ(双发喷气)
+description:需求科技4级，前置科技:战斗机机身Ⅴ(双发喷气)
+buildSpeed: 180s
+convertTo:科技显示
+pos: 0.1
+displayRemainingStockpile: false
+highPriorityQueue: true
+isActive:if self.resource(type="tec",greaterThan=0) and not self.resource(type="4科技-战斗6",greaterThan=0) and self.resource(type="3科技-战斗5",greaterThan=0) 
+
+showMessageToPlayer:LV4空军科技战斗机机身Vl研发完成
+[action_4科技-隐身机身1]
+#price:4科技-隐身机身1=1,tecA4=1,tecLV4=1  
+  
+text:lv4.战斗机机身Ⅶ(隐身Ⅰ)
+description:需求科技4级，前置科技:战斗机机身Ⅵ(双发喷气)
+buildSpeed: 180s
+convertTo:科技显示
+pos: 0.1
+displayRemainingStockpile: false
+highPriorityQueue: true
+isActive:if self.resource(type="tec",greaterThan=0) and not self.resource(type="4科技-隐身机身1",greaterThan=0) and self.resource(type="4科技-战斗6",greaterThan=0) 
+
+showMessageToPlayer:LV4空军科技战斗机机身Vll（隐身l)研发完成
+[action_5科技-隐身机身2]
+#price:5科技-隐身机身2=1,tecA5=1,tecLV5=1  
+  
+text:lv5.战斗机机身Ⅷ(隐身Ⅱ)
+description:需求科技5级，前置科技:战斗机机身Ⅶ(隐身Ⅰ)
+buildSpeed: 180s
+convertTo:科技显示
+pos: 0.1
+displayRemainingStockpile: false
+highPriorityQueue: true
+isActive:if self.resource(type="tec",greaterThan=0) and not self.resource(type="5科技-隐身机身2",greaterThan=0) and self.resource(type="4科技-隐身机身1",greaterThan=0) 
+
+showMessageToPlayer:LV5空军科技战斗机机身Vlll（隐身ll)研发完成
+[action_1科技-2发机身1]
+#price:1科技-2发机身1=1,tecA1=1,tecLV1=1  
+  
+text:lv1.双发大飞机机身Ⅰ
+description:需求科技1级，前置科技:战斗机机身Ⅰ
+buildSpeed: 180s
+convertTo:科技显示
+pos: 0.1
+displayRemainingStockpile: false
+highPriorityQueue: true
+isActive:if self.resource(type="tec",greaterThan=0) and not self.resource(type="1科技-2发机身1",greaterThan=0) and self.resource(type="1科技-战斗1",greaterThan=0) 
+
+showMessageToPlayer:LV1空军科技双发大飞机机身l研发完成
+[action_2科技-多发动机机身2]
+#price:2科技-多发动机机身2=1,tecA2=1,tecLV2=1  
+  
+text:lv2.双发/四发大飞机机身Ⅱ
+description:需求科技2级，前置科技:双发大飞机机身Ⅰ，四发大飞机机身Ⅰ
+buildSpeed: 180s
+convertTo:科技显示
+pos: 0.1
+displayRemainingStockpile: false
+highPriorityQueue: true
+isActive:if self.resource(type="tec",greaterThan=0) and not self.resource(type="2科技-多发动机机身2",greaterThan=0) and self.resource(type="1科技-2发机身1",greaterThan=0) and self.resource(type="1科技-4发机身1",greaterThan=0) 
+
+showMessageToPlayer:LV2空军科技双发/四发大飞机机身ll研发完成
+[action_4科技-2发机身3]
+#price:4科技-2发机身3=1,tecA4=1,tecLV4=1  
+  
+text:lv4.双发大飞机机身Ⅲ
+description:需求科技4级，前置科技:双发大飞机机身Ⅱ
+buildSpeed: 180s
+convertTo:科技显示
+pos: 0.1
+displayRemainingStockpile: false
+highPriorityQueue: true
+isActive:if self.resource(type="tec",greaterThan=0) and not self.resource(type="4科技-2发机身3",greaterThan=0) and self.resource(type="2科技-多发动机机身2",greaterThan=0) 
+
+showMessageToPlayer:LV4空军科技双发大飞机机身Ⅲ研发完成
+[action_1科技-4发机身1]
+#price:1科技-4发机身1=1,tecA1=1,tecLV1=1  
+  
+text:lv1.四发大飞机机身Ⅰ
+description:需求科技1级，前置科技:双发大飞机机身Ⅰ
+buildSpeed: 180s
+convertTo:科技显示
+pos: 0.1
+displayRemainingStockpile: false
+highPriorityQueue: true
+isActive:if self.resource(type="tec",greaterThan=0) and not self.resource(type="1科技-2发机身1",greaterThan=0) 
+
+showMessageToPlayer:LV1空军科技四发大飞机机身Ⅰ研发完成
+[action_4科技-4发机身3活塞]
+#price:4科技-4发机身3活塞=1,tecA4=1,tecLV4=1  
+  
+text:lv4.四发大飞机机身Ⅲ(活塞螺旋桨式)
+description:需求科技4级，前置科技:四发大飞机机身Ⅱ
+buildSpeed: 180s
+convertTo:科技显示
+pos: 0.1
+displayRemainingStockpile: false
+highPriorityQueue: true
+isActive:if self.resource(type="tec",greaterThan=0) and not self.resource(type="4科技-4发机身3活塞",greaterThan=0) and self.resource(type="2科技-多发动机机身2",greaterThan=0) 
+
+showMessageToPlayer:LV4空军科技研发完成
+[action_4科技-4发机身3喷气]
+#price:4科技-4发机身3喷气=1,tecA4=1,tecLV4=1  
+  
+text:lv4.四发大飞机机身Ⅲ(喷气式)
+description:需求科技4级，前置科技:四发大飞机机身Ⅱ
+buildSpeed: 180s
+convertTo:科技显示
+pos: 0.1
+displayRemainingStockpile: false
+highPriorityQueue: true
+isActive:if self.resource(type="tec",greaterThan=0) and not self.resource(type="4科技-4发机身3喷气",greaterThan=0) and self.resource(type="2科技-多发动机机身2",greaterThan=0) 
+
+showMessageToPlayer:LV4空军科技四发大飞机机身Ⅲ(喷气式)研发完成
+[action_2科技-双体机身]
+#price:2科技-双体机身=1,tecA2=1,tecLV2=1  
+  
+text:lv2.双体机身
+description:需求科技级，前置科技:战斗机机身Ⅱ
+buildSpeed: 180s
+convertTo:科技显示
+pos: 0.1
+displayRemainingStockpile: false
+highPriorityQueue: true
+isActive:if self.resource(type="tec",greaterThan=0) and not self.resource(type="2科技-双体机身",greaterThan=0) and self.resource(type="2科技-战斗2",greaterThan=0) 
+
+showMessageToPlayer:LV2空军科技双体机身研发完成
+[action_3科技-直升机1]
+#price:3科技-直升机1=1,tecA3=1,tecLV3=1  
+  
+text:lv3.直升机机身
+description:需求科技3级，前置科技:无
+buildSpeed: 180s
+convertTo:科技显示
+pos: 0.1
+displayRemainingStockpile: false
+highPriorityQueue: true
+isActive:if self.resource(type="tec",greaterThan=0) and not self.resource(type="3科技-直升机1",greaterThan=0) 
+
+showMessageToPlayer:LV3空军科技直升机机身研发完成
+[action_4科技-地效飞行器机身]
+#price:4科技-地效飞行器机身=1,tecA4=1,tecLV4=1  
+  
+text:lv4.地效飞行器机身
+description:需求科技4级，前置科技:四发大飞机机身Ⅲ(喷气式)
+buildSpeed: 180s
+convertTo:科技显示
+pos: 0.1
+displayRemainingStockpile: false
+highPriorityQueue: true
+isActive:if self.resource(type="tec",greaterThan=0) and not self.resource(type="4科技-地效飞行器机身",greaterThan=0) and self.resource(type="4科技-4发机身3喷气",greaterThan=0) 
+
+showMessageToPlayer:LV4空军科技地效飞行器机身研发完成
+[action_1科技-射击调节器]
+#price:1科技-射击调节器=1,tecA1=1,tecLV1=1  
+  
+text:lv1.射击调节器
+description:需求科技1级，前置科技:翼炮Ⅰ
+buildSpeed: 180s
+convertTo:科技显示
+pos: 0.1
+displayRemainingStockpile: false
+highPriorityQueue: true
+isActive:if self.resource(type="tec",greaterThan=0) and not self.resource(type="1科技-射击调节器",greaterThan=0) and self.resource(type="1科技-翼炮1",greaterThan=0)
+
+showMessageToPlayer:LV1空军科技射击调节器研发完成
+[action_1科技-着舰钩]
+#price:1科技-着舰钩=1,tecA1=1,tecLV1=1  
+  
+text:lv1.着舰钩
+description:需求科技1级，前置科技:无
+buildSpeed: 180s
+convertTo:科技显示
+pos: 0.1
+displayRemainingStockpile: false
+highPriorityQueue: true
+isActive:if self.resource(type="tec",greaterThan=0) and not self.resource(type="1科技-着舰钩",greaterThan=0) 
+
+showMessageToPlayer:LV1空军科技着舰钩研发完成
+[action_1科技-曳光弹]
+#price:1科技-曳光弹=1,tecA1=1,tecLV1=1  
+  
+text:lv1.曳光弹&照明弹
+description:需求科技1级，前置科技:轴炮Ⅰ,航弹Ⅰ
+buildSpeed: 180s
+convertTo:科技显示
+pos: 0.1
+displayRemainingStockpile: false
+highPriorityQueue: true
+isActive:if self.resource(type="tec",greaterThan=0) and not self.resource(type="1科技-曳光弹",greaterThan=0) and self.resource(type="1科技-轴炮1",greaterThan=0) and self.resource(type="1科技-航弹1",greaterThan=0) 
+
+showMessageToPlayer:LV1空军科技曳光弹&照明弹研发完成
+[action_2科技-副油箱]
+#price:2科技-副油箱=1,tecA2=1,tecLV2=1  
+  
+text:lv2.副油箱
+description:需求科技2级，前置科技:战斗机机身Ⅱ
+buildSpeed: 180s
+convertTo:科技显示
+pos: 0.1
+displayRemainingStockpile: false
+highPriorityQueue: true
+isActive:if self.resource(type="tec",greaterThan=0) and not self.resource(type="2科技-副油箱",greaterThan=0) and self.resource(type="2科技-战斗2",greaterThan=0) 
+
+showMessageToPlayer:LV2空军科技副油箱研发完成
+[action_3科技-机载雷达1]
+#price:3科技-机载雷达1=1,tecA3=1,tecLV3=1  
+  
+text:lv3.机载雷达Ⅰ
+description:需求科技3级，前置科技:双发大飞机机身Ⅱ
+buildSpeed: 180s
+convertTo:科技显示
+pos: 0.1
+displayRemainingStockpile: false
+highPriorityQueue: true
+isActive:if self.resource(type="tec",greaterThan=0) and not self.resource(type="3科技-机载雷达1",greaterThan=0) and self.resource(type="2科技-多发动机机身2",greaterThan=0) 
+
+showMessageToPlayer:LV3空军科技机载雷达Ⅰ研发完成
+[action_4科技-机载雷达2]
+#price:4科技-机载雷达2=1,tecA4=1,tecLV4=1  
+  
+text:lv4.机载雷达Ⅱ
+description:需求科技4级，前置科技:战斗机机身Ⅵ，机载雷达Ⅰ
+buildSpeed: 180s
+convertTo:科技显示
+pos: 0.1
+displayRemainingStockpile: false
+highPriorityQueue: true
+isActive:if self.resource(type="tec",greaterThan=0) and not self.resource(type="4科技-机载雷达2",greaterThan=0) and self.resource(type="4科技-战斗6",greaterThan=0) and self.resource(type="3科技-机载雷达1",greaterThan=0) 
+
+showMessageToPlayer:LV4空军科技机载雷达Ⅱ研发完成
+[action_4科技-机载相控阵1]
+#price:4科技-机载相控阵1=1,tecA4=1,tecLV4=1  
+  
+text:lv4.机载相控阵雷达Ⅰ
+description:需求科技4级，前置科技:机载雷达Ⅱ
+buildSpeed: 180s
+convertTo:科技显示
+pos: 0.1
+displayRemainingStockpile: false
+highPriorityQueue: true
+isActive:if self.resource(type="tec",greaterThan=0) and not self.resource(type="4科技-机载相控阵1",greaterThan=0) and self.resource(type="4科技-机载雷达2",greaterThan=0) 
+
+showMessageToPlayer:LV4空军科技机载相控阵雷达Ⅰ研发完成
+[action_5科技-机载相控阵2]
+#price:5科技-机载相控阵2=1,tecA5=1,tecLV5=1  
+  
+text:lv5.机载相控阵雷达Ⅱ
+description:需求科技5级，前置科技:机载相控阵雷达Ⅰ
+buildSpeed: 180s
+convertTo:科技显示
+pos: 0.1
+displayRemainingStockpile: false
+highPriorityQueue: true
+isActive:if self.resource(type="tec",greaterThan=0) and not self.resource(type="5科技-机载相控阵2",greaterThan=0) and self.resource(type="4科技-机载相控阵1",greaterThan=0) 
+
+showMessageToPlayer:LV5空军科技机载相控阵雷达Ⅱ研发完成
+[action_3科技-对潜探照灯]
+#price:3科技-对潜探照灯=1,tecA3=1,tecLV3=1  
+  
+text:lv3.对潜探照灯(利式探照灯)
+description:需求科技3级，前置科技:双发大飞机机身Ⅱ
+buildSpeed: 180s
+convertTo:科技显示
+pos: 0.1
+displayRemainingStockpile: false
+highPriorityQueue: true
+isActive:if self.resource(type="tec",greaterThan=0) and not self.resource(type="3科技-对潜探照灯",greaterThan=0) and self.resource(type="2科技-多发动机机身2",greaterThan=0) 
+
+showMessageToPlayer:LV3空军科技对潜探照灯(利式探照灯)研发完成
+[action_4科技-机载声呐1]
+#price:4科技-机载声呐1=1,tecA4=1,tecLV4=1  
+  
+text:lv4.机载声呐Ⅰ
+description:需求科技4级，前置科技:双发大飞机机身Ⅲ
+buildSpeed: 180s
+convertTo:科技显示
+pos: 0.1
+displayRemainingStockpile: false
+highPriorityQueue: true
+isActive:if self.resource(type="tec",greaterThan=0) and not self.resource(type="4科技-机载声呐1",greaterThan=0) and self.resource(type="4科技-2发机身3",greaterThan=0) 
+
+showMessageToPlayer:LV4空军科技机载声呐Ⅰ研发完成
+[action_5科技-机载声呐2]
+#price:5科技-机载声呐2=1,tecA5=1,tecLV5=1  
+  
+text:lv5.机载声呐Ⅱ
+description:需求科技5级，前置科技:机载声呐Ⅰ
+buildSpeed: 180s
+convertTo:科技显示
+pos: 0.1
+displayRemainingStockpile: false
+highPriorityQueue: true
+isActive:if self.resource(type="tec",greaterThan=0) and not self.resource(type="5科技-机载声呐2",greaterThan=0) and self.resource(type="4科技-机载声呐1",greaterThan=0) 
+
+showMessageToPlayer:LV5空军科技机载声呐Ⅰl研发完成
+[action_3科技-鸭翼]
+#price:3科技-鸭翼=1,tecA3=1,tecLV3=1  
+  
+text:lv3.鸭翼
+description:需求科技3级，前置科技:战斗机机身Ⅴ
+buildSpeed: 180s
+convertTo:科技显示
+pos: 0.1
+displayRemainingStockpile: false
+highPriorityQueue: true
+isActive:if self.resource(type="tec",greaterThan=0) and not self.resource(type="3科技-鸭翼",greaterThan=0) and self.resource(type="3科技-战斗5",greaterThan=0) 
+
+showMessageToPlayer:LV3空军科技鸭翼研发完成
+[action_3科技-干扰弹]
+#price:3科技-干扰弹=1,tecA3=1,tecLV3=1  
+  
+text:lv3.干扰弹
+description:需求科技3级，前置科技:无
+buildSpeed: 180s
+convertTo:科技显示
+pos: 0.1
+displayRemainingStockpile: false
+highPriorityQueue: true
+isActive:if self.resource(type="tec",greaterThan=0) and not self.resource(type="3科技-干扰弹",greaterThan=0) 
+
+showMessageToPlayer:LV3空军科技干扰弹研发完成
+[action_4科技-电子战吊舱1]
+#price:4科技-电子战吊舱1=1,tecA4=1,tecLV4=1  
+  
+text:lv4.电子战吊舱Ⅰ
+description:需求科技4级，前置科技:战斗机机身Ⅵ
+buildSpeed: 180s
+convertTo:科技显示
+pos: 0.1
+displayRemainingStockpile: false
+highPriorityQueue: true
+isActive:if self.resource(type="tec",greaterThan=0) and not self.resource(type="4科技-电子战吊舱1",greaterThan=0) and self.resource(type="4科技-战斗6",greaterThan=0) 
+
+showMessageToPlayer:LV4空军科技电子战吊舱Ⅰ研发完成
+[action_5科技-电子战吊舱2]
+#price:5科技-电子战吊舱2=1,tecA5=1,tecLV5=1  
+  
+text:lv5.电子战吊舱Ⅱ
+description:需求科技5级，前置科技:电子战吊舱Ⅰ
+buildSpeed: 180s
+convertTo:科技显示
+pos: 0.1
+displayRemainingStockpile: false
+highPriorityQueue: true
+isActive:if self.resource(type="tec",greaterThan=0) and not self.resource(type="5科技-电子战吊舱2",greaterThan=0) and self.resource(type="4科技-电子战吊舱1",greaterThan=0) 
+
+showMessageToPlayer:LV5空军科技电子战吊舱Ⅰl研发完成
+
+
+
+

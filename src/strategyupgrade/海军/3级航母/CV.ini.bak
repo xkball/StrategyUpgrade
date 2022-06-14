@@ -1,0 +1,432 @@
+[core]
+
+name: lv3中型航空母舰
+displayDescription:可以携带7组舰载机(3甲板4机库)，拥有一部分自卫能力，不可反潜\n维护费:55资金/s(补满航空补给一共需要60000资金，相当于补给时每秒2000资金)\n参考:英国"光辉(Illustrious)"级装甲航母；美国"约克城(Yorktown)"级中型舰队航母\n\n贴图:@射程之内的真理
+class: CustomUnitMetadata
+price:850000
+maxHp:3500
+maxShield:500
+shieldRegen:0.025
+shieldDisplayOnlyDeflection:true
+shieldDeflectionDisplayRate:10
+mass:250000
+techLevel: 2
+buildSpeed:180s
+radius:30
+isBio: false
+builtFrom_1_name: 海军工厂
+builtFrom_1_pos:  9
+builtFrom_1_isLocked:if self.resource(type="3科技-中防空炮3",lessThan=1) or self.resource(type="2科技-小防空炮1",lessThan=1) or self.resource(type="3科技-蒸汽轮机3",lessThan=1) or self.resource(type="3科技-C",lessThan=1) or self.resource(type="3科技-雷达2",lessThan=1) or self.resource(type="1科技-着舰钩",lessThan=1) 
+builtFrom_1_isLockedMessage: 需求科技:lv3.现代巡洋舰船体，lv2.小口径防空炮I，lv3.舰用蒸汽轮机III，lv3.中口径防空炮III，lv3.雷达II，(空军科技)lv1.着舰钩
+selfRegenRate:0
+fogOfWarSightRange:10
+armour:4
+maxTransportingUnits:7
+transportUnitsCanUnloadUnits:true
+transportUnitsRequireTag:早期-海航飞机,早期-海航飞机-降落
+transportUnitsRequireMovementType:AIR
+transportUnitsHealBy:0.3
+tags:远洋战舰,航母1,h0
+overrideAndReplace:experiementalCarrier
+borrowResourcesWhileAlive:舰载机检测a=-5
+energyMax:300
+energyRegen:0
+[resource_航空补给]
+displayName:航空补给
+[hiddenAction_装弹1]
+autoTrigger:if self.resource(type="航空补给",lessThan=1260) and self.hasParent()
+addResources:航空补给=42,credits=-2000
+[action_showAmmo]
+#infoOnly: true
+addResources: 航空补给=1
+price:  航空补给=1
+text: 航空补给剩余
+description:目前战舰剩余多少航空补给
+displayType: none
+buildSpeed: 0s
+pos: 0.1
+displayRemainingStockpile: true
+highPriorityQueue: true
+isActive:false
+[action_攻击1]
+fireTurretXAtGround: 攻击
+text: 发动轰炸机攻击
+description:召集1000单位长度范围内所有补给完毕的舰载轰炸机对此处发动打稽(没有舰队防空任务的舰战也会参与稽群护航)
+displayType: action
+buildSpeed: 5s
+pos: 0.1
+displayRemainingStockpile: true
+highPriorityQueue: true
+onlyOneUnitAtATime: false
+[action_攻击1B]
+fireTurretXAtGround: 攻击2
+text: 发动鱼雷稽攻击
+description:召集1000单位长度范围内所有补给完毕的舰载鱼雷机对此处发动打稽(没有舰队防空任务的舰战也会参与稽群护航)
+displayType: action
+buildSpeed: 5s
+pos: 0.1
+displayRemainingStockpile: true
+highPriorityQueue: true
+onlyOneUnitAtATime: false
+[action_攻击1C]
+fireTurretXAtGround: 攻击3
+text: 发动所有舰载机攻击
+description:召集1000单位长度范围内所有补给完毕的舰载机对此处发动打稽(没有舰队防空任务的舰战也会参与稽群护航)
+displayType: action
+buildSpeed: 5s
+pos: 0.1
+displayRemainingStockpile: true
+highPriorityQueue: true
+onlyOneUnitAtATime: false
+[action_攻击2]
+text: 起飞舰战护航舰队
+description:被选中的航母搭载的舰战将会为舰队护航，自动攻稽300单位长度以内所有来犯的敌机
+displayType: action
+buildSpeed: 5s
+pos: 0.1
+highPriorityQueue: true
+onlyOneUnitAtATime: false
+convertTo:lv3中型航空母舰状态2
+[hiddenAction_满了]
+autoTrigger:if self.transportingCount(greaterThan=6)
+resetToDefaultTags:true
+[hiddenAction_还能降]
+autoTrigger:if self.transportingCount(lessThan=7)
+temporarilyAddTags:CV1
+[hiddenAction_消耗补给1]
+autoTrigger:if self.numberOfAttachedUnits(withTag="爷没满",greaterThan=0)
+addResources:航空补给=-1
+[hiddenAction_消耗补给2]
+autoTrigger:if self.numberOfAttachedUnits(withTag="爷没满",greaterThan=1)
+addResources:航空补给=-1
+[hiddenAction_消耗补给3]
+autoTrigger:if self.numberOfAttachedUnits(withTag="爷没满",greaterThan=2)
+addResources:航空补给=-1
+[hiddenAction_消耗补给4]
+autoTrigger:if self.numberOfAttachedUnits(withTag="爷没满",greaterThan=3)
+addResources:航空补给=-1
+[hiddenAction_消耗补给5]
+autoTrigger:if self.numberOfAttachedUnits(withTag="爷没满",greaterThan=4)
+addResources:航空补给=-1
+[hiddenAction_消耗补给6]
+autoTrigger:if self.numberOfAttachedUnits(withTag="爷没满",greaterThan=5)
+addResources:航空补给=-1
+[hiddenAction_消耗补给7]
+autoTrigger:if self.numberOfAttachedUnits(withTag="爷没满",greaterThan=6)
+addResources:航空补给=-1
+[hiddenAction_空了]
+autoTrigger:if self.resource(type="航空补给",lessThan=1)
+convertTo:lv3中型航空母舰-空
+[hiddenAction_回补给站]
+autoTrigger:if self.resource(type="航空补给",lessThan=1)
+alsoTriggerAction:自动返回
+[hiddenAction_自动返回]
+addWaypoint_type:loadInto
+addWaypoint_prepend: true
+addWaypoint_target_nearestUnit_team:own
+addWaypoint_target_nearestUnit_tagged:海军基地-
+[hiddenAction_脱离]
+autoTrigger:if self.resource(type="航空补给",greaterThan=1259) and self.hasParent()
+disconnectFromParent:true
+[action_selectSlot1]
+@define slotId: 1
+buildSpeed: 0s
+#text: Slot ${slotId}
+text: [
+textAddUnitName: unitRef self.attachment(slot="h1")
+textPostFix: ]
+
+descriptionAddFromUnit: unitRef self.attachment(slot="h1")
+descriptionAddUnitStats: unitRef self.attachment(slot="h1")
+
+addResources: unsetFlag=1-10, setFlag=1
+isGuiBlinking: if self.hasFlag(id=${slotId})
+displayType: action
+unitShownInUI: unitRef self.attachment(slot="h1")
+
+
+iconExtraIsVisible: if self.hasFlag(id=${slotId})
+iconExtraImage: icon_selectedh1.png
+
+pos:1
+
+
+canPlayerCancel: false
+allowMultipleInQueue: false
+
+#No confirm needed on mobile
+alwaysSinglePress: true
+
+
+#Makes the 'flags' for this unit appear to update instantly in the UI without waiting for
+#confirmation from the server. Removes sluggish feeling when switching tabs.
+#Note: If unit flags were also updated from non-ui sources this option might have visual side effects.
+extraLagHidingInUI: true
+
+
+[action_selectSlot2]
+@define slotId: 2
+@copyFromSection: action_selectSlot1
+textAddUnitName: unitRef self.attachment(slot="h2")
+addResources: unsetFlag=1-10, setFlag=2
+iconExtraImage: icon_selectedh2.png
+[action_selectSlot3]
+@define slotId: 3
+@copyFromSection: action_selectSlot1
+addResources: unsetFlag=1-10, setFlag=3
+textAddUnitName: unitRef self.attachment(slot="h3")
+iconExtraImage: icon_selectedh3.png
+[action_selectSlot4]
+@define slotId: 4
+@copyFromSection: action_selectSlot1
+addResources: unsetFlag=1-10, setFlag=4
+textAddUnitName: unitRef self.attachment(slot="h4")
+iconExtraImage: icon_selectedh4.png
+[action_selectSlot5]
+@define slotId: 5
+@copyFromSection: action_selectSlot1
+addResources: unsetFlag=1-10, setFlag=5
+textAddUnitName: unitRef self.attachment(slot="deck1")
+iconExtraImage: icon_selectedd1.png
+[action_selectSlot6]
+@define slotId: 6
+@copyFromSection: action_selectSlot1
+addResources: unsetFlag=1-10, setFlag=6
+textAddUnitName: unitRef self.attachment(slot="deck2")
+iconExtraImage: icon_selectedd2.png
+[action_selectSlot7]
+@define slotId: 7
+@copyFromSection: action_selectSlot1
+addResources: unsetFlag=1-10, setFlag=7
+textAddUnitName: unitRef self.attachment(slot="deck3")
+iconExtraImage: icon_selectedd3.png
+[attachment_h1]
+x:15
+y:48
+height:1
+isVisible:false
+isUnselectable:true
+canBeAttackedAndDamaged:false
+keepAliveWhenParentDies: false
+prioritizeParentsMainTarget:false
+addTransportedUnits:true
+resetRotationWhenNotAttacking:true
+showAllActionsFrom:if self.hasFlag(id=1)
+[attachment_h2]
+x:15
+y:24
+height:1
+isVisible:false
+isUnselectable:true
+canBeAttackedAndDamaged:false
+keepAliveWhenParentDies: false
+prioritizeParentsMainTarget:false
+addTransportedUnits:true
+resetRotationWhenNotAttacking:true
+showAllActionsFrom:if self.hasFlag(id=2)
+[attachment_h3]
+x:15
+y:0
+height:1
+isVisible:false
+isUnselectable:true
+canBeAttackedAndDamaged:false
+keepAliveWhenParentDies: false
+prioritizeParentsMainTarget:false
+addTransportedUnits:true
+resetRotationWhenNotAttacking:true
+showAllActionsFrom:if self.hasFlag(id=3)
+[attachment_h4]
+x:15
+y:-24
+height:1
+isVisible:false
+isUnselectable:true
+canBeAttackedAndDamaged:false
+keepAliveWhenParentDies: false
+prioritizeParentsMainTarget:false
+addTransportedUnits:true
+resetRotationWhenNotAttacking:true
+showAllActionsFrom:if self.hasFlag(id=4)
+[attachment_deck1]
+x:0
+y:-12
+height:1
+isVisible:true
+isUnselectable:true
+canBeAttackedAndDamaged:true
+keepAliveWhenParentDies: false
+prioritizeParentsMainTarget:false
+addTransportedUnits:true
+resetRotationWhenNotAttacking:true
+showAllActionsFrom:if self.hasFlag(id=5)
+[attachment_deck2]
+x:0
+y:-36
+height:1
+isVisible:true
+isUnselectable:true
+canBeAttackedAndDamaged:true
+keepAliveWhenParentDies: false
+prioritizeParentsMainTarget:false
+addTransportedUnits:true
+resetRotationWhenNotAttacking:true
+showAllActionsFrom:if self.hasFlag(id=6)
+[attachment_deck3]
+x:0
+y:-60
+height:1
+isVisible:true
+isUnselectable:true
+canBeAttackedAndDamaged:true
+keepAliveWhenParentDies: false
+prioritizeParentsMainTarget:false
+addTransportedUnits:true
+resetRotationWhenNotAttacking:true
+showAllActionsFrom:if self.hasFlag(id=7)
+
+
+[graphics]
+total_frames: 1
+image:CV.png
+image_wreak:  NONE
+image_turret: 130Gun_Light.png
+image_shadow: AUTO
+
+splastEffect: true
+
+[attack]
+canAttack:true
+canAttackFlyingUnits: true
+canAttackLandUnits:   true
+canAttackUnderwaterUnits: false
+aimOffsetSpread:0
+
+disablePassiveTargeting: false
+
+[turret_攻击]
+x:0
+y:0
+invisible: true
+canShoot:false
+limitingRange:900
+[turret_攻击2]
+x:0
+y:0
+invisible: true
+canShoot:false
+limitingRange:900
+projectile:1B
+[turret_攻击3]
+x:0
+y:0
+invisible: true
+canShoot:false
+limitingRange:900
+projectile:1C
+[turret_1号130mm炮塔/130GunA]
+x:12
+y:24
+turnSpeed:1.0
+#turnSpeed:1.0
+turnSpeedAcceleration:0.1
+turnSpeedDeceleration:0.1
+limitingRange:190
+delay:120
+projectile:2
+
+[turret_2号130mm炮塔/130GunB]
+x:12
+y:18
+turnSpeed:1.0
+#turnSpeed:1.0
+turnSpeedAcceleration:0.1
+turnSpeedDeceleration:0.1
+limitingRange:190
+delay:120
+projectile:2
+
+[turret_3号130mm炮塔/130GunX]
+x:12
+y:-9
+turnSpeed:1.0
+#turnSpeed:1.0
+turnSpeedAcceleration:0.1
+turnSpeedDeceleration:0.1
+limitingRange:190
+delay:120
+projectile:2
+idleDir:180
+
+[turret_4号130mm炮塔/130GunY]
+x:12
+y:-15
+turnSpeed:1.0
+#turnSpeed:1.0
+turnSpeedAcceleration:0.1
+turnSpeedDeceleration:0.1
+limitingRange:190
+delay:120
+projectile:2
+idleDir:180
+
+[projectile_发动空中致命打稽]
+image:NONE.png
+targetGround: true
+directDamage:0
+alwaysVisibleInFog: true
+speed:114514
+deflectionPower:-1
+shouldRevealFog:true
+life:114514
+explodeEffect:CUSTOM:gugugu
+spawnUnit:早期舰载机目标1*1
+[projectile_1B]
+image:NONE.png
+targetGround: true
+directDamage:0
+alwaysVisibleInFog: true
+speed:114514
+deflectionPower:-1
+shouldRevealFog:true
+life:114514
+explodeEffect:CUSTOM:gugugu
+spawnUnit:早期舰载机目标2*1
+[projectile_1C]
+image:NONE.png
+targetGround: true
+directDamage:0
+alwaysVisibleInFog: true
+speed:114514
+deflectionPower:-1
+shouldRevealFog:true
+life:114514
+explodeEffect:CUSTOM:gugugu
+spawnUnit:早期舰载机目标3*1
+[effect_gugugu]
+life: 0
+hOffset: 0
+dirOffset: 0
+fadeInTime: 0
+fadeOut: false
+attachedToUnit: true
+image:NONE.png
+total_frames: 1
+[projectile_2]
+directDamage: 60
+life:120
+speed:5
+image:A_AP_Shell.png
+drawSize:0.6
+
+[arm_1]
+x:12
+y:7
+image_end:Radar_Large.png
+drawOverBody: true
+spinRate:5
+[movement]
+movementType: WATER
+moveSpeed: 0.48
+moveAccelerationSpeed: 0.3
+moveDecelerationSpeed: 0.3

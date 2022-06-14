@@ -1,0 +1,682 @@
+[core]
+
+
+name: 导弹护卫舰-开火
+
+
+class: CustomUnitMetadata
+price: 6000
+maxHp: 300
+mass: 40000
+
+techLevel: 2
+buildSpeed: 46s
+#availableInDemo: true
+tags:小型舰艇,h0
+radius: 30
+displayRadius: 30
+armour:4
+isBio: false
+softCollisionOnAll: 0
+selfRegenRate:0.02
+fogOfWarSightRange: 20
+energyMax:60
+energyRegen:1
+energyNeedsToRechargeToFull:true
+generation_credits:-170
+generation_delay:60
+[resource_AS]
+displayName:反舰导弹
+[resource_AA]
+displayName:防空导弹
+[resource_CIWS]
+displayName:近防炮炮弹
+[resource_FQF]
+displayName:反潜火箭
+[action_showAmmo1]
+#infoOnly: true
+addResources: AS=1
+price:  AS=1
+text: 反舰/对地导弹剩余
+description:目前战舰还剩余多少反舰/对地导弹
+displayType: none
+buildSpeed: 0s
+pos: 0.1
+displayRemainingStockpile: true
+highPriorityQueue: true
+isActive:false
+[action_showAmmo2]
+#infoOnly: true
+addResources: AA=1
+price:  AA=1
+text: 防空导弹剩余
+description:目前战舰还剩余多少防空导弹
+displayType: none
+buildSpeed: 0s
+pos: 0.1
+displayRemainingStockpile: true
+highPriorityQueue: true
+isActive:false
+[action_showAmmo3]
+#infoOnly: true
+addResources: ammo=1
+price:  ammo=1
+text: 主炮炮弹剩余
+description:目前战舰还剩余多少舰炮炮弹
+displayType: none
+buildSpeed: 0s
+pos: 0.1
+displayRemainingStockpile: true
+highPriorityQueue: true
+isActive:false
+[action_showAmmo4]
+#infoOnly: true
+addResources: CIWS=1
+price:  CIWS=1
+text: 近防炮炮弹剩余
+description:目前战舰还剩余多少近防炮炮弹
+displayType: none
+buildSpeed: 0s
+pos: 0.1
+displayRemainingStockpile: true
+highPriorityQueue: true
+isActive:false
+[action_showAmmo5]
+#infoOnly: true
+addResources: FQF=1
+price:  FQF=1
+text: 反潜火箭弹剩余
+description:目前战舰还剩余多少反潜火箭弹
+displayType: none
+buildSpeed: 0s
+pos: 0.1
+displayRemainingStockpile: true
+highPriorityQueue: true
+isActive:false
+[action_stopFire]
+convertTo: 导弹护卫舰
+displayType: action
+price:  0
+text:复位
+buildSpeed: 1s
+whenBuilding_cannotMove: true
+whenBuilding_temporarilyConvertTo:导弹护卫舰
+alwaysSinglePress: true
+[action_stopFire2]
+convertTo: 导弹护卫舰
+displayType: action
+price:  0
+text:复位+返航
+buildSpeed: 1s
+whenBuilding_cannotMove: true
+whenBuilding_temporarilyConvertTo:导弹护卫舰
+alsoTriggerAction:返回
+alwaysSinglePress: true
+[hiddenAction_返回]
+addWaypoint_type:loadInto
+addWaypoint_prepend: true
+addWaypoint_target_nearestUnit_team:own
+addWaypoint_target_nearestUnit_tagged:海军基地-
+[graphics]
+total_frames: 1
+
+image:        FFG_Atta.png
+image_wreak:FFG_Sink.png
+image_turret: 76mm_Modern_Gun.png
+
+
+imageScale:0.67
+turretImageScale:0.45
+
+image_shadow: AUTO
+shadowOffsetX:1
+shadowOffsetY:1
+
+
+
+splastEffect: true
+[attack]
+canAttack: true
+canAttackFlyingUnits: true
+canAttackLandUnits:   true
+canAttackUnderwaterUnits: true
+
+turretSize: 20
+turretTurnSpeed: 10
+
+
+maxAttackRange: 750
+shootDelay: 60
+
+turretMultiTargeting: true
+[turret_1]
+x: 0
+y: 35
+turnSpeed: 3
+#turnSpeed: 3
+turnSpeedAcceleration: 1
+turnSpeedDeceleration: 1
+canAttackFlyingUnits: true
+projectile:1
+delay:40
+limitingRange:240
+canAttackUnderwaterUnits:false
+resourceUsage: ammo=1
+[turret_CIWS1]
+x:0
+y:17
+image:CIWS.png
+turnSpeed: 50
+#turnSpeed: 10
+turnSpeedAcceleration: 50
+turnSpeedDeceleration: 50
+delay:1
+limitingRange:70
+canAttackLandUnits:false
+canAttackFlyingUnits:false
+canAttackUnderwaterUnits:false
+#laserDefenceEnergyUse:1
+projectile:3
+resourceUsage: CIWS=800
+interceptProjectiles_withTags:弹A,弹Z2
+interceptProjectiles_andUnderDistance: 70
+interceptProjectiles_andOverHeight:0
+[turret_CIWS2]
+x:0
+y:2
+invisible:true
+turnSpeed: 50
+turnSpeedAcceleration: 50
+turnSpeedDeceleration: 50
+limitingRange:70
+canAttackLandUnits:false
+canAttackFlyingUnits:false
+canAttackUnderwaterUnits:false
+resourceUsage: CIWS=100
+interceptProjectiles_withTags:弹B
+interceptProjectiles_andUnderDistance: 100
+interceptProjectiles_andTargetingGroundUnderDistance: 70
+interceptProjectiles_andOverHeight:0
+attachedTo:CIWS1
+projectile:3
+[turret_CIWS3]
+x:0
+y:2
+invisible:true
+turnSpeed: 50
+turnSpeedAcceleration: 50
+turnSpeedDeceleration: 50
+limitingRange:70
+canAttackLandUnits:false
+canAttackFlyingUnits:false
+canAttackUnderwaterUnits:false
+resourceUsage: CIWS=100
+interceptProjectiles_withTags:弹B
+interceptProjectiles_andUnderDistance: 70
+interceptProjectiles_andOverHeight:0
+attachedTo:CIWS1
+projectile:3
+[turret_CIWS4]
+x:0
+y:2
+invisible:true
+turnSpeed: 50
+turnSpeedAcceleration: 50
+turnSpeedDeceleration: 50
+limitingRange:70
+canAttackLandUnits:false
+canAttackFlyingUnits:false
+canAttackUnderwaterUnits:false
+resourceUsage: CIWS=300
+interceptProjectiles_withTags:弹C,弹Z1
+interceptProjectiles_andUnderDistance: 70
+interceptProjectiles_andOverHeight:0
+attachedTo:CIWS1
+projectile:3
+[turret_4]
+x: 0
+y: -45
+turnSpeed: 3
+invisible:true
+canAttackLandUnits:   true
+canAttackUnderwaterUnits: false
+canAttackFlyingUnits:false
+projectile:4
+resourceUsage: AS=1
+delay:40
+[turret_5]
+x: 0
+y: 22
+turnSpeed: 3
+invisible:true
+canAttackLandUnits:   false
+canAttackUnderwaterUnits: false
+canAttackFlyingUnits:true
+projectile:5
+resourceUsage: AA=1,energy=60
+limitingRange:450
+
+[turret_p1]
+x: 0
+y: 22
+turnSpeed: 3
+invisible:true
+canAttackLandUnits:   false
+canAttackUnderwaterUnits: false
+canAttackFlyingUnits:false
+projectile:5a
+resourceUsage: AA=1,energy=60
+interceptProjectiles_withTags:弹A
+interceptProjectiles_andUnderDistance: 300
+interceptProjectiles_andOverHeight:49
+
+[turret_p2]
+x: 0
+y: 22
+turnSpeed: 3
+invisible:true
+canAttackLandUnits:   false
+canAttackUnderwaterUnits: false
+canAttackFlyingUnits:false
+projectile:5c
+resourceUsage: AA=1,energy=60
+interceptProjectiles_withTags:弹C
+interceptProjectiles_andUnderDistance: 300
+interceptProjectiles_andOverHeight:49
+
+[turret_pz1]
+x: 0
+y: 22
+turnSpeed: 3
+invisible:true
+canAttackLandUnits:   false
+canAttackUnderwaterUnits: false
+canAttackFlyingUnits:false
+projectile:5z1
+resourceUsage: AA=1,energy=60
+interceptProjectiles_withTags:弹Z1
+interceptProjectiles_andUnderDistance: 300
+interceptProjectiles_andOverHeight:49
+
+[turret_pz2]
+x: 0
+y: 22
+turnSpeed: 3
+invisible:true
+canAttackLandUnits:   false
+canAttackUnderwaterUnits: false
+canAttackFlyingUnits:false
+projectile:5z2
+resourceUsage: AA=1,energy=60
+interceptProjectiles_withTags:弹Z2
+interceptProjectiles_andUnderDistance: 300
+interceptProjectiles_andOverHeight:49
+
+[turret_fqf1]
+x: -2
+y: 45
+delay:30
+image:FQF.png
+turnSpeed: 1
+#turnSpeed: 0.5
+turnSpeedAcceleration: 0.5
+turnSpeedDeceleration: 0.5
+limitingRange:180
+canAttackLandUnits:false
+canAttackFlyingUnits:false
+projectile:rocket
+resourceUsage: FQF=1
+[turret_fqf2]
+x: 2
+y: 45
+delay:30
+image:FQF.png
+turnSpeed: 1
+#turnSpeed: 0.5
+turnSpeedAcceleration: 0.5
+turnSpeedDeceleration: 0.5
+limitingRange:180
+canAttackLandUnits:false
+canAttackFlyingUnits:false
+projectile:rocket
+resourceUsage: FQF=1
+[projectile_1]
+image:A_AP_Shell.png
+directDamage:55
+life:120
+speed:3
+drawSize:0.5
+shieldDamageMultiplier: 1
+shieldDefectionMultiplier: 0.1
+[projectile_3]
+directDamage:60
+life:120
+speed:15
+frame:5
+
+[projectile_4]
+directDamage:10
+areaDamage:280
+areaRadius:15
+life:300
+image:S-S_M.png
+speed: 0.6
+targetSpeed: 7
+targetSpeedAcceleration:0.6
+trailEffect: true
+largeHitEffect: true
+deflectionPower:1
+lightColor: #FFEEEE00
+lightSize: 1
+autoTargetingOnDeadTarget: true
+drawSize:0.55
+tags:弹A
+initialUnguidedSpeedHeight: 2
+lightCastOnGround: false
+gravity:0.18
+areaDamageNoFalloff:true
+mutator1_ifUnitWithTags:重装甲
+mutator1_areaDamageMultiplier:3
+mutator2_ifUnitWithTags:中型舰艇
+mutator2_areaDamageMultiplier:0.6
+mutator7_ifUnitWithTags:大型舰艇
+mutator7_areaDamageMultiplier:0.4
+mutator4_ifUnitWithTags:无装甲
+mutator4_areaDamageMultiplier:10
+mutator5_ifUnitWithTags:轻装甲
+mutator5_areaDamageMultiplier:5
+mutator6_ifUnitWithTags:中装甲
+mutator6_areaDamageMultiplier:4
+mutator3_ifUnitWithTags:步兵
+mutator3_areaDamageMultiplier:0.48
+mutator8_ifUnitWithTags:小型舰艇
+mutator8_areaDamageMultiplier:1
+buildingDamageMultiplier: 1.5
+
+[projectile_5]
+areaDamage:600
+areaRadius:50
+life:300
+image:S-A_M.png
+speed: 0.6
+targetSpeed: 7
+targetSpeedAcceleration:0.6
+trailEffect: true
+largeHitEffect: true
+ballistic: true
+ballistic_delaymove_height:10
+ballistic_height: 30
+deflectionPower:-1
+lightColor: #FFEEEE00
+lightSize: 1
+drawSize:0.6
+tags:现代aam
+mutator1_ifUnitWithTags:maD
+mutator1_areaDamageMultiplier:1
+mutator2_ifUnitWithTags:maC
+mutator2_areaDamageMultiplier:0.9
+mutator7_ifUnitWithTags:maB
+mutator7_areaDamageMultiplier:0.8
+mutator4_ifUnitWithTags:maA
+mutator4_areaDamageMultiplier:0.8
+mutator5_ifUnitWithTags:maS
+mutator5_areaDamageMultiplier:0.7
+
+[projectile_5a]
+areaDamage:600
+areaRadius:50
+life:0
+image:S-A_M.png
+speed: 0.6
+targetSpeed: 7
+targetSpeedAcceleration:0.6
+trailEffect: true
+largeHitEffect: true
+ballistic: true
+ballistic_delaymove_height:10
+ballistic_height: 30
+deflectionPower:-1
+lightColor: #FFEEEE00
+lightSize: 1
+drawSize:0.6
+spawnProjectilesOnCreate:l5a
+
+[projectile_5c]
+areaDamage:600
+areaRadius:50
+life:0
+image:S-A_M.png
+speed: 0.6
+targetSpeed: 7
+targetSpeedAcceleration:0.6
+trailEffect: true
+largeHitEffect: true
+ballistic: true
+ballistic_delaymove_height:10
+ballistic_height: 30
+deflectionPower:-1
+lightColor: #FFEEEE00
+lightSize: 1
+drawSize:0.6
+spawnProjectilesOnCreate:l5c
+
+[projectile_5z1]
+areaDamage:600
+areaRadius:50
+life:0
+image:S-A_M.png
+speed: 0.6
+targetSpeed: 7
+targetSpeedAcceleration:0.6
+trailEffect: true
+largeHitEffect: true
+ballistic: true
+ballistic_delaymove_height:10
+ballistic_height: 30
+deflectionPower:-1
+lightColor: #FFEEEE00
+lightSize: 1
+drawSize:0.6
+spawnProjectilesOnCreate:l5z1
+
+[projectile_5z2]
+areaDamage:600
+areaRadius:50
+life:0
+image:S-A_M.png
+speed: 0.6
+targetSpeed: 7
+targetSpeedAcceleration:0.6
+trailEffect: true
+largeHitEffect: true
+ballistic: true
+ballistic_delaymove_height:10
+ballistic_height: 30
+deflectionPower:-1
+lightColor: #FFEEEE00
+lightSize: 1
+drawSize:0.6
+spawnProjectilesOnCreate:l5z2
+
+[projectile_l5a]
+areaDamage:600
+areaRadius:50
+life:0
+image:S-A_M.png
+speed: 0.6
+targetSpeed: 7
+targetSpeedAcceleration:0.6
+trailEffect: true
+largeHitEffect: true
+ballistic: true
+ballistic_delaymove_height:10
+ballistic_height: 30
+deflectionPower:-1
+lightColor: #FFEEEE00
+lightSize: 1
+drawSize:0.6
+spawnUnit:拦截1(spawnChance=0.6,maxSpawnLimit=1)
+explodeOnEndOfLife:true
+
+[projectile_l5c]
+areaDamage:600
+areaRadius:50
+life:0
+image:S-A_M.png
+speed: 0.6
+targetSpeed: 7
+targetSpeedAcceleration:0.6
+trailEffect: true
+largeHitEffect: true
+ballistic: true
+ballistic_delaymove_height:10
+ballistic_height: 30
+deflectionPower:-1
+lightColor: #FFEEEE00
+lightSize: 1
+drawSize:0.6
+spawnUnit:拦截2(spawnChance=0.9,maxSpawnLimit=1)
+explodeOnEndOfLife:true
+
+[projectile_l5z1]
+areaDamage:600
+areaRadius:50
+life:0
+image:S-A_M.png
+speed: 0.6
+targetSpeed: 7
+targetSpeedAcceleration:0.6
+trailEffect: true
+largeHitEffect: true
+ballistic: true
+ballistic_delaymove_height:10
+ballistic_height: 30
+deflectionPower:-1
+lightColor: #FFEEEE00
+lightSize: 1
+drawSize:0.6
+spawnUnit:拦截z1(spawnChance=0.8,maxSpawnLimit=1)
+explodeOnEndOfLife:true
+
+[projectile_l5z2]
+areaDamage:600
+areaRadius:50
+life:0
+image:S-A_M.png
+speed: 0.6
+targetSpeed: 7
+targetSpeedAcceleration:0.6
+trailEffect: true
+largeHitEffect: true
+ballistic: true
+ballistic_delaymove_height:10
+ballistic_height: 30
+deflectionPower:-1
+lightColor: #FFEEEE00
+lightSize: 1
+drawSize:0.6
+spawnUnit:拦截z2(spawnChance=0.4,maxSpawnLimit=1)
+explodeOnEndOfLife:true
+
+[projectile_rocket]
+areaDamage:50
+areaRadius:25
+life:600
+speed: 0.6
+targetSpeed: 1.5
+targetSpeedAcceleration:0.6
+trailEffect: true
+drawSize: 0.45
+image:rocket.png
+largeHitEffect: true
+[movement]
+movementType: WATER
+moveSpeed: 0.46
+moveAccelerationSpeed: 0.4
+moveDecelerationSpeed: 0.4
+maxTurnSpeed: 0.85
+turnAcceleration: 0.7
+
+moveIgnoringBody:true
+[action_打开战术策略规划]
+addResources: setFlag=1
+isGuiBlinking: if self.hasFlag(id=1)
+displayType: action
+text:打开补给规划菜单
+alwaysSinglePress: true
+allowMultipleInQueue: false
+buildSpeed: 0s
+[action_补给-导弹или全部-导弹]
+text:所有导弹补给完后脱离
+addResources:setFlag=10
+isVisible:if self.hasFlag(id=1)
+isGuiBlinking: if self.hasFlag(id=10)
+[action_补给-炮弹или全部-всё]
+text:全部弹药补给完后脱离
+addResources:unsetFlag=10
+isVisible:if self.hasFlag(id=1)
+isGuiBlinking: if not self.hasFlag(id=10)
+[action_返航-导弹0]
+text:反舰导弹为0返航
+addResources:unsetFlag=2-9,setFlag=5
+isVisible:if self.hasFlag(id=1)
+isGuiBlinking: if self.hasFlag(id=5)
+[action_返航-导弹0.2]
+text:反舰导弹剩余20％返航
+addResources:unsetFlag=2-9,setFlag=6
+isVisible:if self.hasFlag(id=1)
+isGuiBlinking: if self.hasFlag(id=6)
+[action_返航-全空]
+text:所有弹药打空返航
+addResources:unsetFlag=2-9,setFlag=7
+isVisible:if self.hasFlag(id=1)
+isGuiBlinking: if self.hasFlag(id=7)
+[action_返航-导弹]
+text:所有导弹打空返航
+addResources:unsetFlag=2-9,setFlag=8
+isVisible:if self.hasFlag(id=1)
+isGuiBlinking: if self.hasFlag(id=8)
+[action_返航-炮弹]
+text:剩余主炮炮弹为0返航
+addResources:unsetFlag=2-9,setFlag=4
+isVisible:if self.hasFlag(id=1)
+isGuiBlinking: if self.hasFlag(id=4)
+[action_返航-fqf]
+text:剩余反潜火箭弹为0返航
+addResources:unsetFlag=2-9,setFlag=3
+isVisible:if self.hasFlag(id=1)
+isGuiBlinking: if self.hasFlag(id=3)
+[action_返航-任一]
+text:任意弹药打空返航
+addResources:unsetFlag=2-9,setFlag=9
+isVisible:if self.hasFlag(id=1)
+isGuiBlinking: if self.hasFlag(id=9)
+[action_关闭]
+addResources: unsetFlag=1
+isVisible:if self.hasFlag(id=1)
+displayType: action
+text:关闭补给规划菜单
+alwaysSinglePress: true
+allowMultipleInQueue: false
+buildSpeed: 0s
+[hiddenAction_回补给站1]
+autoTrigger:if self.resource(type="AS",lessThan=1) and not self.hasFlag(id=5)
+alsoTriggerAction:stopFire
+[hiddenAction_回补给站2]
+autoTrigger:if self.ammo(lessThan=1) and self.resource(type="AA",lessThan=1) and self.resource(type="AS",lessThan=3) and self.resource(type="FQF",lessThan=3) and self.resource(type="CIWS",lessThan=10) and self.hasFlag(id=7)
+alsoTriggerAction:stopFire
+[hiddenAction_回补给站3]
+autoTrigger:if self.resource(type="AS",lessThan=1) and self.resource(type="AA",lessThan=1) and self.hasFlag(id=8)
+alsoTriggerAction:stopFire
+[hiddenAction_回补给站4]
+autoTrigger:if self.resource(type="AS",lessThan=1) or self.ammo(lessThan=1) or self.resource(type="AA",lessThan=1) or self.resource(type="FQF",lessThan=1) or self.resource(type="CIWS",lessThan=100) and self.hasFlag(id=9)
+alsoTriggerAction:stopFire
+[hiddenAction_回补给站5]
+autoTrigger:if self.resource(type="AS",lessThan=4) and self.hasFlag(id=6)
+alsoTriggerAction:stopFire
+[hiddenAction_回补给站6]
+autoTrigger:if self.resource(type="FQF",lessThan=1) and self.hasFlag(id=3)
+alsoTriggerAction:stopFire
+[hiddenAction_回补给站7]
+autoTrigger:if self.ammo(lessThan=1) and self.hasFlag(id=3)
+alsoTriggerAction:stopFire

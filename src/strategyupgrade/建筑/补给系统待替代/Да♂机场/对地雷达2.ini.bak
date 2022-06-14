@@ -1,0 +1,24 @@
+
+[core]
+
+copyFrom:对地雷达1.ini
+name:机场对地雷达站lv2
+generation_credits:-190
+tags:雷达l2
+[graphics]
+total_frames: 1
+
+image:        NONE.png
+image_wreak:  NONE
+image_turret:RA2.png
+
+
+
+[action_r]
+text:雷达3级
+addResources:setFlag=12
+price:120000,jc=700
+buildSpeed: 25s
+convertTo:机场对地雷达站lv3
+[ai]
+upgradedFrom:机场对地雷达站lv1

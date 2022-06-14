@@ -1,0 +1,141 @@
+
+[core]
+name: 指挥中心
+
+overrideAndReplace:commandCenter
+isBuilding:true
+generation_credits:1600
+generation_delay:60
+generation_resources: ny=5,jc=40
+class: CustomUnitMetadata
+price: credits=2000,jc=10000
+maxHp: 4000
+mass: 3000
+techLevel: 1
+buildSpeed: 80s
+#availableInDemo: true
+radius: 30
+tags:城市,h0
+canRepairBuildings: true
+nanoRange: 200
+nanoBuildSpeed: 1
+#footprint used for collisions with units (left, up, right, down)
+footprint: -1,-1,1,1
+#used for placement, and placement of other buildings
+constructionFootprint: -1,-1,1,2
+buildingToFootprintOffsetX:15
+buildingToFootprintOffsetY:10
+exit_x:-7
+exit_y:0
+canBuild_0_name: setRally
+canBuild_0_pos:  0.1
+canBuild_1_name:建造者1
+canBuild_3_name:大型机场-后勤
+canBuild_5_name:大型机场-战斗1
+canBuild_4_name:陆地补给基地
+[canBuild_5]
+name: reclaim
+pos:  -1
+[canBuild_6]
+name:建筑材料工厂
+pos:1.6
+[canBuild_6A]
+name:弹药工厂
+pos:1.61
+[canBuild_7]
+name: 陆军工厂
+pos:  1
+tech: 1
+[canBuild_8]
+name:空军工厂
+pos:  1.1
+tech: 1
+[graphics]
+total_frames: 4
+image:        base.png
+image_back:base_back.png
+image_wreak:  base_weak.png
+image_turret: NONE
+imageScale:1
+
+image_shadow: AUTO
+shadowOffsetX:1
+shadowOffsetY:1
+
+
+[attack]
+canAttack: true
+canAttackFlyingUnits: true
+canAttackLandUnits:   true
+canAttackUnderwaterUnits: false
+
+turretSize: 20
+turretTurnSpeed: 4
+
+
+maxAttackRange: 200
+shootDelay: 1.2s
+[animation_idle]
+onActions : idle
+body_0s: {frame:0}
+body_0.9s: {frame:1}
+body_1.0s: {frame:2}
+body_1.1s:{frame:3}
+body_1.2s:{frame:4}
+body_1.3s:{frame:3}
+body_1.4s: {frame:2}
+body_1.5s: {frame:1}
+[turret_主炮塔]
+x: 0
+y: 0
+projectile: 1
+turnSpeedAcceleration: 1.0
+shoot_sound:missile_fire
+shoot_sound_vol:0.3
+canShoot: true
+[projectile_1]
+directDamage: 50
+life: 60
+speed: 5
+color:#C1C100
+drawSize:1.5
+trailEffect:true
+lightColor:#C1C100
+ballistic:true
+ballistic_height:8
+[movement]
+movementType: BUILDING
+moveSpeed: 1.1
+moveAccelerationSpeed: 0.07
+moveDecelerationSpeed: 0.17
+
+maxTurnSpeed: 4.1
+turnAcceleration: 0.25
+
+moveSlidingMode :false
+moveIgnoringBody:false
+[turret_建造]
+x:0
+y:0
+canShoot: false
+turnSpeed: 3
+turnSpeedAcceleration: 0.2
+
+isMainNanoTurret: true
+[ai]
+useAsBuilder:true
+buildPriority: 120
+
+noneInBaseExtraPriority: 120
+noneGlobalExtraPriority: 120
+
+maxEachBase: 0
+[hiddenAction_0]
+autoTriggerOnEvent:created
+price:0
+addResources:jc=1000,cl=500,ny=300,rlzy=200,tec=1
+#produceUnits:基础控制面板*1
+[hiddenAction_AI]
+autoTrigger:if self.isControlledByAI()
+convertTo: 指挥中心-AI专属增强版
+addResources:jc=1000,cl=500,ny=300,rlzy=200

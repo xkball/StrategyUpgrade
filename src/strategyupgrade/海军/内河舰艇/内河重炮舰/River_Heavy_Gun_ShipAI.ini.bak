@@ -1,0 +1,219 @@
+[core]
+
+name: 内河重炮舰_
+displayDescription:内河作战中的重要舰种，火力较强
+class: CustomUnitMetadata
+price: 1000
+maxHp: 200
+mass: 4000
+maxShield:150
+shieldRegen:0.06
+shieldDisplayOnlyDeflection:true
+shieldDeflectionDisplayRate:10
+showInEditor:false
+techLevel: 1
+buildSpeed: 11s
+#availableInDemo: true
+
+radius: 17
+displayRadius: 17
+
+isBio: false
+softCollisionOnAll: 0
+fogOfWarSightRange: 8
+builtFrom_1_name: 内河海军工厂
+builtFrom_1_pos:  2
+
+tags:内河战舰
+energyMax:120
+energyRegen:0
+energyNeedsToRechargeToFull:true
+[hiddenAction_convert1]
+autoTriggerOnEvent:created
+convertTo:内河重炮舰
+[hiddenAction_装弹]
+autoTrigger:if self.hasParent()
+addResources:energy=3
+[action_showAmmo]
+#infoOnly: true
+addResources: energy=1
+price:  energy=1
+text: 弹药剩余
+description:目前战舰还剩余多少弹药
+displayType: none
+buildSpeed: 0s
+pos: 0.1
+displayRemainingStockpile: true
+highPriorityQueue: true
+isActive:false
+[hiddenAction_回补给站]
+autoTrigger:if self.energy(lessThan=1)
+alsoTriggerAction:自动返回
+addResources:unsetFlag=1
+[hiddenAction_脱离]
+autoTrigger:if self.energy(full=true) and self.hasParent()
+disconnectFromParent:true
+[hiddenAction_自动返回]
+addWaypoint_type:loadInto
+addWaypoint_prepend: true
+addWaypoint_target_nearestUnit_team:own
+addWaypoint_target_nearestUnit_tagged:内河舰补给站
+[graphics]
+total_frames: 1
+image:        River_Heavy_Gun_Ship.png
+image_wreak: River_Heavy_Gun_Ship_Sink.png
+image_turret: River_Ship_Heavy_Gun.png
+imageScale:1
+turretImageScale:0.7
+
+image_shadow: AUTO
+shadowOffsetX:1
+shadowOffsetY:1
+
+
+splastEffect: true
+[attack]
+canAttack: true
+canAttackFlyingUnits: true
+canAttackLandUnits:   true
+canAttackUnderwaterUnits: false
+
+turretSize: 20
+turretTurnSpeed: 10
+
+
+maxAttackRange: 155
+shootDelay:210
+
+
+[turret_SGun1]
+x:0
+y:-5
+idleDir:180
+image:Light_AAA_Turret.png
+turnSpeed:3
+limitingRange:95
+delay:60
+projectile:2
+
+[turret_SGun2]
+x:0
+y:-33
+idleDir:180
+image:Light_AAA_Turret.png
+turnSpeed:3
+limitingRange:95
+delay:60
+projectile:2
+
+[turret_SGun3]
+x:5
+y:15
+image:Light_AAA_Turret.png
+turnSpeed:3
+limitingRange:95
+delay:60
+projectile:2
+
+[turret_SGun4]
+x:-5
+y:15
+image:Light_AAA_Turret.png
+turnSpeed:3
+limitingRange:95
+delay:60
+projectile:2
+
+[turret_AAA1]
+x:-5
+y:-18
+idleDir:180
+image:Light_AAA_Turret.png
+turnSpeed:3
+limitingRange:95
+delay:20
+canAttackLandUnits:false
+projectile:2
+
+[turret_AAA2]
+x:5
+y:-18
+idleDir:180
+image:Light_AAA_Turret.png
+turnSpeed:3
+limitingRange:95
+delay:20
+canAttackLandUnits:false
+projectile:2
+
+[turret_MainGunTurretA]
+x: 0
+y: 23
+turnSpeed:1
+turnSpeedAcceleration:0.75
+shoot_sound:cannon_firing
+shoot_flame:large
+shoot_light:#FFFF00
+projectile:1
+canAttackFlyingUnits:false
+energyUsage:1
+[turret_MainGunTurretB]
+x: 0
+y: -24
+idleDir:180
+turnSpeed:1
+turnSpeedAcceleration:0.75
+shoot_sound:cannon_firing
+shoot_flame:large
+shoot_light:#FFFF00
+projectile:1
+canAttackFlyingUnits:false
+energyUsage:1
+[turret_MediumGunTurret]
+x: 0
+y: -13
+idleDir:180
+image:River_Ship_Medium_Turret.png
+turnSpeed:1
+turnSpeedAcceleration:0.75
+shoot_sound:cannon_firing
+shoot_flame:large
+shoot_light:#FFFF00
+projectile:3
+canAttackFlyingUnits:false
+delay:150
+limitingRange:140
+energyUsage:1
+[projectile_1]
+directDamage:40
+speed:3
+speedSpread:0.28
+image:A_AP_Shell.png
+drawSize:0.6
+life:1200
+
+
+[projectile_2]
+directDamage:4
+life:180
+speed:3
+color:#C1C100
+drawSize:1
+
+[projectile_3]
+directDamage:20
+speed:3
+speedSpread:0.1
+image:A_AP_Shell.png
+drawSize:0.7
+life:1200
+
+[movement]
+movementType: LAND
+moveSpeed: 0.2
+moveAccelerationSpeed: 0.002
+moveDecelerationSpeed: 0.002
+maxTurnSpeed: 0.6
+turnAcceleration: 0.3
+
+moveIgnoringBody:true
